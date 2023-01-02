@@ -1,0 +1,15 @@
+# Second order Linear Differential Equations {#sec-2ndorder}
+
+A second order linear differential equation has the form.
+\begin{equation}
+  P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x),
+  \label{genericode}
+\end{equation}
+where the functions $P$, $Q$, $R$ and $G$ are specified.
+
+For convenience, let $w$ denote $\frac{dy}{dx}$ and write the equation as
+\begin{align}
+  \frac{dy}{dx} &= w \\
+  P\frac{dw}{dx} &= - Qw - Ry + G
+\end{align}
+

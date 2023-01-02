@@ -1,0 +1,454 @@
+---
+author: James  Watmough
+date: "`r Sys.Date()`"
+---
+
+{{< include texmacros.qmd >}}
+
+
+# Applications, Terminology, Notation {#sec-intro}
+
+## Applications of differential equations {#sec-intro-apps}
+
+Many problems in applied mathematics can be cast as equations relating functions and their derivatives.  The motion of a mass on a spring is modelled as a balance of potential energy, which is assumed proportional to the mass's displacement from an equilibrium position, and kinetic energy, which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.  
+
+The deflection, $y$ of a beam clamped at both ends and under compression by a force $F$ is approximated by the solution to $y'' + F\sin y = 0$, $y(0) = y(1) = 0$.  This equation arises from a conservation of energy.   The same equation approximates the motion of a mass on a spring.
+
+Exponential growth is modelled as a solution to the simple ode $y' = ry$.  More complex logistic growth is the solution to the equation $y' = ry(1-y/K)$.
+
+Conservation of charge in an electrical circuit can be modelled as constraints between voltage drops, currents and their rates of change.
+
+An ordinary differential equation is simply an equation involving an independent variable, say $t$, a dependant variable, $y$, and its derivatives, 
+$\frac{dy}{dt}, \frac{d^2y}{dt^2}, \frac{d^3y}{dt^3}, \dots$   The order of a differential equation refers to the highest derivative present.
+For example,  $$\frac{dy}{dt} = a\sin(bt)y(1-y)$$ is a first order nonlinear ordinary differential equation;
+$$m\frac{d^2y}{dt^2} + r\frac{dy}{dt} + ky = a\cos(t)$$ is a second order linear differential equation.  The term **linear** refers to the linear dependence of the equation on the dependant variable and its derivatives.
+
+A differential equation, or a system of differential equations is said to be linear if it is linear in the dependent variable(s) and their derivatives.   Thus,  the equation governing the motion of a damped oscillator subject to an external force $F$, $my'' - cy' + ky = F(t)$, is a linear second order differential equation, even if the forcing term $F$ is nonlinear in the independent variable $t$.
+
+## Linear Differential Equations {#sec-intro-linear}
+
+The main focus of this course is on linear ordinary differential equations.  This is for two simple reasons: (1) the mathematical theory for nonlinear equations is built on the simpler, more complete theory for linear equations, and (2) important concepts, such as system stability and responses to perturbations, are based on linear approximations to nonlinear equations.  For example,  a balance of forces acting on a mass swinging on a string (a pendulum) leads to the nonlinear differential equation
+$$l\theta''(t) + g\sin \theta(t) = 0,$$
+where $\theta(t)$ is the angular displacement of the mass at time $t$, $l$ is the string length and $g$ is our gravitational acceleration.  You should quickly verify that the constant function $\theta(t) = 0$ for all $t$ is a solution to the equation.  If the initial displacement is small, we expect the angle to stay close to zero.  Thus we approximate the nonlinear term, $g\sin(\theta)$, by its tangent line, $g\theta$, resulting in the more familiar linear differential equation
+$$l\theta''(t) + g\theta(t) = 0.$$
+This one we can solve almost by inspection, since we know that sine and cosine functions behave this way.  Indeed,  if we guess that $\theta(t) = \sin(\omega t)$ we can find the frequency, $\omega$, with some simple algebra:
+\begin{align*}
+	l\theta''(t) + g\theta(t) &= 0 \\
+	l\frac{d^2}{d\theta^2}\sin(\omega t) + g\sin(\omega t) &= 0 \\
+	-l\omega^2\sin(\omega t) + g\sin(\omega t) &= 0 \\
+	\left(-l\omega^2 + g\right)\sin(\omega t)  &= 0 
+\end{align*}
+Thus either $\sin(\omega t) =0$ for all $t$, implying $\omega = 0$, or $\omega = \sqrt{g/l}$.  The first case is the trivial zero solution we already guessed,  the second case is the natural frequency of the pendulum.  We will cover this in more depth later.
+
+## Higher order differential equations and systems of differential equations {#sec-intro-systems}
+
+An $n^{\text{th}}$ order differential equation can be written
+$${\cal{F}}\left(t,x,\frac{dx}{dt},\dots,\frac{d^nx}{dt^n}\right) = 0,$$
+or if we solve for the highest derivative, 
+$$\frac{d^nx}{dt^n} = F(t,x,\frac{dx}{dt},\dots,\frac{d^i_{n-1}x}{dt^{n-1}}).$$
+Such an equation can also be written as a system of first order equations by introducing 
+new dependent variables for the derivatives:
+\begin{align*}
+  x'_0 &= x_1,  \\
+  x'_1 &= x_2,  \\
+  x'_2 &= x_3,  \\
+	x'_{n-1} &=  F(t,x_0,x_1,\dots,x_{n-1}).
+\end{align*}
+Here, $x_i$ is the $i^{\text{th}}$ derivative of $x$, and $x_0$ is our new name for the original variable.
+Since higher order equations can be cast as systems of first order equations,  we will spend much of the course dealing with such systems.  Notationally,  we just allow the dependent variable to be a vector:
+$x' = f(t,x)$, where $f:\R\times\R^n\to \R^n$.
+
+Geometrically, the solution to a system of first order equations,  $x(t)$, describes a curve in $\R^n$ parameterized by $t$.  The
+derivative $x'(t)$ is the vector tangent to this curve at $(t,x(t))$.  Hence,  the solution to the differential equation is
+the curve $x(t)$, which is everywhere tangent to $f(t,x(t))$.
+
+## First order differential equations {#sec-1storder}
+
+There are two solution tricks for first order equations that require nothing more than a basic mastery of integration: separable first order equations, and linear first order equations.
+
+### first order separable equations {#sec-separable}
+
+A first order linear differential equation of the form $\frac{dy}{dt} = f(y)g(t)$
+is said to be separable.  It can be solved by a single integration step.
+\begin{align*}
+  \frac{dy}{dt} &= f(y)g(t) \\
+  \frac{1}{f(y)}\frac{dy}{dt} &= g(t) \\
+  \int \frac{1}{f(y)}\frac{dy}{dt}\,dt &= \int g(t)\,dt + C \\
+  \int \frac{1}{f(y)}\,dy &= \int g(t)\,dt + C 
+\end{align*}
+
+::: {#exm-Separable-1}
+
+Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t)$.
+
+Separating variables leads to $\int \frac{1}{y}\,dy = \int r\cos(t)\,dt +C$.
+Integrating both sides leads to $\ln y = r\sin(t) + C$.
+This can be solved for $y$ in terms of $t$.  $y(t) = e^{C+r\sin(t)}$.
+Note the solution is usually given in the form $y(t) = Ae^{r\sin(t)}$.
+Note that we must assume $y\ne0$ in order to perform the separation of 
+variables.  However, it is easy to see by inspection that $y=0$ is a solution 
+to the equation.
+
+:::
+
+::: {#exm-Separable-2}
+  Find the general solution to the differential equation $\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}$.
+
+  Separating variables and integrating leads to 
+\begin{align*}
+  \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C
+  y^2+\sin y &= \int 2x^3  + C
+\end{align*}
+In this case, we are not able to solve for $y$ as a function of $t$.  We are left with $y$ defined implicitly as a function of $t$.
+:::
+
+::: {#exm-Separable-3}
+  Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.
+  Separating variables and integrating leads to $\frac{y^3}{3} = \frac{x^3}{3} + C$.
+  Solving for the dependent  variable leads to $y = \sqrt[3]{x^3+3C}$.
+:::
+
+::: {#exm-Separable-4}
+  Solve the differential equation $\frac{dy}{dx} = -\frac{2x}{y}$.
+  Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$.
+  This is a family of ellipses, $2x^2 + y^2 = c^2$.
+:::
+
+::: {#exm-FirstOrderLinear-1} 
+Solve the differential equation
+ $\frac{du}{dt} = 2 + 2u + t + tu$.
+ Here $u$ is our dependent variable.  The equation is both linear and separable so  we may choose either method.
+ \begin{align*}
+   \frac{du}{dt} &= (2+t)(1+u) \\
+   \int \frac{du}{1+u} &= \int (2+t) \, dt  \\
+   \int \ln|1+u| &= 2t+\frac{t^2}{2} + C \\
+   \int |1+u| &= A \exp(2t+\frac{t^2}{2}) \\
+   \int u &= -1 \pm A \exp(2t+\frac{t^2}{2}) 
+ \end{align*}
+ Note the use of $\pm$ is not necessary.  Since $A$ could be positive  or negative.
+ It just serves to remind us that
+ integration of $1/(1+u)$ leads to two solutions.
+::: 
+
+::: {#exm-Separable-5} 
+  Solve the  differential  equation $xy' + y = y^2$.
+  This is nonlinear, due to the $y^2$  term.  It is separable.
+  \begin{align*}
+    \frac{1}{y^2-y} y' &= \frac{1}{x} \\
+    \int \frac{dy}{y^2-y} &= \int \frac{dx}{x} \\
+    \int \frac{1}{y-1} - \frac{1}{y} dy &= \int \frac{dx}{x} \\
+     \ln|y-1| - \ln|y| &= \ln|x| + C \\
+     \ln\frac{|y-1|}{|x||y|} &=  C \\
+     \frac{|y-1|}{|x||y|} &=  A 
+  \end{align*}
+  there are in fact several solutions buried in this notation.  For example, 
+  if $0< y < 1$, then 
+     $\frac{|y-1|}{|x||y|} = \frac{1-y}{xy}$, and we find $1/y - 1 = A/x \rightarrow y = x/(A+x)$,
+     $A>0$.
+::: 
+As a further exercise,  sketch a few sample solutions with $y< 0$, $0 < y < 1$ and $y>1$.
+
+
+### Linear first order differential equations {#sec-1storder-linear}
+
+Consider a differential equation of the form 
+$y'(x) +P(x) y(x) = Q(x)$.
+These can be integrated using an **integrating factor**.
+$$I(x)y'(x) +I(x)P(x) y(x) = I(x)Q(x).$$
+If we can chose $I$ so that $I' = IP$, then
+$$\left(Iy\right)' = I(x)y'(x) +I(x)P(x) y(x) =  I(x)Q(x).$$
+This can be solved by a single integration
+$$Iy =  \int I(x)Q(x) \, dx.$$
+and hence
+$$y(x) =  \frac{1}{I(x)} \int I(x)Q(x) \, dx.$$
+Since our formula to determine $I$ is a separable equation,
+$$I' = IP \rightarrow I'/I = P \rightarrow \ln(I) = \int P \, dx$$
+Thus,  $I(x) = A\exp(\int P(x)\, dx)$.
+
+## Second order Linear Differential Equations 
+
+### The general theory of second order Linear Differential Equations {#sec-2ndorder}
+
+The first part of this course deals with second order linear differential
+equations with constant coefficients.  However before we zero in on solution
+techniques for these equations it is worthwhile to take a brief look at the
+more general theory.
+
+Many physical problems can be cast as second order differential equations of the form
+$\ddot{x} = f(t,x,\dot{x})$
+with $\ddot{x}$ interpreted as acceleration, $x$ as position, and $\dot{x}$ as velocity.
+These often arise as initial value problems, when combined with initial conditions of
+the form $x(0) = x_0$, $\dot{x}(0) = y_0$.     
+Some cases appear as boundary value problems with the conditions prescribed at two different
+values of the independent variable.
+$x(0) = a$, $x(1) = b$.
+
+### Notation:
+
+A second order linear differential equation has the form.
+\begin{equation}
+  P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x),
+  \label{genericode}
+\end{equation}
+where the functions $P$, $Q$, $R$ and $G$ are specified.
+
+* $x$ is our independent variable
+* $y$ is our dependent variable
+* $G$ is typically a forcing function
+* $P$, $Q$ and $R$ are the coefficients of the equation
+* the equation is {\em homogeneous} if $G=0$
+* the equation is {\em nonhomogeneous} if $G\ne 0$
+* the equation is {\em constant coefficient} if $P$, $Q$ and $R$ constants.
+
+
+## The solution set
+
+By a solution to the differential equation, we mean a twice differentiable function $y(x)$
+that satisfies \eqn{genericode}.   There are two theorems that are relevant here.
+
+::: {#thm-1}
+If $y_1$ and $y_2$ are solutions of the homogeneous problem
+then for any constants $c_1$ and $c_2$, the linear combination $y = c_1y_1 + c_2y_2$ is also a solution of the homogeneous problem.
+:::
+
+In the language of linear algebra, any linear combination of two solutions is also a solution.
+The proof follows almost immediately from substituting the linear combination of the two solutions
+into the differential equation.  
+
+::: {#thm-1}
+If $y_1$ and $y_2$ are two linearly independent solutions to the homogeneous problem and $y_p$ is any solution to the
+nonhomogeneous problem, then $y = c_1y_1 + c_2y_2 + y_p$ is also a solution to the nonhomogeneous problem
+for any constant $a$.
+:::
+
+Again,  the proof is simply a matter of plugging the proposed solution into the differential equation.
+
+::: {#thm-1}
+If $y_1$ and $y_2$ are two linear independent solutions of the homogeneous problem and $y_p$ is any solution to the
+nonhomogeneous problem, 
+then every solution of the homogeneous problem can be written 
+in the form $y = c_1y_1 + c_2y_2 + y_p$ for some real numbers $c_1$ and $c_2$.
+:::
+
+In short,  this theorem states that if we can find two linearly independent
+solutions, then we know all the solutions to the homogeneous problem,  and if
+we also know any one solution to the nonhomogeneous problem, we know them all.
+The form of the solution set should look very familiar.  It has the same
+structure as the set of solutions to a system of linear algebraic equations.  
+
+The proof of this theorem is beyond the scope of this course.  However, we will be able to give a sketch of the proof later in the term.
+
+
+Throughout these notes it is convenient to use a shorthand notation for the left hand side 
+of the differential equation.  In more advanced courses this would be introduced as a linear operator
+and some fancy theorems would be invoked.
+An operator is simply a mathematical object that maps functions to other
+functions in the same way the functions of first year calculus map numbers to
+other numbers.
+Suppose $y$ is twice differentiable, then we can define a new function, $Ly$,
+by 
+\begin{equation}
+  Ly = P\frac{d^2y}{dx^2} + Q\frac{dy}{dx} + Ry.
+\end{equation}
+We use this to define the operator $L$.
+Simply put,  given a known, twice differentiable function $y$, the operation $L$ returns a new function which we refer to simply as $Ly$.
+The  linearity of the operator refers to the fact that $L$ is a linear transformation.  That is, for any two
+twice-differentiable functions $u$ and $v$ and any two real numbers $a$ and
+$b$, $L(au+bv) = aLu + bLv$.    
+
+Many of  the theorems from linear algebra apply to the operator $L$.  We refer
+to $Ly=0$ as the homogeneous, or complementary problem, and $Ly = G$ as the
+nonhomogeneous problem.  As with linear systems,  if $y_p$ is a solution to the
+nonhomogeneous problem and $y_h$ is any solution to the homogeneous problem,
+then $y = cy_h + y_p$ is also a solution to the nonhomogeneous problem, for any
+constant $c$.   This can be easily verified by direct substitution.  Further,
+if $y_1$ and $y_2$ are both solutions to the homogeneous problem, then any
+function of the form $y = c_1y_1 + c_2 y_2$ is also a solution to the
+homogeneous problem.   Note the slight difference in the wording of these
+results from the theorems stated above.  When $L$ is a second order linear
+differential operator, such as arises from second order linear differential
+equation, then it can further be shown that the homogeneous problem $Ly=0$ has
+a two dimensional solution set.  That is, we can always find two linearly
+independent solutions, $y_1$ and $y_2$ and every solution to $Ly=0$ can be
+written as a linear combination of these.  This follows from a theorem for the
+existence and uniqueness of solutions to systems of first order differential
+equations, which will be sketched later in these notes.
+
+Later in the notes we will also encounter the eigenvalue problem $Ly=\lambda y$, where we are interested in finding values of the constant $\lambda$ for which solutions to the eigenvalue problem exist.  These typically arise in boundary value problems, and the eigenvalues correspond to modes of oscillation in the physical system.
+
+![Mass spring system](figures/ODE-spring-figure.pdf "Diagram of a Mass-Spring System")
+
+::: {#exm-MassSpring}
+  Consider the mass-spring system of Figure \ref{fig:mass-spring} with a mass of $m$ attached to a spring with spring constant $k$.
+  A differential equation model for the system can be obtained either by energy balance or force balance.  The energy of the 
+  system is 
+  \begin{align*}
+    \text{Total Energy} &= \text{Kinetic Energy} + \text{Spring Potential} \\
+    &= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2
+  \end{align*}
+  Differentiating and assuming the total energy is conserved (constant) leads to the second order differential equation
+  $0 = m\dot{x}\ddot{x} + kx\dot{x}$
+  which simplifies to 
+  $m\ddot{x} + kx = 0.$
+  Since both $k$ and $m$ are positive constants, the solutions to the equation are functions whose second derivatives are negative multiples of themselves: $\ddot{x} = -\frac{k}{m}x$.  These are sines and cosines of the appropriate period:
+  $x_1(t) = \cos \tfrac{k}{m} t, \qquad x_2(t) = \sin \tfrac{k}{m} t.$
+  The general solution to the differential equation is any linear combination of these two solutions:
+  $x(t) = c_1\cos \tfrac{k}{m} t \, + \, c_2 \sin \tfrac{k}{m} t.$
+:::
+
+## Linear Second order differential equations with constant coefficients
+
+Consider the problem
+\begin{equation}
+ay'' + by' +cy = 0
+\end{equation}
+Based on our experience with first order equations (a=0),
+we look for a solution of the form $y=e^{rx}$.
+If we can find two such solutions, we've got them all!
+First, we substitute the ansatz, $y(x) = e^{rx}$, into \eqn{genericode}
+\begin{align*}
+  a\frac{d^2}{dx^2}\left(e^{rx}\right) + b\frac{d}{dx}\left(e^{rx}\right) +ce^{rx} &= 0 \\
+  ar^2e^{rx} + bre^{rx} +ce^{rx} &= 0 \\
+  \left(ar^2 + br +c\right)e^{rx} &= 0 
+\end{align*}
+Factoring out $e^{rx}$ we see that $r$ must satisfy
+  $ar^2 + br +c = 0$.
+That is,
+$$r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.$$
+
+There are three cases to consider.
+\paragraph{Case I:}  two real and distinct roots ($b^2-4ac>0$)
+
+  The general solution has the form 
+  $$y = c_1e^{r_1x} + c_2e^{r_2x}$$
+  where $r_1$ and $r_2$ are the two real roots.
+
+\paragraph{Case II:} one real root ($b^2 - 4ac = 0$)
+
+  Here we only have one independent solution $y_1 = c_1e^{rx}$ with $r=-b/(2a)$.
+
+  At some point in history, someone stumbled upon a second independent solution, 
+  $y_2 = xe^{rx}$, with $r=-b/(2a)$.    While this it is not at all obvious why
+  this should be a solution and how someone would come up with it,  it is easy
+  to verify that is is a solution and that $y_1$ and $y_2$ are linearly independent.
+
+  We leave it as an exercise to show, by direct substitution, that $y_2$ solves (*).
+  That is, show that 
+  $$a\frac{d^2}{dx^2}\left(xe^{rx}\right) + b\frac{d}{dx}\left(xe^{rx}\right) +cxe^{rx} = 0 $$
+provided $b^2 - 4ac =0$ and $r=b/(2a)$.
+
+  To show the two solutions are linearly independent,  consider the combination
+  $$\alpha e^{rx} + \beta xe^{rx} = 0.$$
+
+  The key concept with linear independence of functions, is that the equality
+  must hold for all $x$ in the domain of the functions.  In this case, since
+  $e^{rx} > 0$, it follows that $\alpha + \beta x = 0$,  which holds only for
+  $x=-\alpha/\beta$.  Hence the two functions are linearly independent on 
+  any interval of nonzero length, which is all we care about.
+
+  In summary,  the general solution in case II has the form
+  $$y = (c_1+c_2x)e^{rx} $$
+  with $r = -b/(2a)$.
+
+\paragraph{Case III:}  complex roots ($b^2 - 4ac < 0$)
+
+  In this case, we have two complex roots, which we will express as
+  $r_1 = \alpha - \beta i$ and
+  $r_2 = \alpha + \beta i$.
+  For those who are comfortable with complex functions, you will be happy to 
+  know that the two functions $e^{r_1 x}$ and $e^{r_2 x}$ are indeed linearly 
+  independent.  
+  The only catch is that we started with a problem involving real variables and
+  real functions and it would be nice to have real solutions.  Fortunately,
+  it is possible to show that the real and complex parts of the complex solutions
+  are also linearly independent solutions.  Hence, the general solution has the form
+
+  $$y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}$$
+
+## Initial and boundary value problems
+
+The general form of the solution has two arbitrary constants.  Thus it is a two-parameter family of solutions.   In practice,  we are often interested in a solution  satisfying additional constraints.  These are typically posed as either initial conditions or boundary conditions.  Initial conditions
+are given as constraints of the form $y(0) = y_1$ and $y'(0) = y_2$ for some specified constants $y_1$ and $y_2$.  Boundary conditions are typically given as $y(0) = y_0$ and $y(1) = y_1$, but could involve derivatives of $y$ at the boundaries.
+
+::: {#exm-SecondOrderLinear-1}
+  Find a solution to $y'' + 2y' - 3 = 2x$ satisfying the initial conditions $y(0) = 0$ and $y'(0) = 1$. 
+:::
+
+## Summary
+
+To find two linearly independent solutions to a homogeneous second order linear differential equation with constant coefficients,
+$ay'' + by' + cy' = 0,$
+first compute the characteristic roots
+$r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.$
+second,  determine which of the following three cases holds and write down the appropriate solutions:
+\paragraph{Case I:} 
+Two distinct real roots ($b^2 > 4ac$):
+$y_1 = e^{r_1t} \qquad y_2 = e^{r_2t}$
+with $r_1 = \frac{-b - \sqrt{b^2-4ac}}{2a}$, and $r_2 = \frac{-b + \sqrt{b^2-4ac}}{2a}$.
+\paragraph{Case II:} 
+A double root ($b^2 = 4ac$):
+$y_1 = e^{rt} \qquad y_2 = te^{rt}$
+with $r = \frac{-b}{2a}$.
+\paragraph{Case III:} 
+Complex roots ($b^2 < 4ac$):
+$y_1 = e^{\alpha t} \cos \beta t \qquad y_2 = e^{\alpha t} \sin \beta t,$
+with $\alpha = -\frac{b}{2a}$, and $\beta = \frac{\sqrt{4ac-b^2}}{2a}$.
+
+% Here give some examples of how boundary conditions arise in practice.
+
+
+% Here give some examples of how boundary conditions arise in practice.
+
+## Discussion
+
+Note that we refer to Equation (\ref{genericode}) as linear when it is linear in the dependent variable.
+It may be nonlinear in the independent variable.  For example,  
+applying Kirchoff's law to a simple electric circuit yields the model
+$$LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)$$
+where the dependent variable, $Q$, is the charge, and is assumed to depend on the time, $t$. The parameters $L$, $R$ and $C$ are the inductance, resistance and capacitance of the circuit and $E$ is an applied voltage.    If the fixed resistance $R$ is replaced by a variable resistance, $R(t)$, the equation is still linear in the dependent variable.  
+
+More generally,  a differential equation is an equation involving a function and some of its derivatives.  
+For example,  a simple model for the angular deflection $\theta(t)$ of a pendulum of length $l$ is 
+$$l\theta''(t) + g\sin \theta(t) = 0,$$
+which arises from balancing kinetic and potential energies.
+This equation is nonlinear in the dependent variable $\theta$.  For small angles, we can approximate $\sin(\theta)$ by $\theta$ leading to the linear second order constant coefficient model
+$$l\theta''(t) + g\theta(t) = 0.$$   Most systems are nonlinear.  However most analyses begin with the study of linear approximations.  Hence the importance of studying linear differential equations.
+
+## Theoretical Considerations
+
+A good treatment of the existence and uniqueness of solutions to differential equations can be found in Hartman.
+This material is approachable, but requires a deeper exposure to linear algebra than you received in Math 1503. 
+
+Consider the general Second order linear ODE of \eqn{genericode} with $G=0$.
+Let $w(x) = y'(x)$ and write the single equation as 
+\begin{equation}
+  P(x)w'(x) + Q(x)w(x) + R(x)y(x) = 0,
+\end{equation}
+which leads to the linear system
+\begin{align}
+  w'(x) &=  - \frac{Q(x)}{P(x)}w(x) - \frac{R(x)}{P(x)}y(x), \\
+  y'(x) &= w(x)
+\end{align}
+Hartman's text deals with the more general equation 
+$\vec{y}' = f(x,\vec{y})$
+where $\vec{y}$ and $f$ are vector functions.  The result for our simpler linear system
+is that the initial value problem has a unique solution provided $Q/P$ and $R/P$ are both continuous.
+
+\section{Finding particular solutions of  the nonhomogeneous problem}
+\subsection{Reduction of order}
+Consider the general linear second order differential equation,
+$P(x)y'' + Q(x)y' + R(x)y = G(x)$,
+and suppose we know one solution, $y_1$ to the homogeneous problem ($G=0$).
+A well-established trick to finding more solutions to the differential equation is to look for solutions
+of the form $y(x) = u(x)y_1(x)$.  
+\begin{align*}
+  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G 
+\end{align*}
+Since $y_1$ is a known solution, to the nonhomogeneous problem,  the last few terms cancel leaving us with
+an equation that only involves the derivatives of $u$.  Setting $v = u'$ reduces the order to a first order
+differential equation in $v$:
+$Py_1 v' + \left(2y_1' + Qy_1\right)v  = G.$
+This equation is first order and linear, and can be solved using an integrating factor.
+

@@ -1,0 +1,58 @@
+# 2023 Winter Class Schedule
+
+Date       Section              Topic
+---------- --------             ------------
+Mon Jan 09 @sec-intro           Overview and ODE review
+Tue Jan 10 @sec-1storder        Tutorial: First order ODE review
+Wed Jan 11 @sec-intro           Second Order ODE, IVP, BVP
+Fri Jan 13 @sec-systems         Systems of ODE, IVP, BVP, numerical solutions
+Mon Jan 16 @sec-systems         Systems of IVPs: Theory and geometry
+Tue Jan 17 @sec-eigen           Tutorial: Review of Eigenvalues and Eigenvectors
+Wed Jan 18 @sec-diagon          x' = Ax Distinct real eigenvalues, diagonalization
+Fri Jan 20 @sec-complex         x' = Ax Complex roots
+Mon Jan 23 @sec-geneig          x' = Ax repeated roots
+Tue Jan 24 @sec-systems         Tutorial: x' = Ax
+Wed Jan 25 @sec-fundmat         x' = Ax The matrix exponential and fundamental matrices
+Fri Jan 27 @sec-varparm         x' = Ax + g; Variation of parameters 
+Mon Jan 30 @sec-2ndorder        Second order constant coefficient ODEs
+Tue Jan 31 @sec-systems         Tutorial: Solving systems
+Wed Feb 01 @sec-2ndorder        Undetermined coefficients
+Fri Feb 03 **Test 1**
+Mon Feb 06 @sec-2ndorder        Variation of Parameters
+Tue Feb 07 @sec-2ndorder        Tutorial: 2nd order IVP and BVP
+Wed Feb 08 @sec-2ndorder        Variation of Parameters 
+Fri Feb 10 @sec-2ndorder        Buffer
+Mon Feb 13 @sec-laplace-basics  Laplace Transforms: Definitions and basics
+Tue Feb 14 @sec-laplace-basics  Tutorial: Relevant integration techniques
+Wed Feb 15 @sec-laplace         Laplace Transforms
+Fri Feb 17 @sec-laplace         Laplace Transforms
+Mon Feb 20 **no class**         Family Day
+Tue Feb 20 @sec-laplace         Tutorial: 
+Wed Feb 22 @sec-laplace         Laplace Transforms
+Fri Feb 24 **Test 3**
+Mon Feb 27 @sec-laplace         Laplace Transforms
+Tue Feb 28 @sec-laplace         Tutorial
+Wed Mar 01 @sec-laplace         Laplace Transforms
+Fri Mar 03 @sec-laplace         Buffer
+Mon Mar 06 **no class**         Reading Week
+Wed Mar 08 **no class**         Reading Week
+Fri Mar 10 **no class**         Reading Week
+Mon Mar 13 @sec-step            x' = Ax + f discontinuous forcing
+Tue Mar 14 @sec-laplace         Tutorial: Solving IVPs via Laplace Transforms
+Wed Mar 15 @sec-delta           x' = Ax + f discontinuous forcing
+Fri Mar 17 @sec-delta           x' = Ax + f discontinuous forcing
+Mon Mar 20 @sec-fourier         Fourier Series South Africa Online via Teams
+Tue Mar 21 @sec-fourier         Tutorial - asynchronous 
+Wed Mar 22 @sec-fourier         Fourier Series South Africa Online via Teams
+Fri Mar 24 **Test 3**
+Mon Mar 27 @sec-fourier         Fourier Series South Africa Online via Teams
+Tue Mar 28 @sec-fourier         Tutorial - asynchronous 
+Wed Mar 29 @sec-fourier         Fourier Series South Africa Online via Teams
+Fri Mar 31 @sec-fourier         Fourier Series South Africa Online via Teams
+Mon Apr 03 @sec-fourier         Fourier Series 
+Tue Apr 04 @sec-fourier         Tutorial
+Wed Apr 05 @sec-fourier         Fourier Series 
+Fri Apr 07 **no class**         Good Friday
+Mon Apr 10 **no class**         Easter Monday
+Tue Apr 11 @sec-fourier         Tutorial
+Wed Apr 12 @sec-fourier         Fourier Series 

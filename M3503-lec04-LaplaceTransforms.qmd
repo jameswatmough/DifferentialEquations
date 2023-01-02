@@ -1,0 +1,14 @@
+# Laplace Transforms {#sec-laplace}
+
+##  Definition and basic properties
+
+We will see two *integral transfoms* in this course: the Fourier Transform and the Laplace Transform.  In general,  an integral transform takes a fuction, $f$, of one variable defined on an interval $[a,b]$, multplies it by a *kernel*, $k$, depending on two variables, and integrates the product over the domain $[a,b]$.  The result is a function of the second variable appearing in the kernel:
+\begin{equation}
+  F(s) = \int_a^b k(t,s) f(t)\, dt
+\end{equation}
+The Laplace Transform takes a function $f$ defined on $(0,\infty)$ and transforms it using the kernel $k(t,s) = e^{-st}$.
+\begin{equation}
+  F(s) = \int_0^\infty e^{-st} f(t)\, dt
+\end{equation}
+We can and will think of the transform as a function whose inputs are functions of time, and whose outputs are functions of the second variable $s$.  We'll use a fancy L to denote this function.  Hence, the Laplace Transform of a function $f$ is the function $F$ defined by 
+$$F(s) = \Lap{f}(s) = \int_0^\infty e^{-st}f(t)\, dt$$

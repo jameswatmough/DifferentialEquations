@@ -1,0 +1,24 @@
+
+# Fourier Series {#sec-fourier}
+
+## Vectors
+
+## Inner Products
+
+## The usual Fourier Series for $f$
+
+
+## A more general view of Fourier Series
+
+Suppose $f$ is a piecewise continuous function defined on an interval $[-l,l]$.  
+Further, suppose the set of function $\{\phi_0,\phi_1,\phi_2,\dots\}$ is orthogonal
+with respect to some given inner product.  Then the fourier series for $f$ with respect
+to this set is 
+$\displaystyle\sum_{m=0}^\infty c_m \phi_m(x)$
+with $c_m = \dfrac{\ip{f}{\phi_m}}{\ip{\phi_m}{\phi_m}}$.
+
+The usual fourier series for $f$ is obtained when 
+$\phi_n(x) = \begin{cases}    1 & m=0, \\    \cos(\frac{m\pi x}{2l}) & \text{$m$ even and positive} \\ \sin(\frac{(m+1)\pi x}{2l}) & \text{$m$ odd}  \end{cases}$
+and the inner product of two functions, $u$ and $v$, is defined as 
+$\ip{u}{v} = \int_{-l}^{l} u(x) v(x) \, dx$.
+
