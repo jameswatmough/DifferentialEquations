@@ -235,7 +235,17 @@ ul.task-list li input[type="checkbox"] {
 \end{align*}\]</span></p>
 <div id="exm-Separable-1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1.1 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = ry\cos(t)\)</span>.</p>
-<p>Separating variables leads to <span class="math inline">\(\int \frac{1}{y}\,dy = \int r\cos(t)\,dt +C\)</span>. Integrating both sides leads to <span class="math inline">\(\ln y = r\sin(t) + C\)</span>. This can be solved for <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(t\)</span>. <span class="math inline">\(y(t) = e^{C+r\sin(t)}\)</span>. Note the solution is usually given in the form <span class="math inline">\(y(t) = Ae^{r\sin(t)}\)</span>. Note that we must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables. However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is a solution to the equation.</p>
+<p>Separating variables and integrating leads to <span class="math display">\[\begin{align}
+    \int \frac{1}{y}\,dy &amp;= \int r\cos(t)\,dt +C \\
+    \log y &amp;= r\sin t  + C
+\end{align}\]</span> Note that the result is nonlinear in both <span class="math inline">\(y\)</span> and <span class="math inline">\(t\)</span>. In general, it is not always possible to solve for <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(t\)</span>. However, in this case we can: <span class="math display">\[\begin{equation}
+    y(t) = \exp(C+r\sin t )
+\end{equation}\]</span> Notes:</p>
+<ul>
+<li>the solution is usually given in the form <span class="math inline">\(y(t) = Ae^{r\sin(t)}\)</span>.</li>
+<li>we must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables.<br>
+However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.</li>
+</ul>
 </div>
 <div id="exm-Separable-2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1.2 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}\)</span>.</p>

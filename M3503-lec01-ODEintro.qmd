@@ -81,13 +81,20 @@ is said to be separable.  It can be solved by a single integration step.
 
 Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t)$.
 
-Separating variables leads to $\int \frac{1}{y}\,dy = \int r\cos(t)\,dt +C$.
-Integrating both sides leads to $\ln y = r\sin(t) + C$.
-This can be solved for $y$ in terms of $t$.  $y(t) = e^{C+r\sin(t)}$.
-Note the solution is usually given in the form $y(t) = Ae^{r\sin(t)}$.
-Note that we must assume $y\ne0$ in order to perform the separation of 
-variables.  However, it is easy to see by inspection that $y=0$ is a solution 
-to the equation.
+Separating variables and integrating leads to 
+\begin{align}
+	\int \frac{1}{y}\,dy &= \int r\cos(t)\,dt +C \\
+	\log y &= r\sin t  + C
+\end{align}
+Note that the result is nonlinear in both $y$ and $t$.  In general,  it is not always possible to solve for $y$ in terms of $t$.  However, in this case we can:
+\begin{equation} 
+	y(t) = \exp(C+r\sin t ) 
+\end{equation}
+Notes:
+
+- the solution is usually given in the form $y(t) = Ae^{r\sin(t)}$.
+- we must assume $y\ne0$ in order to perform the separation of variables.  
+  However, it is easy to see by inspection that $y=0$ is also a solution to the equation.
 
 :::
 
