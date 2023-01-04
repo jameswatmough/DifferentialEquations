@@ -10,13 +10,28 @@ date: "`r Sys.Date()`"
 
 ## Applications of differential equations {#sec-intro-apps}
 
-Many problems in applied mathematics can be cast as equations relating functions and their derivatives.  The motion of a mass on a spring is modelled as a balance of potential energy, which is assumed proportional to the mass's displacement from an equilibrium position, and kinetic energy, which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.  
+Many problems in applied mathematics can be cast as equations relating functions and their derivatives.  
 
-The deflection, $y$ of a beam clamped at both ends and under compression by a force $F$ is approximated by the solution to $y'' + F\sin y = 0$, $y(0) = y(1) = 0$.  This equation arises from a conservation of energy.   The same equation approximates the motion of a mass on a spring.
+::: {#exm-intro-spring}
+The motion of a mass on a spring is modelled as a balance of potential energy, $\frac{1}{2}kx^2$,  which is assumed proportional to the mass's squared displacement from an equilibrium position, and kinetic energy, $\frac{1}{2}m\dot{x}^2$ which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.  
+Conservation of energy implies the sum of these two quantities remains constant.
+You may have seen this expressed in terms of forces:  $m\ddot{x} + kx = 0$.   
+Here the displacement, $x$, is our **dependent variable**.  The **independent variable**, time, is implicit.  We will refer to the mass, $m$, and the spring constant $k$ as our parameters.    The differential equation is often accompanied by **initial conditions**.  For example releasing the mass from rest with an initial displacement $x_0$ translates to the conditions $x(0) = x_0$, $\dot{x}(0) = 0$.
+:::
 
+::: {#exm-intro-beam}
+The deflection, $y$, of a beam clamped at both ends and under compression by a force $F$ is approximated by the solution to the differential equation 
+$y'' + F\sin y = 0$, $y(0) = y(1) = 0$.  
+This equation also arises from a conservation of energy.
+:::
+
+::: {#exm-intro-logistic}
 Exponential growth is modelled as a solution to the simple ode $y' = ry$.  More complex logistic growth is the solution to the equation $y' = ry(1-y/K)$.
+:::
 
+::: {#exm-intro-circuit}
 Conservation of charge in an electrical circuit can be modelled as constraints between voltage drops, currents and their rates of change.
+::: 
 
 An ordinary differential equation is simply an equation involving an independent variable, say $t$, a dependant variable, $y$, and its derivatives, 
 $\frac{dy}{dt}, \frac{d^2y}{dt^2}, \frac{d^3y}{dt^3}, \dots$   The order of a differential equation refers to the highest derivative present.
@@ -84,28 +99,26 @@ Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t
 Separating variables and integrating leads to 
 \begin{align}
 	\int \frac{1}{y}\,dy &= \int r\cos(t)\,dt +C \\
-	\log y &= r\sin t  + C
+	\log y &= r\sin t  + C \\
+	y(t) &= \exp(C+r\sin t ) 
 \end{align}
-Note that the result is nonlinear in both $y$ and $t$.  In general,  it is not always possible to solve for $y$ in terms of $t$.  However, in this case we can:
-\begin{equation} 
-	y(t) = \exp(C+r\sin t ) 
-\end{equation}
-Notes:
+The solution is usually given in the form $y(t) = y_0e^{r\sin(t)}$.
+Since $C$ is an arbitrary constant, $y_0 = e^C$ is also arbitrary.
+:::
 
-- the solution is usually given in the form $y(t) = Ae^{r\sin(t)}$.
-- we must assume $y\ne0$ in order to perform the separation of variables.  
-  However, it is easy to see by inspection that $y=0$ is also a solution to the equation.
-
+::: {.callout-note}
+We must assume $y\ne0$ in order to perform the separation of variables.  
+However, it is easy to see by inspection that $y=0$ is also a solution to the equation.
 :::
 
 ::: {#exm-Separable-2}
   Find the general solution to the differential equation $\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}$.
 
   Separating variables and integrating leads to 
-\begin{align*}
-  \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C
-  y^2+\sin y &= \int 2x^3  + C
-\end{align*}
+\begin{align}
+  \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C \\
+  y^2+\sin y &= 2x^3  + C
+\end{align}
 In this case, we are not able to solve for $y$ as a function of $t$.  We are left with $y$ defined implicitly as a function of $t$.
 :::
 
@@ -118,7 +131,7 @@ In this case, we are not able to solve for $y$ as a function of $t$.  We are lef
 ::: {#exm-Separable-4}
   Solve the differential equation $\frac{dy}{dx} = -\frac{2x}{y}$.
   Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$.
-  This is a family of ellipses, $2x^2 + y^2 = c^2$.
+  This is a family of ellipses, $2x^2 + y^2 = C^2$.
 :::
 
 ::: {#exm-FirstOrderLinear-1} 
@@ -128,9 +141,9 @@ Solve the differential equation
  \begin{align*}
    \frac{du}{dt} &= (2+t)(1+u) \\
    \int \frac{du}{1+u} &= \int (2+t) \, dt  \\
-   \int \ln|1+u| &= 2t+\frac{t^2}{2} + C \\
-   \int |1+u| &= A \exp(2t+\frac{t^2}{2}) \\
-   \int u &= -1 \pm A \exp(2t+\frac{t^2}{2}) 
+   \ln|1+u| &= 2t+\frac{t^2}{2} + C \\
+   |1+u| &= A \exp(2t+\frac{t^2}{2}) \\
+   u &= -1 \pm A \exp(2t+\frac{t^2}{2}) 
  \end{align*}
  Note the use of $\pm$ is not necessary.  Since $A$ could be positive  or negative.
  It just serves to remind us that
@@ -159,18 +172,53 @@ As a further exercise,  sketch a few sample solutions with $y< 0$, $0 < y < 1$ a
 ### Linear first order differential equations {#sec-1storder-linear}
 
 Consider a differential equation of the form 
-$y'(x) +P(x) y(x) = Q(x)$.
+$y'(t) +p(t) y(t) = q(t)$
+with initial data $y(t_0) = y_0$.
 These can be integrated using an **integrating factor**.
-$$I(x)y'(x) +I(x)P(x) y(x) = I(x)Q(x).$$
-If we can chose $I$ so that $I' = IP$, then
-$$\left(Iy\right)' = I(x)y'(x) +I(x)P(x) y(x) =  I(x)Q(x).$$
-This can be solved by a single integration
-$$Iy =  \int I(x)Q(x) \, dx.$$
-and hence
-$$y(x) =  \frac{1}{I(x)} \int I(x)Q(x) \, dx.$$
-Since our formula to determine $I$ is a separable equation,
-$$I' = IP \rightarrow I'/I = P \rightarrow \ln(I) = \int P \, dx$$
-Thus,  $I(x) = A\exp(\int P(x)\, dx)$.
+The trick is to find a factor, $u$, which turns the left hand side of the equation into the derivative of something familiar.
+We multiply both sides of the equation by $u$,
+$$u(t)y'(t) +u(t)p(t) y(t) = u(t)q(t).$$
+Notice that if we can choose $u$ so that $up = u'$, then the left hand side is the derivative of $uy$:
+$$\left(uy\right)' = uy' +u' y = uy' +up y =  uq.$$
+We can solve this with a single integration
+\begin{gather}
+	\frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
+	u(t)y(t) =  \int_{t_0}^t uq \\
+	y(t) =  \frac{1}{u(t)} \int_{t_0}^t u(s)q(s)\, ds 
+\end{gather}
+
+The integrating factor, $u$, is the solution to the **homogeneous** problem, $y' + py = 0$.
+This is separable, and has solutions of the form
+$u(t) = \exp(\int_{t_0}^t p)$.
+To make the result more readable, define $P(t) = \int_{t_0}^t p$.
+Putting this together with our expression for $y$, we find, in terms of $P$,
+	$$y(t) = e^{-P(t)} \int_{t_0}^t e^{P(s)}q(s)\, ds$$
+
+::: {.callout-warning}
+I advise against memorizing this formula. Instead memorize the technique.  Applying the technique is often simpler than applying the formula,  and we'll extend the ideas behind the method later in the course.
+:::
+
+::: {#exm-linearode-2}
+Solve the initial value problem $t^2y' + 2ty = \log t, \ y(1) = 2$.
+
+You can probably guess the integrating factor by noticing the left hand side looks like the product rule applied to $t^2y$.  Specifically, 
+\begin{align*}
+		t^2y' + 2ty &= \log t \\
+		\dfrac{d}{dt}\left(t^2y\right)  &= \log t \\
+		\left. s^2y(s) \right|_{s=1}^{s=t}  &= \int_1^t \log s \, ds \\
+		t^2y(t) - y(1)  &= t\log(t) - t + 1 \\
+		y(t) &= \frac{1}{t} \log(t) - \frac{1}{t} + \frac{3}{t^2}    
+\end{align*}
+:::
+
+::: {.callout-tip}
+
+If you don't immediately recognize the integrating factor, first rewrite the problem as
+$ y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t$
+The integrating factor can be computed as
+$u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
+
+:::
 
 ## Second order Linear Differential Equations 
 
