@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-02">
+<meta name="dcterms.date" content="2023-01-07">
 
 <title>Math 3503: Differential Equations for Engineers - 1&nbsp; Applications, Terminology, Notation</title>
 <style>
@@ -62,6 +62,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -184,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 2, 2023</p>
+      <p class="date">January 7, 2023</p>
     </div>
   </div>
   
@@ -196,10 +203,28 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="sec-intro-apps" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="sec-intro-apps"><span class="header-section-number">1.1</span> Applications of differential equations</h2>
-<p>Many problems in applied mathematics can be cast as equations relating functions and their derivatives. The motion of a mass on a spring is modelled as a balance of potential energy, which is assumed proportional to the mass’s displacement from an equilibrium position, and kinetic energy, which is assumed proportional to the mass’s squared velocity, or squared rate of change of displacement.</p>
-<p>The deflection, <span class="math inline">\(y\)</span> of a beam clamped at both ends and under compression by a force <span class="math inline">\(F\)</span> is approximated by the solution to <span class="math inline">\(y'' + F\sin y = 0\)</span>, <span class="math inline">\(y(0) = y(1) = 0\)</span>. This equation arises from a conservation of energy. The same equation approximates the motion of a mass on a spring.</p>
-<p>Exponential growth is modelled as a solution to the simple ode <span class="math inline">\(y' = ry\)</span>. More complex logistic growth is the solution to the equation <span class="math inline">\(y' = ry(1-y/K)\)</span>.</p>
-<p>Conservation of charge in an electrical circuit can be modelled as constraints between voltage drops, currents and their rates of change.</p>
+<p>The art of applied mathematics involves distilling a description of the state a system into relationships between variables. For example, consider a simple pendulum consisting of a mass on a rigid rod constrained to swing in a plane. The various quantities of interest are the mass, <span class="math inline">\(m\)</span>, the length of the rod, <span class="math inline">\(l\)</span>, the horizontal displacement, <span class="math inline">\(x\)</span>, the vertical displacement, <span class="math inline">\(y\)</span>, both measured, for example, relative to the fixed end of the rod, and the angle of displacement, <span class="math inline">\(\theta\)</span>. These quantities are not independent. We know <span class="math inline">\(x^2+y^2 = l^2\)</span>, and we can choose to measure angle so that <span class="math inline">\(x = \sin \theta\)</span> and <span class="math inline">\(y = \cos \theta\)</span>. Our description so far is static, and our equations are algebraic.</p>
+<p>To describe the dynamics of the pendulum, we need to extend our mathematical description to include velocities, accelerations, forces and energies. If we neglect the mass of the rod, we can hypothesize that the component of the gravitational force perpendicular to the rod acts to accelerate the mass radially. <span class="math display">\[\text{mass}\times\text{radial acceleration} = \text{radial force of gravity}\]</span> <span id="eq-nonlinear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \sin \theta \tag{1.1}\]</span></span> Here <span class="math inline">\(g\)</span> denotes the gravitational constant and we use the double dot notation to denote the second derivative with respect to time. If we assume the angle is small, we can approximate <span class="math inline">\(\sin \theta\)</span> by <span class="math inline">\(\theta\)</span> and Equation <a href="#eq-nonlinear-pendulum">Equation&nbsp;<span>1.1</span></a> simplifies to <span id="eq-linear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \theta \tag{1.2}\]</span></span></p>
+<p>Our goal in this course is to understand differential equations like <a href="#eq-linear-pendulum">Equation&nbsp;<span>1.2</span></a>. We’ll proceed more or less in the following order.</p>
+<ol type="1">
+<li>We’ll start with simpler <strong>first order</strong> differential equations, some of which you’ll have seen in your Calculus courses.<br>
+</li>
+<li>Next we’ll look at higher order differential equations and systems of first order differential equations.</li>
+<li>Most of our focus will be on <strong>linear</strong> differential equations and <strong>initial value problems</strong>.</li>
+<li>We’ll use <strong>Laplace transforms</strong> to handle impulsive systems, like circuits with switches.</li>
+<li>We’ll briefly look at <strong>Fourier series</strong> and <strong>boundary value problems</strong>.</li>
+</ol>
+<div id="exm-intro-spring" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.1 </strong></span>The motion of a mass on a spring is modelled as a balance of potential energy, <span class="math inline">\(\frac{1}{2}kx^2\)</span>, which is assumed proportional to the mass’s squared displacement from an equilibrium position, and kinetic energy, <span class="math inline">\(\frac{1}{2}m\dot{x}^2\)</span> which is assumed proportional to the mass’s squared velocity, or squared rate of change of displacement.<br>
+Conservation of energy implies the sum of these two quantities remains constant. You may have seen this expressed in terms of forces: <span class="math inline">\(m\ddot{x} + kx = 0\)</span>.<br>
+Here the displacement, <span class="math inline">\(x\)</span>, is our <strong>dependent variable</strong>. The <strong>independent variable</strong>, time, is implicit. We will refer to the mass, <span class="math inline">\(m\)</span>, and the spring constant <span class="math inline">\(k\)</span> as our parameters. The differential equation is often accompanied by <strong>initial conditions</strong>. For example releasing the mass from rest with an initial displacement <span class="math inline">\(x_0\)</span> translates to the conditions <span class="math inline">\(x(0) = x_0\)</span>, <span class="math inline">\(\dot{x}(0) = 0\)</span>.</p>
+</div>
+<div id="exm-intro-logistic" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.2 </strong></span>Exponential growth is modelled as a solution to the simple ode <span class="math inline">\(y' = ry\)</span>. More complex logistic growth is the solution to the equation <span class="math inline">\(y' = ry(1-y/K)\)</span>.</p>
+</div>
+<div id="exm-intro-circuit" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.3 </strong></span>Conservation of charge in an electrical circuit can be modelled as constraints between voltage drops, currents and their rates of change.</p>
+</div>
 <p>An ordinary differential equation is simply an equation involving an independent variable, say <span class="math inline">\(t\)</span>, a dependant variable, <span class="math inline">\(y\)</span>, and its derivatives, <span class="math inline">\(\frac{dy}{dt}, \frac{d^2y}{dt^2}, \frac{d^3y}{dt^3}, \dots\)</span> The order of a differential equation refers to the highest derivative present. For example, <span class="math display">\[\frac{dy}{dt} = a\sin(bt)y(1-y)\]</span> is a first order nonlinear ordinary differential equation; <span class="math display">\[m\frac{d^2y}{dt^2} + r\frac{dy}{dt} + ky = a\cos(t)\]</span> is a second order linear differential equation. The term <strong>linear</strong> refers to the linear dependence of the equation on the dependant variable and its derivatives.</p>
 <p>A differential equation, or a system of differential equations is said to be linear if it is linear in the dependent variable(s) and their derivatives. Thus, the equation governing the motion of a damped oscillator subject to an external force <span class="math inline">\(F\)</span>, <span class="math inline">\(my'' - cy' + ky = F(t)\)</span>, is a linear second order differential equation, even if the forcing term <span class="math inline">\(F\)</span> is nonlinear in the independent variable <span class="math inline">\(t\)</span>.</p>
 </section>
@@ -234,43 +259,51 @@ ul.task-list li input[type="checkbox"] {
   \int \frac{1}{f(y)}\,dy &amp;= \int g(t)\,dt + C
 \end{align*}\]</span></p>
 <div id="exm-Separable-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.1 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = ry\cos(t)\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.4 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = ry\cos(t)\)</span>.</p>
 <p>Separating variables and integrating leads to <span class="math display">\[\begin{align}
     \int \frac{1}{y}\,dy &amp;= \int r\cos(t)\,dt +C \\
-    \log y &amp;= r\sin t  + C
-\end{align}\]</span> Note that the result is nonlinear in both <span class="math inline">\(y\)</span> and <span class="math inline">\(t\)</span>. In general, it is not always possible to solve for <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(t\)</span>. However, in this case we can: <span class="math display">\[\begin{equation}
-    y(t) = \exp(C+r\sin t )
-\end{equation}\]</span> Notes:</p>
-<ul>
-<li>the solution is usually given in the form <span class="math inline">\(y(t) = Ae^{r\sin(t)}\)</span>.</li>
-<li>we must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables.<br>
-However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.</li>
-</ul>
+    \log y &amp;= r\sin t  + C \\
+    y(t) &amp;= \exp(C+r\sin t )
+\end{align}\]</span> The solution is usually given in the form <span class="math inline">\(y(t) = y_0e^{r\sin(t)}\)</span>. Since <span class="math inline">\(C\)</span> is an arbitrary constant, <span class="math inline">\(y_0 = e^C\)</span> is also arbitrary.</p>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables.<br>
+However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.</p>
+</div>
 </div>
 <div id="exm-Separable-2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.2 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}\)</span>.</p>
-<p>Separating variables and integrating leads to <span class="math display">\[\begin{align*}
-  \int (2y+\cos y)\,dy&amp;= \int 6x^2 \, dx + C
-  y^2+\sin y &amp;= \int 2x^3  + C
-\end{align*}\]</span> In this case, we are not able to solve for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(t\)</span>. We are left with <span class="math inline">\(y\)</span> defined implicitly as a function of <span class="math inline">\(t\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.5 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}\)</span>.</p>
+<p>Separating variables and integrating leads to <span class="math display">\[\begin{align}
+  \int (2y+\cos y)\,dy&amp;= \int 6x^2 \, dx + C \\
+  y^2+\sin y &amp;= 2x^3  + C
+\end{align}\]</span> In this case, we are not able to solve for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(t\)</span>. We are left with <span class="math inline">\(y\)</span> defined implicitly as a function of <span class="math inline">\(t\)</span>.</p>
 </div>
 <div id="exm-Separable-3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.3 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = \frac{x^2}{y^2}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^3}{3} = \frac{x^3}{3} + C\)</span>. Solving for the dependent variable leads to <span class="math inline">\(y = \sqrt[3]{x^3+3C}\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.6 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = \frac{x^2}{y^2}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^3}{3} = \frac{x^3}{3} + C\)</span>. Solving for the dependent variable leads to <span class="math inline">\(y = \sqrt[3]{x^3+3C}\)</span>.</p>
 </div>
 <div id="exm-Separable-4" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.4 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = -\frac{2x}{y}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^2}{2} = -x^2 + C\)</span>. This is a family of ellipses, <span class="math inline">\(2x^2 + y^2 = c^2\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.7 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = -\frac{2x}{y}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^2}{2} = -x^2 + C\)</span>. This is a family of ellipses, <span class="math inline">\(2x^2 + y^2 = C^2\)</span>.</p>
 </div>
 <div id="exm-FirstOrderLinear-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.5 </strong></span>Solve the differential equation <span class="math inline">\(\frac{du}{dt} = 2 + 2u + t + tu\)</span>. Here <span class="math inline">\(u\)</span> is our dependent variable. The equation is both linear and separable so we may choose either method. <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 1.8 </strong></span>Solve the differential equation <span class="math inline">\(\frac{du}{dt} = 2 + 2u + t + tu\)</span>. Here <span class="math inline">\(u\)</span> is our dependent variable. The equation is both linear and separable so we may choose either method. <span class="math display">\[\begin{align*}
    \frac{du}{dt} &amp;= (2+t)(1+u) \\
    \int \frac{du}{1+u} &amp;= \int (2+t) \, dt  \\
-   \int \ln|1+u| &amp;= 2t+\frac{t^2}{2} + C \\
-   \int |1+u| &amp;= A \exp(2t+\frac{t^2}{2}) \\
-   \int u &amp;= -1 \pm A \exp(2t+\frac{t^2}{2})
+   \ln|1+u| &amp;= 2t+\frac{t^2}{2} + C \\
+   |1+u| &amp;= A \exp(2t+\frac{t^2}{2}) \\
+   u &amp;= -1 \pm A \exp(2t+\frac{t^2}{2})
 \end{align*}\]</span> Note the use of <span class="math inline">\(\pm\)</span> is not necessary. Since <span class="math inline">\(A\)</span> could be positive or negative. It just serves to remind us that integration of <span class="math inline">\(1/(1+u)\)</span> leads to two solutions.</p>
 </div>
 <div id="exm-Separable-5" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.6 </strong></span>Solve the differential equation <span class="math inline">\(xy' + y = y^2\)</span>. This is nonlinear, due to the <span class="math inline">\(y^2\)</span> term. It is separable. <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 1.9 </strong></span>Solve the differential equation <span class="math inline">\(xy' + y = y^2\)</span>. This is nonlinear, due to the <span class="math inline">\(y^2\)</span> term. It is separable. <span class="math display">\[\begin{align*}
     \frac{1}{y^2-y} y' &amp;= \frac{1}{x} \\
     \int \frac{dy}{y^2-y} &amp;= \int \frac{dx}{x} \\
     \int \frac{1}{y-1} - \frac{1}{y} dy &amp;= \int \frac{dx}{x} \\
@@ -283,7 +316,48 @@ However, it is easy to see by inspection that <span class="math inline">\(y=0\)<
 </section>
 <section id="sec-1storder-linear" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="sec-1storder-linear"><span class="header-section-number">1.4.2</span> Linear first order differential equations</h3>
-<p>Consider a differential equation of the form <span class="math inline">\(y'(x) +P(x) y(x) = Q(x)\)</span>. These can be integrated using an <strong>integrating factor</strong>. <span class="math display">\[I(x)y'(x) +I(x)P(x) y(x) = I(x)Q(x).\]</span> If we can chose <span class="math inline">\(I\)</span> so that <span class="math inline">\(I' = IP\)</span>, then <span class="math display">\[\left(Iy\right)' = I(x)y'(x) +I(x)P(x) y(x) =  I(x)Q(x).\]</span> This can be solved by a single integration <span class="math display">\[Iy =  \int I(x)Q(x) \, dx.\]</span> and hence <span class="math display">\[y(x) =  \frac{1}{I(x)} \int I(x)Q(x) \, dx.\]</span> Since our formula to determine <span class="math inline">\(I\)</span> is a separable equation, <span class="math display">\[I' = IP \rightarrow I'/I = P \rightarrow \ln(I) = \int P \, dx\]</span> Thus, <span class="math inline">\(I(x) = A\exp(\int P(x)\, dx)\)</span>.</p>
+<p>Consider a differential equation of the form <span class="math inline">\(y'(t) +p(t) y(t) = q(t)\)</span> with initial data <span class="math inline">\(y(t_0) = y_0\)</span>. These can be integrated using an <strong>integrating factor</strong>. The trick is to find a factor, <span class="math inline">\(u\)</span>, which turns the left hand side of the equation into the derivative of something familiar. We multiply both sides of the equation by <span class="math inline">\(u\)</span>, <span class="math display">\[u(t)y'(t) +u(t)p(t) y(t) = u(t)q(t).\]</span> Notice that if we can choose <span class="math inline">\(u\)</span> so that <span class="math inline">\(up = u'\)</span>, then the left hand side is the derivative of <span class="math inline">\(uy\)</span>: <span class="math display">\[\left(uy\right)' = uy' +u' y = uy' +up y =  uq.\]</span> We can solve this with a single integration <span class="math display">\[\begin{gather}
+    \frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
+    u(t)y(t) =  \int_{t_0}^t uq \\
+    y(t) =  \frac{1}{u(t)} \int_{t_0}^t u(s)q(s)\, ds
+\end{gather}\]</span></p>
+<p>The integrating factor, <span class="math inline">\(u\)</span>, is the solution to the <strong>homogeneous</strong> problem, <span class="math inline">\(y' + py = 0\)</span>. This is separable, and has solutions of the form <span class="math inline">\(u(t) = \exp(\int_{t_0}^t p)\)</span>. To make the result more readable, define <span class="math inline">\(P(t) = \int_{t_0}^t p\)</span>. Putting this together with our expression for <span class="math inline">\(y\)</span>, we find, in terms of <span class="math inline">\(P\)</span>, <span class="math display">\[y(t) = e^{-P(t)} \int_{t_0}^t e^{P(s)}q(s)\, ds\]</span></p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I advise against memorizing this formula. Instead memorize the technique. Applying the technique is often simpler than applying the formula, and we’ll extend the ideas behind the method later in the course.</p>
+</div>
+</div>
+<div id="exm-linearode-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1.10 </strong></span>Solve the initial value problem <span class="math inline">\(t^2y' + 2ty = \log t, \ y(1) = 2\)</span>.</p>
+<p>You can probably guess the integrating factor by noticing the left hand side looks like the product rule applied to <span class="math inline">\(t^2y\)</span>. Specifically, <span class="math display">\[\begin{align*}
+        t^2y' + 2ty &amp;= \log t \\
+        \dfrac{d}{dt}\left(t^2y\right)  &amp;= \log t \\
+        \left. s^2y(s) \right|_{s=1}^{s=t}  &amp;= \int_1^t \log s \, ds \\
+        t^2y(t) - y(1)  &amp;= t\log(t) - t + 1 \\
+        y(t) &amp;= \frac{1}{t} \log(t) - \frac{1}{t} + \frac{3}{t^2}    
+\end{align*}\]</span></p>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you don’t immediately recognize the integrating factor, first rewrite the problem as $ y’ + y = t$ The integrating factor can be computed as <span class="math inline">\(u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2\)</span></p>
+</div>
+</div>
 </section>
 </section>
 <section id="second-order-linear-differential-equations" class="level2" data-number="1.5">
@@ -341,7 +415,7 @@ Some cases appear as boundary value problems with the conditions prescribed at t
 </figure>
 </div>
 <div id="exm-MassSpring" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.7 </strong></span>Consider the mass-spring system of Figure <span class="math inline">\(\ref{fig:mass-spring}\)</span> with a mass of <span class="math inline">\(m\)</span> attached to a spring with spring constant <span class="math inline">\(k\)</span>. A differential equation model for the system can be obtained either by energy balance or force balance. The energy of the system is <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 1.11 </strong></span>Consider the mass-spring system of Figure <span class="math inline">\(\ref{fig:mass-spring}\)</span> with a mass of <span class="math inline">\(m\)</span> attached to a spring with spring constant <span class="math inline">\(k\)</span>. A differential equation model for the system can be obtained either by energy balance or force balance. The energy of the system is <span class="math display">\[\begin{align*}
     \text{Total Energy} &amp;= \text{Kinetic Energy} + \text{Spring Potential} \\
     &amp;= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2
   \end{align*}\]</span> Differentiating and assuming the total energy is conserved (constant) leads to the second order differential equation <span class="math inline">\(0 = m\dot{x}\ddot{x} + kx\dot{x}\)</span> which simplifies to <span class="math inline">\(m\ddot{x} + kx = 0.\)</span> Since both <span class="math inline">\(k\)</span> and <span class="math inline">\(m\)</span> are positive constants, the solutions to the equation are functions whose second derivatives are negative multiples of themselves: <span class="math inline">\(\ddot{x} = -\frac{k}{m}x\)</span>. These are sines and cosines of the appropriate period: <span class="math inline">\(x_1(t) = \cos \tfrac{k}{m} t, \qquad x_2(t) = \sin \tfrac{k}{m} t.\)</span> The general solution to the differential equation is any linear combination of these two solutions: <span class="math inline">\(x(t) = c_1\cos \tfrac{k}{m} t \, + \, c_2 \sin \tfrac{k}{m} t.\)</span></p>
@@ -375,7 +449,7 @@ The only catch is that we started with a problem involving real variables and re
 <h2 data-number="1.8" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">1.8</span> Initial and boundary value problems</h2>
 <p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
 <div id="exm-SecondOrderLinear-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.8 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.12 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
 </div>
 </section>
 <section id="summary" class="level2" data-number="1.9">

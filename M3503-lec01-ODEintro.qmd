@@ -10,7 +10,28 @@ date: "`r Sys.Date()`"
 
 ## Applications of differential equations {#sec-intro-apps}
 
-Many problems in applied mathematics can be cast as equations relating functions and their derivatives.  
+The art of applied mathematics involves distilling a description of the state a system into relationships between variables.
+For example,  consider a simple pendulum consisting of a mass on a rigid rod constrained to swing in a plane.
+The various quantities of interest are the mass, $m$, the length of the rod, $l$, the horizontal displacement, $x$, the vertical displacement, $y$, both measured, for example, relative to the fixed end of the rod, and the angle of displacement, $\theta$.
+These quantities are not independent.  We know $x^2+y^2 = l^2$, and we can choose to measure angle so that $x = \sin \theta$ and $y = \cos \theta$.
+Our description so far is static, and our equations are algebraic.  
+
+To describe the dynamics of the pendulum, we need to extend our mathematical description to include velocities, accelerations, forces and energies.
+If we neglect the mass of the rod, we can hypothesize that the component of the gravitational force perpendicular to the rod acts to accelerate the mass radially.
+$$\text{mass}\times\text{radial acceleration} = \text{radial force of gravity}$$
+$$ml\ddot{\theta} = - m g \sin \theta$$ {#eq-nonlinear-pendulum}
+Here $g$ denotes the gravitational constant and we use the double dot notation to denote the second derivative with respect to time.
+If we assume the angle is small, we can approximate $\sin \theta$ by $\theta$ and Equation [@eq-nonlinear-pendulum] simplifies to
+$$ml\ddot{\theta} = - m g \theta$$ {#eq-linear-pendulum}
+
+Our goal in this course is to understand differential equations like [@eq-linear-pendulum].
+We'll proceed more or less in the following order.
+
+1. We'll start with simpler **first order** differential equations, some of which you'll have seen in your Calculus courses.  
+2. Next we'll look at higher order differential equations and systems of first order differential equations. 
+3. Most of our focus will be on **linear** differential equations and **initial value problems**. 
+4. We'll use **Laplace transforms** to handle impulsive systems, like circuits with switches.
+5. We'll briefly look at **Fourier series** and **boundary value problems**.
 
 ::: {#exm-intro-spring}
 The motion of a mass on a spring is modelled as a balance of potential energy, $\frac{1}{2}kx^2$,  which is assumed proportional to the mass's squared displacement from an equilibrium position, and kinetic energy, $\frac{1}{2}m\dot{x}^2$ which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.  
@@ -19,14 +40,9 @@ You may have seen this expressed in terms of forces:  $m\ddot{x} + kx = 0$.
 Here the displacement, $x$, is our **dependent variable**.  The **independent variable**, time, is implicit.  We will refer to the mass, $m$, and the spring constant $k$ as our parameters.    The differential equation is often accompanied by **initial conditions**.  For example releasing the mass from rest with an initial displacement $x_0$ translates to the conditions $x(0) = x_0$, $\dot{x}(0) = 0$.
 :::
 
-::: {#exm-intro-beam}
-The deflection, $y$, of a beam clamped at both ends and under compression by a force $F$ is approximated by the solution to the differential equation 
-$y'' + F\sin y = 0$, $y(0) = y(1) = 0$.  
-This equation also arises from a conservation of energy.
-:::
-
 ::: {#exm-intro-logistic}
 Exponential growth is modelled as a solution to the simple ode $y' = ry$.  More complex logistic growth is the solution to the equation $y' = ry(1-y/K)$.
+
 :::
 
 ::: {#exm-intro-circuit}

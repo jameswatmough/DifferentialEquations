@@ -19,6 +19,16 @@ bibliography: references.bib
 
 format:
   html:
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+          window.MathJax = {
+            tex: {
+              tags: 'ams'
+            }
+          };
+          </script>
     theme: cosmo
   pdf:
     documentclass: lecturenotes-md
