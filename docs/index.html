@@ -61,6 +61,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
 
 
 </head>
@@ -96,32 +103,37 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">Class Schedule</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Applications, Terminology, Notation</span></a>
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
+  <a href="./M3503-lec01-FirstOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
+  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
+  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -138,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#class-schedule" id="toc-class-schedule" class="nav-link active" data-scroll-target="#class-schedule">Class Schedule</a></li>
   <li><a href="#winter-class-schedule" id="toc-winter-class-schedule" class="nav-link" data-scroll-target="#winter-class-schedule">2023 Winter Class Schedule</a></li>
   </ul>
 </nav>
@@ -175,10 +187,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<section id="class-schedule" class="level1 unnumbered">
+<h1 class="unnumbered">Class Schedule</h1>
 </section>
 <section id="winter-class-schedule" class="level1">
 <h1>2023 Winter Class Schedule</h1>
@@ -187,6 +197,9 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Section</th>
+<th style="text-align: left;">Stewart</th>
+<th style="text-align: left;">Kalbaugh</th>
+<th>Tupper</th>
 <th style="text-align: left;">Topic</th>
 </tr>
 </thead>
@@ -194,271 +207,433 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">Mon Jan 09</td>
 <td style="text-align: left;"><a href="M3503-lec01-ODEintro.html"><span>Chapter&nbsp;1</span></a></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">1</td>
+<td>—</td>
 <td style="text-align: left;">Overview and ODE review</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Tue Jan 10</td>
-<td style="text-align: left;"><a href="M3503-lec01-ODEintro.html#sec-1storder"><span>Section&nbsp;1.4</span></a></td>
-<td style="text-align: left;">Tutorial: First order ODE review</td>
+<td style="text-align: left;"><a href="M3503-lec01-FirstOrderODE.html"><span>Chapter&nbsp;2</span></a></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">3.2</td>
+<td>—</td>
+<td style="text-align: left;">Separable ODE</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wed Jan 11</td>
-<td style="text-align: left;"><a href="M3503-lec01-ODEintro.html"><span>Chapter&nbsp;1</span></a></td>
-<td style="text-align: left;">Second Order ODE, IVP, BVP</td>
+<td style="text-align: left;"><a href="M3503-lec01-FirstOrderODE.html"><span>Chapter&nbsp;2</span></a></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">3.1</td>
+<td>—</td>
+<td style="text-align: left;">First order ODE</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fri Jan 13</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;2</span></a></td>
-<td style="text-align: left;">Systems of ODE, IVP, BVP, numerical solutions</td>
+<td style="text-align: left;"><a href="M3503-lec01-ODEintro.html"><span>Chapter&nbsp;1</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">4</td>
+<td>—</td>
+<td style="text-align: left;">General theory, numerical solutions</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mon Jan 16</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;2</span></a></td>
-<td style="text-align: left;">Systems of IVPs: Theory and geometry</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tue Jan 17</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-eigen</span></td>
-<td style="text-align: left;">Tutorial: Review of Eigenvalues and Eigenvectors</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wed Jan 18</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html#sec-diagon"><span>Section&nbsp;3.2</span></a></td>
-<td style="text-align: left;">x’ = Ax Distinct real eigenvalues, diagonalization</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fri Jan 20</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html#sec-complex"><span>Section&nbsp;3.3</span></a></td>
-<td style="text-align: left;">x’ = Ax Complex roots</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mon Jan 23</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html#sec-geneig"><span>Section&nbsp;3.4</span></a></td>
-<td style="text-align: left;">x’ = Ax repeated roots</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tue Jan 24</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;2</span></a></td>
-<td style="text-align: left;">Tutorial: x’ = Ax</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wed Jan 25</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-fundmat</span></td>
-<td style="text-align: left;">x’ = Ax The matrix exponential and fundamental matrices</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fri Jan 27</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html#sec-varparm"><span>Section&nbsp;4.1</span></a></td>
-<td style="text-align: left;">x’ = Ax + g; Variation of parameters</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mon Jan 30</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">17.1</td>
+<td style="text-align: left;">5</td>
+<td>—</td>
 <td style="text-align: left;">Second order constant coefficient ODEs</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Tue Jan 17</td>
+<td style="text-align: left;"><a href="M3503-lec01-FirstOrderODE.html"><span>Chapter&nbsp;2</span></a></td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">3.1</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial: first order ODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wed Jan 18</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">17.1</td>
+<td style="text-align: left;">5.1</td>
+<td>—</td>
+<td style="text-align: left;">Distinct real eigenvalues</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fri Jan 20</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">17.1</td>
+<td style="text-align: left;">5.1</td>
+<td>—</td>
+<td style="text-align: left;">Complex eigenvalues</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mon Jan 23</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">17.1</td>
+<td style="text-align: left;">3.1</td>
+<td>—</td>
+<td style="text-align: left;">Repeated eigenvalues</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tue Jan 24</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wed Jan 25</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html#sec-varparm"><span>Section&nbsp;5.1</span></a></td>
+<td style="text-align: left;">17.2</td>
+<td style="text-align: left;">5.3</td>
+<td>—</td>
+<td style="text-align: left;">Variation of Parameters</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fri Jan 27</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-undetcoef</span></td>
+<td style="text-align: left;">17.2</td>
+<td style="text-align: left;">5.3</td>
+<td>—</td>
+<td style="text-align: left;">Undetermined Coefficients</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mon Jan 30</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">17.3</td>
+<td style="text-align: left;">5</td>
+<td>—</td>
+<td style="text-align: left;">Initial Value Problems</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Tue Jan 31</td>
-<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;2</span></a></td>
-<td style="text-align: left;">Tutorial: Solving systems</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">5.3</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial:</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wed Feb 01</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
-<td style="text-align: left;">Undetermined coefficients</td>
+<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html#sec-2ndorder"><span>Section&nbsp;4.0.1</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">5</td>
+<td>—</td>
+<td style="text-align: left;">Boundary Value Problems</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fri Feb 03</td>
 <td style="text-align: left;"><strong>Test 1</strong></td>
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mon Feb 06</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
-<td style="text-align: left;">Variation of Parameters</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tue Feb 07</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
-<td style="text-align: left;">Tutorial: 2nd order IVP and BVP</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wed Feb 08</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
-<td style="text-align: left;">Variation of Parameters</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fri Feb 10</td>
-<td style="text-align: left;"><a href="M3503-lec03-SecondOrderODE.html"><span>Chapter&nbsp;3</span></a></td>
-<td style="text-align: left;">Buffer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mon Feb 13</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-basics</span></td>
+<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.1-2</td>
 <td style="text-align: left;">Laplace Transforms: Definitions and basics</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Tue Feb 07</td>
+<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wed Feb 08</td>
+<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.7</td>
+<td style="text-align: left;">Laplace Transform: derivatives and ODEs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fri Feb 10</td>
+<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.4-5</td>
+<td style="text-align: left;">Laplace Transform: common transforms</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mon Feb 13</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-ivp</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.8</td>
+<td style="text-align: left;">Laplace Transform: initial value problems</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Tue Feb 14</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-basics</span></td>
-<td style="text-align: left;">Tutorial: Relevant integration techniques</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-ivp</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.9</td>
+<td style="text-align: left;">Tutorial: Solving IVPs via Laplace Transforms</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wed Feb 15</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Laplace Transforms</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-step</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.6</td>
+<td style="text-align: left;">Laplace Transform: step functions</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fri Feb 17</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Laplace Transforms</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-delta</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>1.10</td>
+<td style="text-align: left;">Laplace Transform: discontinuous forcing</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mon Feb 20</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Family Day</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Tue Feb 20</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Tutorial:</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-ivp</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial: Solving IVPs via Laplace Transforms</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wed Feb 22</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Laplace Transforms</td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-laplace-ivp</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial: Solving IVPs via Laplace Transforms</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fri Feb 24</td>
-<td style="text-align: left;"><strong>Test 3</strong></td>
+<td style="text-align: left;"><strong>Test 2</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mon Feb 27</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Laplace Transforms</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.1-2</td>
+<td style="text-align: left;">Systems of IVPs: Theory and geometry</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Tue Feb 28</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Tutorial</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.3</td>
+<td style="text-align: left;">Tutorial: Review of Eigenvalues and Eigenvectors</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wed Mar 01</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Laplace Transforms</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.4</td>
+<td style="text-align: left;">Systems: distinct real eigenvalues</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fri Mar 03</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Buffer</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.5</td>
+<td style="text-align: left;">Systems: complex roots</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mon Mar 06</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Reading Week</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Mar 08</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Reading Week</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fri Mar 10</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Reading Week</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mon Mar 13</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-step</span></td>
-<td style="text-align: left;">x’ = Ax + f discontinuous forcing</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.6</td>
+<td style="text-align: left;">Systems: repeated roots</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tue Mar 14</td>
-<td style="text-align: left;"><a href="M3503-lec04-LaplaceTransforms.html"><span>Chapter&nbsp;4</span></a></td>
-<td style="text-align: left;">Tutorial: Solving IVPs via Laplace Transforms</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
+<td style="text-align: left;">Tutorial:</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Mar 15</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-delta</span></td>
-<td style="text-align: left;">x’ = Ax + f discontinuous forcing</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.7</td>
+<td style="text-align: left;">Matrix exponentials and fundamental matrices</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fri Mar 17</td>
-<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-delta</span></td>
-<td style="text-align: left;">x’ = Ax + f discontinuous forcing</td>
+<td style="text-align: left;"><a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>2.7</td>
+<td style="text-align: left;">Nonhomogeneous problems</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mon Mar 20</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.1</td>
 <td style="text-align: left;">Fourier Series South Africa Online via Teams</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tue Mar 21</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Tutorial - asynchronous</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Mar 22</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.2</td>
 <td style="text-align: left;">Fourier Series South Africa Online via Teams</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fri Mar 24</td>
 <td style="text-align: left;"><strong>Test 3</strong></td>
 <td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mon Mar 27</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.3</td>
 <td style="text-align: left;">Fourier Series South Africa Online via Teams</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tue Mar 28</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Tutorial - asynchronous</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Mar 29</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.4</td>
 <td style="text-align: left;">Fourier Series South Africa Online via Teams</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fri Mar 31</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.5</td>
 <td style="text-align: left;">Fourier Series South Africa Online via Teams</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mon Apr 03</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.6</td>
 <td style="text-align: left;">Fourier Series</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tue Apr 04</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Tutorial</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Apr 05</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>3.7</td>
 <td style="text-align: left;">Fourier Series</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fri Apr 07</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Good Friday</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mon Apr 10</td>
 <td style="text-align: left;"><strong>no class</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Easter Monday</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tue Apr 11</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Tutorial</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wed Apr 12</td>
-<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;5</span></a></td>
+<td style="text-align: left;"><a href="M3503-lec05-FourierSeries.html"><span>Chapter&nbsp;6</span></a></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td>—</td>
 <td style="text-align: left;">Fourier Series</td>
 </tr>
 </tbody>
@@ -606,7 +781,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./M3503-lec01-ODEintro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Applications, Terminology, Notation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

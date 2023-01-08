@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="James Watmough">
+<meta name="dcterms.date" content="2023-01-08">
 
-<title>Math 3503: Differential Equations for Engineers - 3&nbsp; Second order Linear Differential Equations</title>
+<title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +62,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -71,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -96,32 +105,37 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Class Schedule</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Applications, Terminology, Notation</span></a>
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
+  <a href="./M3503-lec01-FirstOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
+  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
+  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -134,21 +148,52 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-2ndorder" id="toc-sec-2ndorder" class="nav-link active" data-scroll-target="#sec-2ndorder"><span class="toc-section-number">4.0.1</span>  The general theory of second order Linear Differential Equations</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="toc-section-number">4.1</span>  Notation:</a>
+  <ul class="collapse">
+  <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="toc-section-number">4.1.1</span>  The solution set</a></li>
+  </ul></li>
+  <li><a href="#linear-second-order-differential-equations-with-constant-coefficients" id="toc-linear-second-order-differential-equations-with-constant-coefficients" class="nav-link" data-scroll-target="#linear-second-order-differential-equations-with-constant-coefficients"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a></li>
+  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.3</span>  Initial and boundary value problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.4</span>  Summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.5</span>  Discussion</a></li>
+  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.6</span>  Theoretical Considerations</a></li>
+  <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="toc-section-number">4.7</span>  Finding particular solutions of the nonhomogeneous problem</a>
+  <ul class="collapse">
+  <li><a href="#reduction-of-order" id="toc-reduction-of-order" class="nav-link" data-scroll-target="#reduction-of-order"><span class="toc-section-number">4.7.1</span>  Reduction of order</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-2ndorder" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></h1>
+<h1 class="title"><span id="sec-2ndorder" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>James Watmough </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 8, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -156,16 +201,130 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>A second order linear differential equation has the form. <span class="math display">\[\begin{equation}
-  P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x),
-  \label{genericode}
-\end{equation}\]</span> where the functions <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(G\)</span> are specified.</p>
-<p>For convenience, let <span class="math inline">\(w\)</span> denote <span class="math inline">\(\frac{dy}{dx}\)</span> and write the equation as <span class="math display">\[\begin{align}
-  \frac{dy}{dx} &amp;= w \\
-  P\frac{dw}{dx} &amp;= - Qw - Ry + G
-\end{align}\]</span></p>
+<section id="sec-2ndorder" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="sec-2ndorder"><span class="header-section-number">4.0.1</span> The general theory of second order Linear Differential Equations</h3>
+<p>The first part of this course deals with second order linear differential equations with constant coefficients. However before we zero in on solution techniques for these equations it is worthwhile to take a brief look at the more general theory.</p>
+<p>Many physical problems can be cast as second order differential equations of the form <span class="math inline">\(\ddot{x} = f(t,x,\dot{x})\)</span> with <span class="math inline">\(\ddot{x}\)</span> interpreted as acceleration, <span class="math inline">\(x\)</span> as position, and <span class="math inline">\(\dot{x}\)</span> as velocity. These often arise as initial value problems, when combined with initial conditions of the form <span class="math inline">\(x(0) = x_0\)</span>, <span class="math inline">\(\dot{x}(0) = y_0\)</span>.<br>
+Some cases appear as boundary value problems with the conditions prescribed at two different values of the independent variable. <span class="math inline">\(x(0) = a\)</span>, <span class="math inline">\(x(1) = b\)</span>.</p>
+</section>
+<section id="notation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="notation"><span class="header-section-number">4.1</span> Notation:</h2>
+<p>A second order linear differential equation has the form. <span id="eq-genericode"><span class="math display">\[P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x), \tag{4.1}\]</span></span> where the functions <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(G\)</span> are specified.</p>
+<ul>
+<li><span class="math inline">\(x\)</span> is our independent variable</li>
+<li><span class="math inline">\(y\)</span> is our dependent variable</li>
+<li><span class="math inline">\(G\)</span> is typically a forcing function</li>
+<li><span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> are the coefficients of the equation</li>
+<li>the equation is {} if <span class="math inline">\(G=0\)</span></li>
+<li>the equation is {} if <span class="math inline">\(G\ne 0\)</span></li>
+<li>the equation is {} if <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> constants.</li>
+</ul>
+<section id="the-solution-set" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-solution-set"><span class="header-section-number">4.1.1</span> The solution set</h3>
+<p>By a solution to the differential equation, we mean a twice differentiable function <span class="math inline">\(y(x)\)</span> that satisfies . There are two theorems that are relevant here.</p>
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are solutions of the homogeneous problem then for any constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>, the linear combination <span class="math inline">\(y = c_1y_1 + c_2y_2\)</span> is also a solution of the homogeneous problem.</p>
+</div>
+<p>In the language of linear algebra, any linear combination of two solutions is also a solution. The proof follows almost immediately from substituting the linear combination of the two solutions into the differential equation.</p>
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.2 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linearly independent solutions to the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> is also a solution to the nonhomogeneous problem for any constant <span class="math inline">\(a\)</span>.</p>
+</div>
+<p>Again, the proof is simply a matter of plugging the proposed solution into the differential equation.</p>
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.3 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linear independent solutions of the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then every solution of the homogeneous problem can be written in the form <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> for some real numbers <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>.</p>
+</div>
+<p>In short, this theorem states that if we can find two linearly independent solutions, then we know all the solutions to the homogeneous problem, and if we also know any one solution to the nonhomogeneous problem, we know them all. The form of the solution set should look very familiar. It has the same structure as the set of solutions to a system of linear algebraic equations.</p>
+<p>The proof of this theorem is beyond the scope of this course. However, we will be able to give a sketch of the proof later in the term.</p>
+<p>Throughout these notes it is convenient to use a shorthand notation for the left hand side of the differential equation. In more advanced courses this would be introduced as a linear operator and some fancy theorems would be invoked. An operator is simply a mathematical object that maps functions to other functions in the same way the functions of first year calculus map numbers to other numbers. Suppose <span class="math inline">\(y\)</span> is twice differentiable, then we can define a new function, <span class="math inline">\(Ly\)</span>, by <span class="math display">\[\begin{equation}
+  Ly = P\frac{d^2y}{dx^2} + Q\frac{dy}{dx} + Ry.
+\end{equation}\]</span> We use this to define the operator <span class="math inline">\(L\)</span>. Simply put, given a known, twice differentiable function <span class="math inline">\(y\)</span>, the operation <span class="math inline">\(L\)</span> returns a new function which we refer to simply as <span class="math inline">\(Ly\)</span>. The linearity of the operator refers to the fact that <span class="math inline">\(L\)</span> is a linear transformation. That is, for any two twice-differentiable functions <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> and any two real numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, <span class="math inline">\(L(au+bv) = aLu + bLv\)</span>.</p>
+<p>Many of the theorems from linear algebra apply to the operator <span class="math inline">\(L\)</span>. We refer to <span class="math inline">\(Ly=0\)</span> as the homogeneous, or complementary problem, and <span class="math inline">\(Ly = G\)</span> as the nonhomogeneous problem. As with linear systems, if <span class="math inline">\(y_p\)</span> is a solution to the nonhomogeneous problem and <span class="math inline">\(y_h\)</span> is any solution to the homogeneous problem, then <span class="math inline">\(y = cy_h + y_p\)</span> is also a solution to the nonhomogeneous problem, for any constant <span class="math inline">\(c\)</span>. This can be easily verified by direct substitution. Further, if <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are both solutions to the homogeneous problem, then any function of the form <span class="math inline">\(y = c_1y_1 + c_2 y_2\)</span> is also a solution to the homogeneous problem. Note the slight difference in the wording of these results from the theorems stated above. When <span class="math inline">\(L\)</span> is a second order linear differential operator, such as arises from second order linear differential equation, then it can further be shown that the homogeneous problem <span class="math inline">\(Ly=0\)</span> has a two dimensional solution set. That is, we can always find two linearly independent solutions, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> and every solution to <span class="math inline">\(Ly=0\)</span> can be written as a linear combination of these. This follows from a theorem for the existence and uniqueness of solutions to systems of first order differential equations, which will be sketched later in these notes.</p>
+<p>Later in the notes we will also encounter the eigenvalue problem <span class="math inline">\(Ly=\lambda y\)</span>, where we are interested in finding values of the constant <span class="math inline">\(\lambda\)</span> for which solutions to the eigenvalue problem exist. These typically arise in boundary value problems, and the eigenvalues correspond to modes of oscillation in the physical system.</p>
+<div id="fig-mass-spring" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<figure class="figure">
+<embed src="figures/ODE-spring-figure.pdf" title="Diagram of a Mass-Spring System" class="img-fluid">
+</figure>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.1: Mass spring system</figcaption><p></p>
+</figure>
+</div>
+<div id="exm-MassSpring" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.1 </strong></span>Consider the mass-spring system of Figure <a href="#fig-mass-spring">Figure&nbsp;<span>4.1</span></a> with a mass of <span class="math inline">\(m\)</span> attached to a spring with spring constant <span class="math inline">\(k\)</span>. A differential equation model for the system can be obtained either by energy balance or force balance. The energy of the system is <span class="math display">\[\begin{align*}
+    \text{Total Energy} &amp;= \text{Kinetic Energy} + \text{Spring Potential} \\
+    &amp;= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2
+  \end{align*}\]</span> Differentiating and assuming the total energy is conserved (constant) leads to the second order differential equation <span class="math inline">\(0 = m\dot{x}\ddot{x} + kx\dot{x}\)</span> which simplifies to <span class="math inline">\(m\ddot{x} + kx = 0.\)</span> Since both <span class="math inline">\(k\)</span> and <span class="math inline">\(m\)</span> are positive constants, the solutions to the equation are functions whose second derivatives are negative multiples of themselves: <span class="math inline">\(\ddot{x} = -\frac{k}{m}x\)</span>. These are sines and cosines of the appropriate period: <span class="math display">\[x_1(t) = \cos \tfrac{k}{m} t, \qquad x_2(t) = \sin \tfrac{k}{m} t.\]</span> The general solution to the differential equation is any linear combination of these two solutions: <span class="math inline">\(x(t) = c_1\cos \tfrac{k}{m} t \, + \, c_2 \sin \tfrac{k}{m} t.\)</span></p>
+</div>
+</section>
+</section>
+<section id="linear-second-order-differential-equations-with-constant-coefficients" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="linear-second-order-differential-equations-with-constant-coefficients"><span class="header-section-number">4.2</span> Linear Second order differential equations with constant coefficients</h2>
+<p>Consider the problem</p>
+<p><span id="eq-generic-ccoef"><span class="math display">\[ay'' + by' +cy = 0 \tag{4.2}\]</span></span></p>
+<p>Based on our experience with first order equations (a=0), we look for a solution of the form <span class="math inline">\(y=e^{rx}\)</span>. If we can find two such solutions, we’ve got them all! First, we substitute the ansatz, <span class="math inline">\(y(x) = e^{rx}\)</span>, into <span class="math display">\[\begin{align*}
+  a\frac{d^2}{dx^2}\left(e^{rx}\right) + b\frac{d}{dx}\left(e^{rx}\right) +ce^{rx} &amp;= 0 \\
+  ar^2e^{rx} + bre^{rx} +ce^{rx} &amp;= 0 \\
+  \left(ar^2 + br +c\right)e^{rx} &amp;= 0
+\end{align*}\]</span> Factoring out <span class="math inline">\(e^{rx}\)</span> we see that <span class="math inline">\(r\)</span> must satisfy <span class="math inline">\(ar^2 + br +c = 0\)</span>. That is, <span class="math display">\[r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\]</span></p>
+<p>There are three cases to consider.</p>
+<p><strong>Case I:</strong> two real and distinct roots (<span class="math inline">\(b^2-4ac&gt;0\)</span>)</p>
+<p>The general solution has the form <span class="math display">\[y = c_1e^{r_1x} + c_2e^{r_2x}\]</span> where <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span> are the two real roots.</p>
+<p><strong>Case II:</strong> one real root (<span class="math inline">\(b^2 - 4ac = 0\)</span>)</p>
+<p>Here we only have one independent solution <span class="math inline">\(y_1 = c_1e^{rx}\)</span> with <span class="math inline">\(r=-b/(2a)\)</span>.</p>
+<p>At some point in history, someone stumbled upon a second independent solution, <span class="math inline">\(y_2 = xe^{rx}\)</span>, with <span class="math inline">\(r=-b/(2a)\)</span>. While this it is not at all obvious why this should be a solution and how someone would come up with it, it is easy to verify that is is a solution and that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are linearly independent.</p>
+<p>We leave it as an exercise to show, by direct substitution, that <span class="math inline">\(y_2\)</span> solves <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a>. That is, show that <span class="math display">\[a\frac{d^2}{dx^2}\left(xe^{rx}\right) + b\frac{d}{dx}\left(xe^{rx}\right) +cxe^{rx} = 0\]</span> provided <span class="math inline">\(b^2 - 4ac =0\)</span> and <span class="math inline">\(r=b/(2a)\)</span>.</p>
+<p>To show the two solutions are linearly independent, consider the combination <span class="math display">\[\alpha e^{rx} + \beta xe^{rx} = 0.\]</span></p>
+<p>The key concept with linear independence of functions, is that the equality must hold for all <span class="math inline">\(x\)</span> in the domain of the functions. In this case, since <span class="math inline">\(e^{rx} &gt; 0\)</span>, it follows that <span class="math inline">\(\alpha + \beta x = 0\)</span>, which holds only for <span class="math inline">\(x=-\alpha/\beta\)</span>. Hence the two functions are linearly independent on any interval of nonzero length, which is all we care about.</p>
+<p>In summary, the general solution in case II has the form <span class="math display">\[y = (c_1+c_2x)e^{rx} \]</span> with <span class="math inline">\(r = -b/(2a)\)</span>.</p>
+<p><strong>Case III:</strong> complex roots (<span class="math inline">\(b^2 - 4ac &lt; 0\)</span>)</p>
+<p>In this case, we have two complex roots, which we will express as <span class="math inline">\(r_1 = \alpha - \beta i\)</span> and <span class="math inline">\(r_2 = \alpha + \beta i\)</span>. For those who are comfortable with complex functions, you will be happy to know that the two functions <span class="math inline">\(e^{r_1 x}\)</span> and <span class="math inline">\(e^{r_2 x}\)</span> are indeed linearly independent.<br>
+The only catch is that we started with a problem involving real variables and real functions and it would be nice to have real solutions. Fortunately, it is possible to show that the real and complex parts of the complex solutions are also linearly independent solutions. Hence, the general solution has the form</p>
+<p><span class="math display">\[y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}\]</span></p>
+</section>
+<section id="initial-and-boundary-value-problems" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.3</span> Initial and boundary value problems</h2>
+<p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
+<div id="exm-SecondOrderLinear-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.2 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
+</div>
+</section>
+<section id="summary" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.4</span> Summary</h2>
+To find two linearly independent solutions to a homogeneous second order linear differential equation with constant coefficients, <span class="math inline">\(ay'' + by' + cy' = 0,\)</span> first compute the characteristic roots <span class="math inline">\(r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\)</span> second, determine which of the following three cases holds and write down the appropriate solutions:
+Two distinct real roots (<span class="math inline">\(b^2 &gt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{r_1t} \qquad y_2 = e^{r_2t}\)</span> with <span class="math inline">\(r_1 = \frac{-b - \sqrt{b^2-4ac}}{2a}\)</span>, and <span class="math inline">\(r_2 = \frac{-b + \sqrt{b^2-4ac}}{2a}\)</span>.
+A double root (<span class="math inline">\(b^2 = 4ac\)</span>): <span class="math inline">\(y_1 = e^{rt} \qquad y_2 = te^{rt}\)</span> with <span class="math inline">\(r = \frac{-b}{2a}\)</span>.
+<p>Complex roots (<span class="math inline">\(b^2 &lt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{\alpha t} \cos \beta t \qquad y_2 = e^{\alpha t} \sin \beta t,\)</span> with <span class="math inline">\(\alpha = -\frac{b}{2a}\)</span>, and <span class="math inline">\(\beta = \frac{\sqrt{4ac-b^2}}{2a}\)</span>.</p>
+</section>
+<section id="discussion" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.5</span> Discussion</h2>
+<p>Note that we refer to Equation <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> as linear when it is linear in the dependent variable. It may be nonlinear in the independent variable. For example,<br>
+applying Kirchoff’s law to a simple electric circuit yields the model <span class="math display">\[LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)\]</span> where the dependent variable, <span class="math inline">\(Q\)</span>, is the charge, and is assumed to depend on the time, <span class="math inline">\(t\)</span>. The parameters <span class="math inline">\(L\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> are the inductance, resistance and capacitance of the circuit and <span class="math inline">\(E\)</span> is an applied voltage. If the fixed resistance <span class="math inline">\(R\)</span> is replaced by a variable resistance, <span class="math inline">\(R(t)\)</span>, the equation is still linear in the dependent variable.</p>
+<p>More generally, a differential equation is an equation involving a function and some of its derivatives.<br>
+For example, a simple model for the angular deflection <span class="math inline">\(\theta(t)\)</span> of a pendulum of length <span class="math inline">\(l\)</span> is <span class="math display">\[l\theta''(t) + g\sin \theta(t) = 0,\]</span> which arises from balancing kinetic and potential energies. This equation is nonlinear in the dependent variable <span class="math inline">\(\theta\)</span>. For small angles, we can approximate <span class="math inline">\(\sin(\theta)\)</span> by <span class="math inline">\(\theta\)</span> leading to the linear second order constant coefficient model <span class="math display">\[l\theta''(t) + g\theta(t) = 0.\]</span> Most systems are nonlinear. However most analyses begin with the study of linear approximations. Hence the importance of studying linear differential equations.</p>
+</section>
+<section id="theoretical-considerations" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.6</span> Theoretical Considerations</h2>
+<p>A good treatment of the existence and uniqueness of solutions to differential equations can be found in Hartman. This material is approachable, but requires a deeper exposure to linear algebra than you received in Math 1503.</p>
+<p>Consider the general Second order linear ODE of <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> with <span class="math inline">\(G=0\)</span>. Let <span class="math inline">\(w(x) = y'(x)\)</span> and write the single equation as</p>
+<p><span class="math display">\[P(x)w'(x) + Q(x)w(x) + R(x)y(x) = 0,\]</span></p>
+<p>which leads to the linear system <span class="math display">\[\begin{align}
+  w'(x) &amp;=  - \frac{Q(x)}{P(x)}w(x) - \frac{R(x)}{P(x)}y(x), \\
+  y'(x) &amp;= w(x)
+\end{align}\]</span> Hartman’s text deals with the more general equation <span class="math inline">\(\vec{y}' = f(x,\vec{y})\)</span> where <span class="math inline">\(\vec{y}\)</span> and <span class="math inline">\(f\)</span> are vector functions. The result for our simpler linear system is that the initial value problem has a unique solution provided <span class="math inline">\(Q/P\)</span> and <span class="math inline">\(R/P\)</span> are both continuous.</p>
+</section>
+<section id="finding-particular-solutions-of-the-nonhomogeneous-problem" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="header-section-number">4.7</span> Finding particular solutions of the nonhomogeneous problem</h2>
+<section id="reduction-of-order" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="reduction-of-order"><span class="header-section-number">4.7.1</span> Reduction of order</h3>
+<p>Consider the general linear second order differential equation, <span class="math inline">\(P(x)y'' + Q(x)y' + R(x)y = G(x)\)</span>, and suppose we know one solution, <span class="math inline">\(y_1\)</span> to the homogeneous problem (<span class="math inline">\(G=0\)</span>). A well-established trick to finding more solutions to the differential equation is to look for solutions of the form <span class="math inline">\(y(x) = u(x)y_1(x)\)</span>.<br>
+<span class="math display">\[\begin{align*}
+  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &amp;= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &amp;= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G
+\end{align*}\]</span> Since <span class="math inline">\(y_1\)</span> is a known solution, to the nonhomogeneous problem, the last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Setting <span class="math inline">\(v = u'\)</span> reduces the order to a first order differential equation in <span class="math inline">\(v\)</span>: <span class="math inline">\(Py_1 v' + \left(2y_1' + Qy_1\right)v = G.\)</span> This equation is first order and linear, and can be solved using an integrating factor.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -304,12 +463,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./M3503-lec02-Systems.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./M3503-lec04-LaplaceTransforms.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
