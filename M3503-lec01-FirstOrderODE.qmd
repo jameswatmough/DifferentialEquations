@@ -1,0 +1,150 @@
+---
+author: James  Watmough
+date: "`r Sys.Date()`"
+---
+
+{{< include texmacros.qmd >}}
+
+# First order differential equations {#sec-1storder}
+
+There are two solution tricks for first order equations that require nothing more than a basic mastery of integration: separable first order equations, and linear first order equations.
+
+## first order separable equations {#sec-separable}
+
+A first order linear differential equation of the form $\frac{dy}{dt} = f(y)g(t)$
+is said to be separable.  It can be solved by a single integration step.
+\begin{align*}
+  \frac{dy}{dt} &= f(y)g(t) \\
+  \frac{1}{f(y)}\frac{dy}{dt} &= g(t) \\
+  \int \frac{1}{f(y)}\frac{dy}{dt}\,dt &= \int g(t)\,dt + C \\
+  \int \frac{1}{f(y)}\,dy &= \int g(t)\,dt + C 
+\end{align*}
+
+::: {#exm-Separable-1}
+
+Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t)$.
+
+Separating variables and integrating leads to 
+\begin{align}
+	\int \frac{1}{y}\,dy &= \int r\cos(t)\,dt +C \\
+	\log y &= r\sin t  + C \\
+	y(t) &= \exp(C+r\sin t ) 
+\end{align}
+The solution is usually given in the form $y(t) = y_0e^{r\sin(t)}$.
+Since $C$ is an arbitrary constant, $y_0 = e^C$ is also arbitrary.
+:::
+
+::: {.callout-note}
+We must assume $y\ne0$ in order to perform the separation of variables.  
+However, it is easy to see by inspection that $y=0$ is also a solution to the equation.
+:::
+
+::: {#exm-Separable-2}
+  Find the general solution to the differential equation $\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}$.
+
+  Separating variables and integrating leads to 
+\begin{align}
+  \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C \\
+  y^2+\sin y &= 2x^3  + C
+\end{align}
+In this case, we are not able to solve for $y$ as a function of $t$.  We are left with $y$ defined implicitly as a function of $t$.
+:::
+
+::: {#exm-Separable-3}
+  Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.
+  Separating variables and integrating leads to $\frac{y^3}{3} = \frac{x^3}{3} + C$.
+  Solving for the dependent  variable leads to $y = \sqrt[3]{x^3+3C}$.
+:::
+
+::: {#exm-Separable-4}
+  Solve the differential equation $\frac{dy}{dx} = -\frac{2x}{y}$.
+  Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$.
+  This is a family of ellipses, $2x^2 + y^2 = C^2$.
+:::
+
+::: {#exm-FirstOrderLinear-1} 
+Solve the differential equation
+ $\frac{du}{dt} = 2 + 2u + t + tu$.
+ Here $u$ is our dependent variable.  The equation is both linear and separable so  we may choose either method.
+ \begin{align*}
+   \frac{du}{dt} &= (2+t)(1+u) \\
+   \int \frac{du}{1+u} &= \int (2+t) \, dt  \\
+   \ln|1+u| &= 2t+\frac{t^2}{2} + C \\
+   |1+u| &= A \exp(2t+\frac{t^2}{2}) \\
+   u &= -1 \pm A \exp(2t+\frac{t^2}{2}) 
+ \end{align*}
+ Note the use of $\pm$ is not necessary.  Since $A$ could be positive  or negative.
+ It just serves to remind us that
+ integration of $1/(1+u)$ leads to two solutions.
+::: 
+
+::: {#exm-Separable-5} 
+  Solve the  differential  equation $xy' + y = y^2$.
+  This is nonlinear, due to the $y^2$  term.  It is separable.
+  \begin{align*}
+    \frac{1}{y^2-y} y' &= \frac{1}{x} \\
+    \int \frac{dy}{y^2-y} &= \int \frac{dx}{x} \\
+    \int \frac{1}{y-1} - \frac{1}{y} dy &= \int \frac{dx}{x} \\
+     \ln|y-1| - \ln|y| &= \ln|x| + C \\
+     \ln\frac{|y-1|}{|x||y|} &=  C \\
+     \frac{|y-1|}{|x||y|} &=  A 
+  \end{align*}
+  there are in fact several solutions buried in this notation.  For example, 
+  if $0< y < 1$, then 
+     $\frac{|y-1|}{|x||y|} = \frac{1-y}{xy}$, and we find $1/y - 1 = A/x \rightarrow y = x/(A+x)$,
+     $A>0$.
+::: 
+As a further exercise,  sketch a few sample solutions with $y< 0$, $0 < y < 1$ and $y>1$.
+
+
+## Linear first order differential equations {#sec-1storder-linear}
+
+Consider a differential equation of the form 
+$y'(t) +p(t) y(t) = q(t)$
+with initial data $y(t_0) = y_0$.
+These can be integrated using an **integrating factor**.
+The trick is to find a factor, $u$, which turns the left hand side of the equation into the derivative of something familiar.
+We multiply both sides of the equation by $u$,
+$$u(t)y'(t) +u(t)p(t) y(t) = u(t)q(t).$$
+Notice that if we can choose $u$ so that $up = u'$, then the left hand side is the derivative of $uy$:
+$$\left(uy\right)' = uy' +u' y = uy' +up y =  uq.$$
+We can solve this with a single integration
+\begin{gather}
+	\frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
+	u(t)y(t) =  \int_{t_0}^t uq \\
+	y(t) =  \frac{1}{u(t)} \int_{t_0}^t u(s)q(s)\, ds 
+\end{gather}
+
+The integrating factor, $u$, is the solution to the **homogeneous** problem, $y' + py = 0$.
+This is separable, and has solutions of the form
+$u(t) = \exp(\int_{t_0}^t p)$.
+To make the result more readable, define $P(t) = \int_{t_0}^t p$.
+Putting this together with our expression for $y$, we find, in terms of $P$,
+	$$y(t) = e^{-P(t)} \int_{t_0}^t e^{P(s)}q(s)\, ds$$
+
+::: {.callout-warning}
+I advise against memorizing this formula. Instead memorize the technique.  Applying the technique is often simpler than applying the formula,  and we'll extend the ideas behind the method later in the course.
+:::
+
+::: {#exm-linearode-2}
+Solve the initial value problem $t^2y' + 2ty = \log t, \ y(1) = 2$.
+
+You can probably guess the integrating factor by noticing the left hand side looks like the product rule applied to $t^2y$.  Specifically, 
+\begin{align*}
+		t^2y' + 2ty &= \log t \\
+		\dfrac{d}{dt}\left(t^2y\right)  &= \log t \\
+		\left. s^2y(s) \right|_{s=1}^{s=t}  &= \int_1^t \log s \, ds \\
+		t^2y(t) - y(1)  &= t\log(t) - t + 1 \\
+		y(t) &= \frac{1}{t} \log(t) - \frac{1}{t} + \frac{3}{t^2}    
+\end{align*}
+:::
+
+::: {.callout-tip}
+
+If you don't immediately recognize the integrating factor, first rewrite the problem as
+$ y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t$
+The integrating factor can be computed as
+$u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
+
+:::
+

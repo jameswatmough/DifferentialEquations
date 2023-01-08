@@ -1,3 +1,10 @@
+---
+author: James  Watmough
+date: "`r Sys.Date()`"
+---
+
+{{< include texmacros.qmd >}}
+
 # Laplace Transforms {#sec-laplace}
 
 ##  Definition and basic properties
