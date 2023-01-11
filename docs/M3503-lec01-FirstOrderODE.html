@@ -257,32 +257,32 @@ More specifically, you should be familiar with viewing a differential equation a
 You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations. These require nothing more than a basic mastery of integration.</p>
 <section id="sec-direction-field" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-direction-field"><span class="header-section-number">2.1</span> Direction fields</h2>
-<p>A solution to a first order differential equation, <span class="math inline">\(y' = f(x,y)\)</span>, is a function, <span class="math inline">\(y(x)\)</span>, whose slope at <span class="math inline">\(x\)</span> is <span class="math inline">\(f(x,y)\)</span>. One way to visualize this is to view <span class="math inline">\(f\)</span> as a <em>direction field</em>. That is, <span class="math inline">\(f\)</span> assigns a slope, or direction, to every point in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane. The figure below shows the direction field <span class="math inline">\(f:(x,y)\to x+\sin y\)</span>.</p>
+<p>A solution to a first order differential equation, <span class="math inline">\(y' = f(x,y)\)</span>, is a function, <span class="math inline">\(y(x)\)</span>, whose slope at <span class="math inline">\(x\)</span> is <span class="math inline">\(f(x,y)\)</span>. One way to visualize this is to view <span class="math inline">\(f\)</span> as a <em>direction field</em>. That is, <span class="math inline">\(f\)</span> assigns a slope, or direction, to every point in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane. The figure below shows the direction field <span class="math inline">\(f:(x,y)\to 2x -1 - 3y\)</span>.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> cm</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nx, ny <span class="op">=</span> <span class="fl">.3</span>, <span class="fl">.3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, nx)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, ny)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">4</span>, nx)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, ny)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> X <span class="op">+</span> np.sin(Y)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>X <span class="op">-</span><span class="dv">1</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>Y</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> np.ones(dy.shape)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plot2 <span class="op">=</span> plt.figure()</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(X, Y, dx, dy, </span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           color<span class="op">=</span><span class="st">'Teal'</span>, </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>           headlength<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>           headlength<span class="op">=</span><span class="dv">0</span>, headwidth<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Direction Field'</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="M3503-lec01-FirstOrderODE_files/figure-html/cell-2-output-2.png" width="582" height="431"></p>
+<p><img src="M3503-lec01-FirstOrderODE_files/figure-html/cell-2-output-2.png" width="579" height="431"></p>
 </div>
 </div>
 </section>
