@@ -2,12 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-08">
 
 <title>Math 3503: Differential Equations for Engineers - 2&nbsp; First order differential equations</title>
 <style>
@@ -22,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -152,8 +214,9 @@ window.MathJax = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-separable" id="toc-sec-separable" class="nav-link active" data-scroll-target="#sec-separable"><span class="toc-section-number">2.1</span>  first order separable equations</a></li>
-  <li><a href="#sec-1storder-linear" id="toc-sec-1storder-linear" class="nav-link" data-scroll-target="#sec-1storder-linear"><span class="toc-section-number">2.2</span>  Linear first order differential equations</a></li>
+  <li><a href="#sec-direction-field" id="toc-sec-direction-field" class="nav-link active" data-scroll-target="#sec-direction-field"><span class="toc-section-number">2.1</span>  Direction fields</a></li>
+  <li><a href="#sec-separable" id="toc-sec-separable" class="nav-link" data-scroll-target="#sec-separable"><span class="toc-section-number">2.2</span>  first order separable equations</a></li>
+  <li><a href="#sec-1storder-linear" id="toc-sec-1storder-linear" class="nav-link" data-scroll-target="#sec-1storder-linear"><span class="toc-section-number">2.3</span>  Linear first order differential equations</a></li>
   </ul>
 </nav>
     </div>
@@ -179,7 +242,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 8, 2023</p>
+      <p class="date">Invalid Date</p>
     </div>
   </div>
   
@@ -189,9 +252,42 @@ window.MathJax = {
 
 </header>
 
-<p>There are two solution tricks for first order equations that require nothing more than a basic mastery of integration: separable first order equations, and linear first order equations.</p>
-<section id="sec-separable" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-separable"><span class="header-section-number">2.1</span> first order separable equations</h2>
+<p>The <a href="https://openstax.org/books/calculus-volume-2/pages/4-introduction">OpenStax Calculus</a> text covers most of the material we need for first order scalar<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> differential equations. You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.<br>
+More specifically, you should be familiar with viewing a differential equation as a direction field (or vector field) <a href="#sec-direction-field"><span>Section&nbsp;2.1</span></a>.<br>
+You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations. These require nothing more than a basic mastery of integration.</p>
+<section id="sec-direction-field" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-direction-field"><span class="header-section-number">2.1</span> Direction fields</h2>
+<p>A solution to a first order differential equation, <span class="math inline">\(y' = f(x,y)\)</span>, is a function, <span class="math inline">\(y(x)\)</span>, whose slope at <span class="math inline">\(x\)</span> is <span class="math inline">\(f(x,y)\)</span>. One way to visualize this is to view <span class="math inline">\(f\)</span> as a <em>direction field</em>. That is, <span class="math inline">\(f\)</span> assigns a slope, or direction, to every point in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane. The figure below shows the direction field <span class="math inline">\(f:(x,y)\to x+\sin y\)</span>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> cm</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nx, ny <span class="op">=</span> <span class="fl">.3</span>, <span class="fl">.3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, nx)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, ny)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> X <span class="op">+</span> np.sin(Y)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> np.ones(dy.shape)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plot2 <span class="op">=</span> plt.figure()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(X, Y, dx, dy, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           color<span class="op">=</span><span class="st">'Teal'</span>, </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>           headlength<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Direction Field'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="M3503-lec01-FirstOrderODE_files/figure-html/cell-2-output-2.png" width="582" height="431"></p>
+</div>
+</div>
+</section>
+<section id="sec-separable" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-separable"><span class="header-section-number">2.2</span> first order separable equations</h2>
 <p>A first order linear differential equation of the form <span class="math inline">\(\frac{dy}{dt} = f(y)g(t)\)</span> is said to be separable. It can be solved by a single integration step. <span class="math display">\[\begin{align*}
   \frac{dy}{dt} &amp;= f(y)g(t) \\
   \frac{1}{f(y)}\frac{dy}{dt} &amp;= g(t) \\
@@ -202,9 +298,9 @@ window.MathJax = {
 <p><span class="theorem-title"><strong>Example 2.1 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = ry\cos(t)\)</span>.</p>
 <p>Separating variables and integrating leads to <span class="math display">\[\begin{align}
     \int \frac{1}{y}\,dy &amp;= \int r\cos(t)\,dt +C \\
-    \log y &amp;= r\sin t  + C \\
-    y(t) &amp;= \exp(C+r\sin t )
-\end{align}\]</span> The solution is usually given in the form <span class="math inline">\(y(t) = y_0e^{r\sin(t)}\)</span>. Since <span class="math inline">\(C\)</span> is an arbitrary constant, <span class="math inline">\(y_0 = e^C\)</span> is also arbitrary.</p>
+    \log |y| &amp;= r\sin t  + C \\
+    y(t) &amp;= \pm\exp(C+r\sin t )
+\end{align}\]</span> The solution is usually given in the form <span class="math inline">\(y(t) = y_0e^{r\sin(t)}\)</span>. Since <span class="math inline">\(C\)</span> is an arbitrary constant, <span class="math inline">\(y_0 = \pm e^C\)</span> is also arbitrary.</p>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -217,7 +313,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>We must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables.<br>
-However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.</p>
+However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation. Hence, we can express the general solution as <span class="math inline">\(y(t) = y_0\exp(r\sin t)\)</span> where <span class="math inline">\(y_0\)</span> can be any real number.</p>
 </div>
 </div>
 <div id="exm-Separable-2" class="theorem example">
@@ -254,8 +350,8 @@ However, it is easy to see by inspection that <span class="math inline">\(y=0\)<
 </div>
 <p>As a further exercise, sketch a few sample solutions with <span class="math inline">\(y&lt; 0\)</span>, <span class="math inline">\(0 &lt; y &lt; 1\)</span> and <span class="math inline">\(y&gt;1\)</span>.</p>
 </section>
-<section id="sec-1storder-linear" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-1storder-linear"><span class="header-section-number">2.2</span> Linear first order differential equations</h2>
+<section id="sec-1storder-linear" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-1storder-linear"><span class="header-section-number">2.3</span> Linear first order differential equations</h2>
 <p>Consider a differential equation of the form <span class="math inline">\(y'(t) +p(t) y(t) = q(t)\)</span> with initial data <span class="math inline">\(y(t_0) = y_0\)</span>. These can be integrated using an <strong>integrating factor</strong>. The trick is to find a factor, <span class="math inline">\(u\)</span>, which turns the left hand side of the equation into the derivative of something familiar. We multiply both sides of the equation by <span class="math inline">\(u\)</span>, <span class="math display">\[u(t)y'(t) +u(t)p(t) y(t) = u(t)q(t).\]</span> Notice that if we can choose <span class="math inline">\(u\)</span> so that <span class="math inline">\(up = u'\)</span>, then the left hand side is the derivative of <span class="math inline">\(uy\)</span>: <span class="math display">\[\left(uy\right)' = uy' +u' y = uy' +up y =  uq.\]</span> We can solve this with a single integration <span class="math display">\[\begin{gather}
     \frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
     u(t)y(t) =  \int_{t_0}^t uq \\
@@ -300,6 +396,12 @@ Tip
 </div>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>By <em>scalar</em> I just mean a single equation. We will also look at systems of first order ODEs later in the course (see <a href="M3503-lec02-Systems.html"><span>Chapter&nbsp;3</span></a>).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

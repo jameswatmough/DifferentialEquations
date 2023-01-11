@@ -7,7 +7,40 @@ date: "`r Sys.Date()`"
 
 # First order differential equations {#sec-1storder}
 
-There are two solution tricks for first order equations that require nothing more than a basic mastery of integration: separable first order equations, and linear first order equations.
+The [OpenStax Calculus][] text covers most of the material we need for first order scalar[^systems] differential equations.  You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.  
+More specifically,  you should be familiar with viewing a differential equation as a direction field (or vector field) @sec-direction-field.  
+You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations.
+These require nothing more than a basic mastery of integration.
+
+[^systems]: By *scalar* I just mean a single equation.  We will also look at systems of first order ODEs later in the course (see @sec-systems).
+
+[OpenStax Calculus]: https://openstax.org/books/calculus-volume-2/pages/4-introduction
+
+## Direction fields {#sec-direction-field}
+
+A solution to a first order differential equation, $y' = f(x,y)$, is a function, $y(x)$, whose slope at $x$ is $f(x,y)$.  One way to visualize this is to view $f$ as a *direction field*.  That is, $f$ assigns a slope, or direction, to every point in the $x$-$y$ plane.  The figure below shows the direction field $f:(x,y)\to x+\sin y$.  
+
+```{python}
+from matplotlib.pyplot import cm
+import matplotlib.pyplot as plt
+import numpy as np
+
+nx, ny = .3, .3
+x = np.arange(-3, 3, nx)
+y = np.arange(-2, 2, ny)
+X, Y = np.meshgrid(x, y)
+
+dy = X + np.sin(Y)
+dx = np.ones(dy.shape)
+
+plot2 = plt.figure()
+plt.quiver(X, Y, dx, dy, 
+           color='Teal', 
+           headlength=7)
+
+plt.title('Direction Field')
+plt.show
+```
 
 ## first order separable equations {#sec-separable}
 
@@ -27,16 +60,16 @@ Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t
 Separating variables and integrating leads to 
 \begin{align}
 	\int \frac{1}{y}\,dy &= \int r\cos(t)\,dt +C \\
-	\log y &= r\sin t  + C \\
-	y(t) &= \exp(C+r\sin t ) 
+	\log |y| &= r\sin t  + C \\
+	y(t) &= \pm\exp(C+r\sin t ) 
 \end{align}
 The solution is usually given in the form $y(t) = y_0e^{r\sin(t)}$.
-Since $C$ is an arbitrary constant, $y_0 = e^C$ is also arbitrary.
+Since $C$ is an arbitrary constant, $y_0 = \pm e^C$ is also arbitrary.
 :::
 
 ::: {.callout-note}
 We must assume $y\ne0$ in order to perform the separation of variables.  
-However, it is easy to see by inspection that $y=0$ is also a solution to the equation.
+However, it is easy to see by inspection that $y=0$ is also a solution to the equation.   Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $y_0$ can be any real number.
 :::
 
 ::: {#exm-Separable-2}
@@ -147,4 +180,5 @@ The integrating factor can be computed as
 $u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
 
 :::
+
 
