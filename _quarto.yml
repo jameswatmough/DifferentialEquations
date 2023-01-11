@@ -30,6 +30,8 @@ format:
             }
           };
           </script>
+    code-fold: true
+    code-summary: "Show the code"
     theme: cosmo
   pdf:
     documentclass: lecturenotes-md
