@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-11">
+<meta name="dcterms.date" content="2023-01-15">
 
 <title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
 <style>
@@ -152,12 +152,12 @@ window.MathJax = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-2ndorder" id="toc-sec-2ndorder" class="nav-link active" data-scroll-target="#sec-2ndorder"><span class="toc-section-number">4.0.1</span>  The general theory of second order Linear Differential Equations</a></li>
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="toc-section-number">4.1</span>  Notation:</a>
+  <li><a href="#the-general-theory-of-second-order-linear-differential-equations" id="toc-the-general-theory-of-second-order-linear-differential-equations" class="nav-link active" data-scroll-target="#the-general-theory-of-second-order-linear-differential-equations"><span class="toc-section-number">4.1</span>  The general theory of second order Linear Differential Equations</a>
   <ul class="collapse">
-  <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="toc-section-number">4.1.1</span>  The solution set</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="toc-section-number">4.1.1</span>  Notation:</a></li>
+  <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="toc-section-number">4.1.2</span>  The solution set</a></li>
   </ul></li>
-  <li><a href="#linear-second-order-differential-equations-with-constant-coefficients" id="toc-linear-second-order-differential-equations-with-constant-coefficients" class="nav-link" data-scroll-target="#linear-second-order-differential-equations-with-constant-coefficients"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a></li>
+  <li><a href="#sec-2ndordercc" id="toc-sec-2ndordercc" class="nav-link" data-scroll-target="#sec-2ndordercc"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a></li>
   <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.3</span>  Initial and boundary value problems</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.4</span>  Summary</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.5</span>  Discussion</a></li>
@@ -191,7 +191,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2023</p>
+      <p class="date">January 15, 2023</p>
     </div>
   </div>
   
@@ -201,36 +201,36 @@ window.MathJax = {
 
 </header>
 
-<section id="sec-2ndorder" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="sec-2ndorder"><span class="header-section-number">4.0.1</span> The general theory of second order Linear Differential Equations</h3>
+<section id="the-general-theory-of-second-order-linear-differential-equations" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="the-general-theory-of-second-order-linear-differential-equations"><span class="header-section-number">4.1</span> The general theory of second order Linear Differential Equations</h2>
 <p>The first part of this course deals with second order linear differential equations with constant coefficients. However before we zero in on solution techniques for these equations it is worthwhile to take a brief look at the more general theory.</p>
 <p>Many physical problems can be cast as second order differential equations of the form <span class="math inline">\(\ddot{x} = f(t,x,\dot{x})\)</span> with <span class="math inline">\(\ddot{x}\)</span> interpreted as acceleration, <span class="math inline">\(x\)</span> as position, and <span class="math inline">\(\dot{x}\)</span> as velocity. These often arise as initial value problems, when combined with initial conditions of the form <span class="math inline">\(x(0) = x_0\)</span>, <span class="math inline">\(\dot{x}(0) = y_0\)</span>.<br>
 Some cases appear as boundary value problems with the conditions prescribed at two different values of the independent variable. <span class="math inline">\(x(0) = a\)</span>, <span class="math inline">\(x(1) = b\)</span>.</p>
-</section>
-<section id="notation" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="notation"><span class="header-section-number">4.1</span> Notation:</h2>
+<section id="notation" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="notation"><span class="header-section-number">4.1.1</span> Notation:</h3>
 <p>A second order linear differential equation has the form. <span id="eq-genericode"><span class="math display">\[P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x), \tag{4.1}\]</span></span> where the functions <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(G\)</span> are specified.</p>
 <ul>
 <li><span class="math inline">\(x\)</span> is our independent variable</li>
 <li><span class="math inline">\(y\)</span> is our dependent variable</li>
 <li><span class="math inline">\(G\)</span> is typically a forcing function</li>
 <li><span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> are the coefficients of the equation</li>
-<li>the equation is {} if <span class="math inline">\(G=0\)</span></li>
-<li>the equation is {} if <span class="math inline">\(G\ne 0\)</span></li>
-<li>the equation is {} if <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> constants.</li>
+<li>the equation is <strong>homogeneous</strong> if <span class="math inline">\(G=0\)</span></li>
+<li>the equation is <strong>nonhomogeneous</strong> if <span class="math inline">\(G\ne 0\)</span></li>
+<li>the equation is <strong>constant coefficient</strong> if <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> constants.</li>
 </ul>
-<section id="the-solution-set" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-solution-set"><span class="header-section-number">4.1.1</span> The solution set</h3>
+</section>
+<section id="the-solution-set" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="the-solution-set"><span class="header-section-number">4.1.2</span> The solution set</h3>
 <p>By a solution to the differential equation, we mean a twice differentiable function <span class="math inline">\(y(x)\)</span> that satisfies . There are two theorems that are relevant here.</p>
 <div id="thm-1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.1 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are solutions of the homogeneous problem then for any constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>, the linear combination <span class="math inline">\(y = c_1y_1 + c_2y_2\)</span> is also a solution of the homogeneous problem.</p>
 </div>
 <p>In the language of linear algebra, any linear combination of two solutions is also a solution. The proof follows almost immediately from substituting the linear combination of the two solutions into the differential equation.</p>
-<div id="thm-1" class="theorem">
+<div id="thm-homog" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.2 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linearly independent solutions to the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> is also a solution to the nonhomogeneous problem for any constant <span class="math inline">\(a\)</span>.</p>
 </div>
 <p>Again, the proof is simply a matter of plugging the proposed solution into the differential equation.</p>
-<div id="thm-1" class="theorem">
+<div id="thm-nonhomog" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.3 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linear independent solutions of the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then every solution of the homogeneous problem can be written in the form <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> for some real numbers <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>.</p>
 </div>
 <p>In short, this theorem states that if we can find two linearly independent solutions, then we know all the solutions to the homogeneous problem, and if we also know any one solution to the nonhomogeneous problem, we know them all. The form of the solution set should look very familiar. It has the same structure as the set of solutions to a system of linear algebraic equations.</p>
@@ -256,8 +256,8 @@ Some cases appear as boundary value problems with the conditions prescribed at t
 </div>
 </section>
 </section>
-<section id="linear-second-order-differential-equations-with-constant-coefficients" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="linear-second-order-differential-equations-with-constant-coefficients"><span class="header-section-number">4.2</span> Linear Second order differential equations with constant coefficients</h2>
+<section id="sec-2ndordercc" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-2ndordercc"><span class="header-section-number">4.2</span> Linear Second order differential equations with constant coefficients</h2>
 <p>Consider the problem</p>
 <p><span id="eq-generic-ccoef"><span class="math display">\[ay'' + by' +cy = 0 \tag{4.2}\]</span></span></p>
 <p>Based on our experience with first order equations (a=0), we look for a solution of the form <span class="math inline">\(y=e^{rx}\)</span>. If we can find two such solutions, we’ve got them all! First, we substitute the ansatz, <span class="math inline">\(y(x) = e^{rx}\)</span>, into <span class="math display">\[\begin{align*}

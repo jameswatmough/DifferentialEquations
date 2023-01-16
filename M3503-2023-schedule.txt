@@ -6,12 +6,12 @@ Mon Jan 09 @sec-intro           9         1         ---    Overview and ODE revi
 Tue Jan 10 @sec-1storder        9         3.2       ---    Separable ODE 
 Wed Jan 11 @sec-1storder        9         3.1       ---    First order ODE
 Fri Jan 13 @sec-intro           ---       4         ---    General theory, numerical solutions
-Mon Jan 16 @sec-2ndorder        17.1      5         ---    Second order constant coefficient ODEs
+Mon Jan 16 @sec-2ndordergt      17.1      5         ---    Second order constant coefficient ODEs
 Tue Jan 17 @sec-1storder        9         3.1       ---    Tutorial: first order ODE
-Wed Jan 18 @sec-2ndorder        17.1      5.1       ---    Distinct real eigenvalues
-Fri Jan 20 @sec-2ndorder        17.1      5.1       ---    Complex eigenvalues
-Mon Jan 23 @sec-2ndorder        17.1      3.1       ---    Repeated eigenvalues
-Tue Jan 24 @sec-2ndorder        ---       ---       ---    Tutorial: 
+Wed Jan 18 @sec-2ndordercc      17.1      5.1       ---    Distinct real eigenvalues
+Fri Jan 20 @sec-2ndordercc      17.1      5.1       ---    Complex eigenvalues
+Mon Jan 23 @sec-2ndordercc      17.1      3.1       ---    Repeated eigenvalues
+Tue Jan 24 @sec-2ndordercc      ---       ---       ---    Tutorial: 
 Wed Jan 25 @sec-varparm         17.2      5.3       ---    Variation of Parameters
 Fri Jan 27 @sec-undetcoef       17.2      5.3       ---    Undetermined Coefficients
 Mon Jan 30 @sec-2ndorder        17.3      5         ---    Initial Value Problems

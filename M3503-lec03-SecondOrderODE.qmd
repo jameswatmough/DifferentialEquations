@@ -7,7 +7,7 @@ date: "`r Sys.Date()`"
 
 # Second order Linear Differential Equations {#sec-2ndorder}
 
-### The general theory of second order Linear Differential Equations {#sec-2ndorder}
+## The general theory of second order Linear Differential Equations 
 
 The first part of this course deals with second order linear differential
 equations with constant coefficients.  However before we zero in on solution
@@ -23,7 +23,7 @@ Some cases appear as boundary value problems with the conditions prescribed at t
 values of the independent variable.
 $x(0) = a$, $x(1) = b$.
 
-## Notation:
+### Notation:
 
 A second order linear differential equation has the form.
 $$P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x),$$ {#eq-genericode}
@@ -33,9 +33,9 @@ where the functions $P$, $Q$, $R$ and $G$ are specified.
 * $y$ is our dependent variable
 * $G$ is typically a forcing function
 * $P$, $Q$ and $R$ are the coefficients of the equation
-* the equation is {\em homogeneous} if $G=0$
-* the equation is {\em nonhomogeneous} if $G\ne 0$
-* the equation is {\em constant coefficient} if $P$, $Q$ and $R$ constants.
+* the equation is **homogeneous** if $G=0$
+* the equation is **nonhomogeneous** if $G\ne 0$
+* the equation is **constant coefficient** if $P$, $Q$ and $R$ constants.
 
 
 ### The solution set
@@ -52,7 +52,7 @@ In the language of linear algebra, any linear combination of two solutions is al
 The proof follows almost immediately from substituting the linear combination of the two solutions
 into the differential equation.  
 
-::: {#thm-1}
+::: {#thm-homog}
 If $y_1$ and $y_2$ are two linearly independent solutions to the homogeneous problem and $y_p$ is any solution to the
 nonhomogeneous problem, then $y = c_1y_1 + c_2y_2 + y_p$ is also a solution to the nonhomogeneous problem
 for any constant $a$.
@@ -60,7 +60,7 @@ for any constant $a$.
 
 Again,  the proof is simply a matter of plugging the proposed solution into the differential equation.
 
-::: {#thm-1}
+::: {#thm-nonhomog}
 If $y_1$ and $y_2$ are two linear independent solutions of the homogeneous problem and $y_p$ is any solution to the
 nonhomogeneous problem, 
 then every solution of the homogeneous problem can be written 
@@ -133,7 +133,7 @@ Later in the notes we will also encounter the eigenvalue problem $Ly=\lambda y$,
   $x(t) = c_1\cos \tfrac{k}{m} t \, + \, c_2 \sin \tfrac{k}{m} t.$
 :::
 
-## Linear Second order differential equations with constant coefficients
+## Linear Second order differential equations with constant coefficients {#sec-2ndordercc}
 
 Consider the problem
 
