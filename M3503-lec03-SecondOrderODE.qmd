@@ -7,7 +7,7 @@ date: "`r Sys.Date()`"
 
 # Second order Linear Differential Equations {#sec-2ndorder}
 
-## The general theory of second order Linear Differential Equations 
+## The general theory of second order Linear Differential Equations {#sec-2ndordergt}
 
 The first part of this course deals with second order linear differential
 equations with constant coefficients.  However before we zero in on solution
