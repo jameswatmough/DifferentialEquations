@@ -84,10 +84,10 @@ Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $
 In this case, we are not able to solve for $y$ as a function of $x$.  We are left with $y$ defined implicitly as a function of $x$.
 :::
 
-Despite not being able to find an analytic expression for $y$ as a function of $x$ in this example, we can still make nice plots of the solutions.  The trick is to notice that we can find the inverse of the solution. Several solutions are shown in @fig-Separable-2
+Despite not being able to find an analytic expression for $y$ as a function of $x$ in this example, we can still make nice plots of the solutions.  The trick is to notice that we can find the inverse of the solution. Several solutions are shown in @fig-separable-2
 
 ```{python}
-#| label: fig-Separable-2
+#| label: fig-separable-2
 #| fig-cap: "Sample solutions for @exm-Separable-2"
 
 import matplotlib.pyplot as plt
@@ -102,8 +102,6 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
 ```
-
-@fig-Separable-2
 
 ::: {#exm-Separable-3}
   Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.

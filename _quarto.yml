@@ -20,16 +20,6 @@ bibliography: references.bib
 
 format:
   html:
-    html-math-method: mathjax
-    include-in-header:
-      - text: |
-          <script>
-          window.MathJax = {
-            tex: {
-              tags: 'ams'
-            }
-          };
-          </script>
     code-fold: true
     code-summary: "Show the code"
     theme: cosmo

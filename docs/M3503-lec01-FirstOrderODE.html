@@ -124,13 +124,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-window.MathJax = {
-  tex: {
-    tags: 'ams'
-  }
-};
-</script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -326,7 +319,7 @@ Hence, we can express the general solution as <span class="math inline">\(y(t) =
   y^2+\sin y &amp;= 2x^3  + C
 \end{align}\]</span> In this case, we are not able to solve for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span>. We are left with <span class="math inline">\(y\)</span> defined implicitly as a function of <span class="math inline">\(x\)</span>.</p>
 </div>
-<p>Despite not being able to find an analytic expression for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span> in this example, we can still make nice plots of the solutions. The trick is to notice that we can find the inverse of the solution. Several solutions are shown in <span class="quarto-unresolved-ref">?fig-Separable-2</span></p>
+<p>Despite not being able to find an analytic expression for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span> in this example, we can still make nice plots of the solutions. The trick is to notice that we can find the inverse of the solution. Several solutions are shown in <a href="#fig-separable-2">Figure&nbsp;<span>2.1</span></a></p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Show the code</summary>
@@ -351,7 +344,6 @@ Hence, we can express the general solution as <span class="math inline">\(y(t) =
 </div>
 </div>
 </div>
-<p><span class="quarto-unresolved-ref">?fig-Separable-2</span></p>
 <div id="exm-Separable-3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2.3 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = \frac{x^2}{y^2}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^3}{3} = \frac{x^3}{3} + C\)</span>. Solving for the dependent variable leads to <span class="math inline">\(y = \sqrt[3]{x^3+3C}\)</span>.</p>
 </div>
