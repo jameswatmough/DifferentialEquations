@@ -68,20 +68,42 @@ Since $C$ is an arbitrary constant, $y_0 = \pm e^C$ is also arbitrary.
 :::
 
 ::: {.callout-note}
-We must assume $y\ne0$ in order to perform the separation of variables.  
-However, it is easy to see by inspection that $y=0$ is also a solution to the equation.   Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $y_0$ can be any real number.
+Since divide by $y$ on our first step in this example, we must assume $y\ne0$.
+However, it is easy to see by inspection that $y=0$ is also a solution to the equation.   
+Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $y_0$ can be any real number.
 :::
 
 ::: {#exm-Separable-2}
-  Find the general solution to the differential equation $\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}$.
+  Find the general solution to the differential equation $\frac{dy}{dx} = \frac{6x^2}{2y+\cos y}$.
 
   Separating variables and integrating leads to 
 \begin{align}
   \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C \\
   y^2+\sin y &= 2x^3  + C
 \end{align}
-In this case, we are not able to solve for $y$ as a function of $t$.  We are left with $y$ defined implicitly as a function of $t$.
+In this case, we are not able to solve for $y$ as a function of $x$.  We are left with $y$ defined implicitly as a function of $x$.
 :::
+
+Despite not being able to find an analytic expression for $y$ as a function of $x$ in this example, we can still make nice plots of the solutions.  The trick is to notice that we can find the inverse of the solution. Several solutions are shown in @fig-Separable-2
+
+```{python}
+#| label: fig-Separable-2
+#| fig-cap: "Sample solutions for @exm-Separable-2"
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+def inversesoln(y,c): return( np.cbrt((y*y+np.sin(y))/2 - c/2) )
+y = np.linspace(-np.pi,np.pi,100)
+for c in np.arange(-1.2,1.2,.2):
+  plt.plot(inversesoln(y,c),y)
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
+```
+
+@fig-Separable-2
 
 ::: {#exm-Separable-3}
   Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.

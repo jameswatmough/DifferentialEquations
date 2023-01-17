@@ -315,17 +315,43 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We must assume <span class="math inline">\(y\ne0\)</span> in order to perform the separation of variables.<br>
-However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation. Hence, we can express the general solution as <span class="math inline">\(y(t) = y_0\exp(r\sin t)\)</span> where <span class="math inline">\(y_0\)</span> can be any real number.</p>
+<p>Since divide by <span class="math inline">\(y\)</span> on our first step in this example, we must assume <span class="math inline">\(y\ne0\)</span>. However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.<br>
+Hence, we can express the general solution as <span class="math inline">\(y(t) = y_0\exp(r\sin t)\)</span> where <span class="math inline">\(y_0\)</span> can be any real number.</p>
 </div>
 </div>
 <div id="exm-Separable-2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.2 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dt} = \frac{6x^2}{2y+\cos y}\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 2.2 </strong></span>Find the general solution to the differential equation <span class="math inline">\(\frac{dy}{dx} = \frac{6x^2}{2y+\cos y}\)</span>.</p>
 <p>Separating variables and integrating leads to <span class="math display">\[\begin{align}
   \int (2y+\cos y)\,dy&amp;= \int 6x^2 \, dx + C \\
   y^2+\sin y &amp;= 2x^3  + C
-\end{align}\]</span> In this case, we are not able to solve for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(t\)</span>. We are left with <span class="math inline">\(y\)</span> defined implicitly as a function of <span class="math inline">\(t\)</span>.</p>
+\end{align}\]</span> In this case, we are not able to solve for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span>. We are left with <span class="math inline">\(y\)</span> defined implicitly as a function of <span class="math inline">\(x\)</span>.</p>
 </div>
+<p>Despite not being able to find an analytic expression for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span> in this example, we can still make nice plots of the solutions. The trick is to notice that we can find the inverse of the solution. Several solutions are shown in <span class="quarto-unresolved-ref">?fig-Separable-2</span></p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inversesoln(y,c): <span class="cf">return</span>( np.cbrt((y<span class="op">*</span>y<span class="op">+</span>np.sin(y))<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> c<span class="op">/</span><span class="dv">2</span>) )</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span>np.pi,np.pi,<span class="dv">100</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> np.arange(<span class="op">-</span><span class="fl">1.2</span>,<span class="fl">1.2</span>,<span class="fl">.2</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  plt.plot(inversesoln(y,c),y)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-separable-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="M3503-lec01-FirstOrderODE_files/figure-html/fig-separable-2-output-1.png" width="587" height="429" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.1: Sample solutions for <a href="#exm-Separable-2">Example&nbsp;<span>2.2</span></a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="quarto-unresolved-ref">?fig-Separable-2</span></p>
 <div id="exm-Separable-3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2.3 </strong></span>Solve the differential equation <span class="math inline">\(\frac{dy}{dx} = \frac{x^2}{y^2}\)</span>. Separating variables and integrating leads to <span class="math inline">\(\frac{y^3}{3} = \frac{x^3}{3} + C\)</span>. Solving for the dependent variable leads to <span class="math inline">\(y = \sqrt[3]{x^3+3C}\)</span>.</p>
 </div>
