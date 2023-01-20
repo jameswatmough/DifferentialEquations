@@ -71,8 +71,8 @@ $b$, $L(au+bv) = aLu + bLv$.
 
 ### The solution set
 
-A solution to the second order differential equation @eqn-genericode}, is any twice differentiable function $y(x)$
-that satisfies @eqn-genericode.
+A solution to the second order differential equation @eq-genericode, is any twice differentiable function $y(x)$
+that satisfies @eq-genericode.
 Since we are looking for $y$ as a function of $x$, it makes sense to refer to 
 $x$ as our **independent variable**
 and $y$ as our **dependent variable**.
@@ -169,7 +169,7 @@ $$ay'' + by' +cy = 0$$ {#eq-generic-ccoef}
 Based on our experience with first order equations (a=0),
 we look for a solution of the form $y=e^{rx}$.
 If we can find two such solutions, we've got them all!
-First, we substitute the ansatz, $y(x) = e^{rx}$, into \eqn{genericode}
+First, we substitute the ansatz, $y(x) = e^{rx}$, into @eq-genericode
 \begin{align*}
   a\frac{d^2}{dx^2}\left(e^{rx}\right) + b\frac{d}{dx}\left(e^{rx}\right) +ce^{rx} &= 0 \\
   ar^2e^{rx} + bre^{rx} +ce^{rx} &= 0 \\
@@ -261,7 +261,7 @@ with $\alpha = -\frac{b}{2a}$, and $\beta = \frac{\sqrt{4ac-b^2}}{2a}$.
 
 ## Discussion
 
-Note that we refer to Equation [@eq-genericode] as linear when it is linear in the dependent variable.
+Note that we refer to [@eq-genericode] as linear when it is linear in the dependent variable.
 It may be nonlinear in the independent variable.  For example,  
 applying Kirchoff's law to a simple electric circuit yields the model
 $$LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)$$
