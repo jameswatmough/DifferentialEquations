@@ -12,7 +12,7 @@ date: "`r Sys.Date()`"
 The first part of this course deals with second order linear differential
 equations with constant coefficients.  However before we zero in on solution
 techniques for these equations it is worthwhile to take a brief look at the
-more general theory.
+more general theory.  
 
 Many physical problems can be cast as second order differential equations of the form
 $\ddot{x} = f(t,x,\dot{x})$
@@ -23,25 +23,69 @@ Some cases appear as boundary value problems with the conditions prescribed at t
 values of the independent variable.
 $x(0) = a$, $x(1) = b$.
 
-### Notation:
+### Differential Equations and Linear Algebra
 
 A second order linear differential equation has the form.
 $$P(x)\frac{d^2y}{dx^2} + Q(x)\frac{dy}{dx} + R(x)y = G(x),$$ {#eq-genericode}
 where the functions $P$, $Q$, $R$ and $G$ are specified.
+To motivate these as **linear** we need to review a few concepts from linear algebra.  In particular,  we need to learn to view functions as vectors.
 
-* $x$ is our independent variable
-* $y$ is our dependent variable
-* $G$ is typically a forcing function
-* $P$, $Q$ and $R$ are the coefficients of the equation
-* the equation is **homogeneous** if $G=0$
-* the equation is **nonhomogeneous** if $G\ne 0$
-* the equation is **constant coefficient** if $P$, $Q$ and $R$ constants.
+One key concept from linear algebra is a **linear combination**.
+Suppose $y_1, y_2, \dots, y_n$ are $n$ functions defined on some interval $[a,b]$.  For example, the set $1, x, x^2, x^3, x^4, x^5$ with $0 \le x \le 1$ is a set of 6 functions defined on the interval $[0,1]$.
+Using the jargon we learned in our first linear algebra course, we can construct any polynomial of degree 5 or lower by taking **linear combinations** of the 6 **basis** functions.
+Specifically, if $c_0, c_1, \dots, c_5$ be any 6 numbers, then
+$y(x) = c_0 + c_1x + \dots + c_5x^5$ is a polynomial.  If $c_5\ne0$, $y$ is a polynomial of degree 5, otherwise, it has a lower degree.
+We can do the same constructions for any set of functions.  Given a set of functions $\{y_1, y_2, \dots, y_n\}$ all with the same domain, $[a,b]$, and a set of **scalars** $\{c_1, \dots, c_n\}$, the **linear combination**
+$y = c_1y_1 + \dots + c_ny_n$ is a function with the same domain.  
+From our calculus course, we know that if $y_1, \dot, y_n$ are all continuous on $[a,b]$, then the linear combination is also continuous.
+In short,  functions are vectors, and all the jargon we learned in linear algebra can be applied to functions.
+
+::: {#def-linindep}
+The set of functions $\{y_1, y_2, \dots, y_n\}$ is said to be **linearly independent** if the only scalars $c_1,\dots,c_n$ for which
+$c_1y_1 + \dots + c_ny_n = 0$ is $c_1=c_2=\dots=c_n=0$.
+:::
+
+::: {#exm-linindep-1}
+To show the two functions $\sin x$ and $\cos x$ defined for $0 \le x \le \pi$ are linearly independent, we need to show that $c_1\sin x + c_2\cos x = 0$ for all $x\in[0,\pi]$ only if $c_1=c_2=0$.  Since $\sin 0 = 0$ and $\cos 0 = 1$, setting $x=0$ implies $c_2=0$.  Similarly, setting $x=\pi/2$ implies $c_1=0$.  Hence,  the two functions are linearly independent.
+:::
+
+So why do we call @eq-genericode a **linear** differential equation?
+It is useful to introduce a shorthand notation for the left hand side 
+of @eq-genericode.
+In more advanced courses this would be introduced as a linear operator
+and some fancy theorems would be invoked.
+An operator is simply a mathematical object that maps functions to other
+functions in the same way the functions of first year calculus map numbers to
+other numbers.
+Suppose $y$ is twice differentiable, then we can define a new function, $Ly$,
+by 
+\begin{equation}
+  Ly = P\frac{d^2y}{dx^2} + Q\frac{dy}{dx} + Ry.
+\end{equation}
+We use this to define the operator $L$.
+Simply put,  given a known, twice differentiable function $y$, the operation $L$ returns a new function which we refer to simply as $Ly$.
+The  linearity of the operator refers to the fact that $L$ is a **linear transformation**.
+That is, for any two twice-differentiable functions $u$ and $v$ and any two real numbers (scalars) $a$ and
+$b$, $L(au+bv) = aLu + bLv$.
 
 
 ### The solution set
 
-By a solution to the differential equation, we mean a twice differentiable function $y(x)$
-that satisfies \eqn{genericode}.   There are two theorems that are relevant here.
+A solution to the second order differential equation @eqn-genericode}, is any twice differentiable function $y(x)$
+that satisfies @eqn-genericode.
+Since we are looking for $y$ as a function of $x$, it makes sense to refer to 
+$x$ as our **independent variable**
+and $y$ as our **dependent variable**.
+The linearity of the equation makes some more jargon from linear algebra useful.  In particular,
+
+* $P$, $Q$ and $R$ are the **coefficients** of the equation,
+* the equation is **homogeneous** if $G=0$,
+* the equation is **nonhomogeneous** if $G\ne 0$,
+* the equation is **constant coefficient** if $P$, $Q$ and $R$ constants.
+
+The right hand side, $G$, is typically an applied force or current or something similar.  Hence we refer to $G$ as the **forcing function**.
+
+There are two theorems that are relevant here.
 
 ::: {#thm-1}
 If $y_1$ and $y_2$ are solutions of the homogeneous problem
@@ -50,7 +94,7 @@ then for any constants $c_1$ and $c_2$, the linear combination $y = c_1y_1 + c_2
 
 In the language of linear algebra, any linear combination of two solutions is also a solution.
 The proof follows almost immediately from substituting the linear combination of the two solutions
-into the differential equation.  
+into the differential equation.
 
 ::: {#thm-homog}
 If $y_1$ and $y_2$ are two linearly independent solutions to the homogeneous problem and $y_p$ is any solution to the
@@ -75,23 +119,6 @@ structure as the set of solutions to a system of linear algebraic equations.
 
 The proof of this theorem is beyond the scope of this course.  However, we will be able to give a sketch of the proof later in the term.
 
-
-Throughout these notes it is convenient to use a shorthand notation for the left hand side 
-of the differential equation.  In more advanced courses this would be introduced as a linear operator
-and some fancy theorems would be invoked.
-An operator is simply a mathematical object that maps functions to other
-functions in the same way the functions of first year calculus map numbers to
-other numbers.
-Suppose $y$ is twice differentiable, then we can define a new function, $Ly$,
-by 
-\begin{equation}
-  Ly = P\frac{d^2y}{dx^2} + Q\frac{dy}{dx} + Ry.
-\end{equation}
-We use this to define the operator $L$.
-Simply put,  given a known, twice differentiable function $y$, the operation $L$ returns a new function which we refer to simply as $Ly$.
-The  linearity of the operator refers to the fact that $L$ is a linear transformation.  That is, for any two
-twice-differentiable functions $u$ and $v$ and any two real numbers $a$ and
-$b$, $L(au+bv) = aLu + bLv$.    
 
 Many of  the theorems from linear algebra apply to the operator $L$.  We refer
 to $Ly=0$ as the homogeneous, or complementary problem, and $Ly = G$ as the

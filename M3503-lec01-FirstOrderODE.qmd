@@ -105,19 +105,22 @@ plt.show()
 
 ::: {#exm-Separable-3}
   Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.
+
   Separating variables and integrating leads to $\frac{y^3}{3} = \frac{x^3}{3} + C$.
   Solving for the dependent  variable leads to $y = \sqrt[3]{x^3+3C}$.
 :::
 
 ::: {#exm-Separable-4}
   Solve the differential equation $\frac{dy}{dx} = -\frac{2x}{y}$.
-  Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$.
-  This is a family of ellipses, $2x^2 + y^2 = C^2$.
+
+  Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$,
+  which is a family of ellipses.
 :::
 
 ::: {#exm-FirstOrderLinear-1} 
 Solve the differential equation
  $\frac{du}{dt} = 2 + 2u + t + tu$.
+
  Here $u$ is our dependent variable.  The equation is both linear and separable so  we may choose either method.
  \begin{align*}
    \frac{du}{dt} &= (2+t)(1+u) \\
