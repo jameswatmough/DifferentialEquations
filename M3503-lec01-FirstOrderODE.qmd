@@ -167,16 +167,21 @@ $$\left(uy\right)' = uy' +u' y = uy' +up y =  uq.$$
 We can solve this with a single integration
 \begin{gather}
 	\frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
-	u(t)y(t) =  \int_{t_0}^t uq \\
-	y(t) =  \frac{1}{u(t)} \int_{t_0}^t u(s)q(s)\, ds 
+	u(t)y(t) =  \int u(s)q(s) \, ds \\
+	y(t) =  \frac{1}{u(t)} \int u(s)q(s)\, ds 
 \end{gather}
+There is an arbitrary constant resulting from in the integration of $uq$. 
+We'll use use our initial conditions to determine that once we determined $u$.
 
-The integrating factor, $u$, is the solution to the **homogeneous** problem, $y' + py = 0$.
-This is separable, and has solutions of the form
-$u(t) = \exp(\int_{t_0}^t p)$.
-To make the result more readable, define $P(t) = \int_{t_0}^t p$.
+Returning to $u'=pu$, the differential equation for $u$, we see it is separable and has solutions of the form
+$u(t) = \exp(\int p)$.
+To make the result more readable, define $P(t) = \int_{t_0}^t p(s) \, ds$ and take $u$ as $u(t) = \exp(P(t))$.
+This is the solution that also satisfies $u(t_0)=1$, which is convenient.
 Putting this together with our expression for $y$, we find, in terms of $P$,
-	$$y(t) = e^{-P(t)} \int_{t_0}^t e^{P(s)}q(s)\, ds$$
+$$y(t) = e^{-P(t)} \int e^{P(s)}q(s)\, ds$$
+This is our general solution, since it still has the constant of integration hiding in the integral.
+Applying the initial conditions we find
+$$y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds$$
 
 ::: {.callout-warning}
 I advise against memorizing this formula. Instead memorize the technique.  Applying the technique is often simpler than applying the formula,  and we'll extend the ideas behind the method later in the course.
