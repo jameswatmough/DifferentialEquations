@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-21">
+<meta name="dcterms.date" content="2023-01-22">
 
 <title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
 <style>
@@ -184,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 21, 2023</p>
+      <p class="date">January 22, 2023</p>
     </div>
   </div>
   
@@ -225,11 +225,11 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 </ul>
 <p>The right hand side, <span class="math inline">\(G\)</span>, is typically an applied force or current or something similar. Hence we refer to <span class="math inline">\(G\)</span> as the <strong>forcing function</strong>.</p>
 <p>There are two theorems that are relevant here.</p>
-<div id="thm-1" class="theorem">
+<div id="thm-2ndorder-1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.1 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are solutions of the homogeneous problem then for any constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>, the linear combination <span class="math inline">\(y = c_1y_1 + c_2y_2\)</span> is also a solution of the homogeneous problem.</p>
 </div>
 <p>In the language of linear algebra, any linear combination of two solutions is also a solution. The proof follows almost immediately from substituting the linear combination of the two solutions into the differential equation.</p>
-<div id="thm-homog" class="theorem">
+<div id="thm-2ndorder-homog" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.2 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linearly independent solutions to the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> is also a solution to the nonhomogeneous problem for any constant <span class="math inline">\(a\)</span>.</p>
 </div>
 <p>Again, the proof is simply a matter of plugging the proposed solution into the differential equation.</p>
@@ -264,7 +264,7 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
   a\frac{d^2}{dx^2}\left(e^{rx}\right) + b\frac{d}{dx}\left(e^{rx}\right) +ce^{rx} &amp;= 0 \\
   ar^2e^{rx} + bre^{rx} +ce^{rx} &amp;= 0 \\
   \left(ar^2 + br +c\right)e^{rx} &amp;= 0
-\end{align*}\]</span> Factoring out <span class="math inline">\(e^{rx}\)</span> we see that <span class="math inline">\(r\)</span> must satisfy <span class="math inline">\(ar^2 + br +c = 0\)</span>. That is, <span class="math display">\[r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\]</span></p>
+\end{align*}\]</span> Factoring out <span class="math inline">\(e^{rx}\)</span> we see that <span class="math inline">\(r\)</span> must satisfy <span id="eq-characteristic"><span class="math display">\[ar^2 + br +c = 0. \tag{4.3}\]</span></span> That is, <span class="math display">\[r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\]</span></p>
 <p>There are three cases to consider.</p>
 <p><strong>Case I:</strong> two real and distinct roots (<span class="math inline">\(b^2-4ac&gt;0\)</span>)</p>
 <p>The general solution has the form <span class="math display">\[y = c_1e^{r_1x} + c_2e^{r_2x}\]</span> where <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span> are the two real roots.</p>
@@ -279,6 +279,45 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 <p>In this case, we have two complex roots, which we will express as <span class="math inline">\(r_1 = \alpha - \beta i\)</span> and <span class="math inline">\(r_2 = \alpha + \beta i\)</span>. For those who are comfortable with complex functions, you will be happy to know that the two functions <span class="math inline">\(e^{r_1 x}\)</span> and <span class="math inline">\(e^{r_2 x}\)</span> are indeed linearly independent.<br>
 The only catch is that we started with a problem involving real variables and real functions and it would be nice to have real solutions. Fortunately, it is possible to show that the real and complex parts of the complex solutions are also linearly independent solutions. Hence, the general solution has the form</p>
 <p><span class="math display">\[y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}\]</span></p>
+<div id="exr-complexroots-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.1 </strong></span>Use Euler’s formula, <span class="math inline">\(\exp(i\theta) = \cos \theta + i\sin \theta\)</span>, to show that <span class="math inline">\(\cos \theta = \frac{1}{2}\left(\exp(i\theta)+\exp(-i\theta)\)</span> and <span class="math inline">\(\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\)</span>.</p>
+</div>
+<div id="exr-complexroots-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.2 </strong></span>Use the results of <a href="#exr-complexroots-1">Exercise&nbsp;<span>4.1</span></a> and <a href="#thm-2ndorder-1">Theorem&nbsp;<span>4.1</span></a> to show that the general solution of <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a> can be expressed as <span class="math inline">\(y(t) = c_1\exp(\alpha t) \cos \beta t + c_2\exp(\alpha t) \sin \beta t\)</span> if the roots of <a href="#eq-characteristic">Equation&nbsp;<span>4.3</span></a> are complex.</p>
+</div>
+<div id="exr-2ndorder-linear-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.3 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 4 y' + 13 y = 0\)</span>.</p>
+</div>
+<div class="solution proof" hidden="true">
+<ul>
+<li><span class="proof-title"><em>Solution</em>. </span></li>
+<li>Characteristic Equation: <span class="math inline">\(r^2 - 4r + 13 = 0\)</span></li>
+<li>Roots: <span class="math inline">\(r = 2 \pm 3i\)</span> (complex case)</li>
+<li>General solution, <span class="math inline">\(y(t) = c_1e^{2t}\cos(3t) + c_1e^{2t}\sin(3t)\)</span></li>
+</ul>
+</div>
+<div id="exr-2ndorder-linear-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.4 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 6 y' + 5 y = 0\)</span>.</p>
+</div>
+<div class="solution proof" hidden="true">
+<ul>
+<li><span class="proof-title"><em>Solution</em>. </span></li>
+<li>Characteristic Equation: <span class="math inline">\(r^2 - 6r + 5 = 0\)</span></li>
+<li>Roots: <span class="math inline">\(r \in \{5,1\}\)</span> (two distinct real roots)</li>
+<li>General solution, <span class="math inline">\(y(t) = c_1e^{5t} + c_1e^{t}\)</span></li>
+</ul>
+</div>
+<div id="exr-2ndorder-linear-3" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.5 </strong></span>Find the general solutions of <span class="math inline">\(y'' + 4 y' + 4 y = 0\)</span>.</p>
+</div>
+<div class="solution proof" hidden="true">
+<ul>
+<li><span class="proof-title"><em>Solution</em>. </span></li>
+<li>Characteristic Equation: <span class="math inline">\(r^2 + 4r + 4 = 0\)</span></li>
+<li>Roots: <span class="math inline">\(r = -2\)</span> (double root)</li>
+<li>General solution, <span class="math inline">\(y(t) = c_1e^{-2t} + c_1te^{-2t}\)</span></li>
+</ul>
+</div>
 </section>
 <section id="initial-and-boundary-value-problems" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.3</span> Initial and boundary value problems</h2>
