@@ -87,7 +87,7 @@ The right hand side, $G$, is typically an applied force or current or something 
 
 There are two theorems that are relevant here.
 
-::: {#thm-1}
+::: {#thm-2ndorder-1}
 If $y_1$ and $y_2$ are solutions of the homogeneous problem
 then for any constants $c_1$ and $c_2$, the linear combination $y = c_1y_1 + c_2y_2$ is also a solution of the homogeneous problem.
 :::
@@ -96,7 +96,7 @@ In the language of linear algebra, any linear combination of two solutions is al
 The proof follows almost immediately from substituting the linear combination of the two solutions
 into the differential equation.
 
-::: {#thm-homog}
+::: {#thm-2ndorder-homog}
 If $y_1$ and $y_2$ are two linearly independent solutions to the homogeneous problem and $y_p$ is any solution to the
 nonhomogeneous problem, then $y = c_1y_1 + c_2y_2 + y_p$ is also a solution to the nonhomogeneous problem
 for any constant $a$.
@@ -176,7 +176,7 @@ First, we substitute the ansatz, $y(x) = e^{rx}$, into @eq-genericode
   \left(ar^2 + br +c\right)e^{rx} &= 0 
 \end{align*}
 Factoring out $e^{rx}$ we see that $r$ must satisfy
-  $ar^2 + br +c = 0$.
+$$ar^2 + br +c = 0.$$ {#eq-characteristic}
 That is,
 $$r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.$$
 
@@ -229,6 +229,49 @@ In this case, we have two complex roots, which we will express as
   are also linearly independent solutions.  Hence, the general solution has the form
 
   $$y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}$$
+
+::: {#exr-complexroots-1}
+Use Euler's formula, $\exp(i\theta) = \cos \theta + i\sin \theta$, to show that 
+$\cos \theta = \frac{1}{2}\left(\exp(i\theta)+\exp(-i\theta)$
+and
+$\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)$.
+:::
+
+::: {#exr-complexroots-2}
+Use the results of @exr-complexroots-1 and @thm-2ndorder-1 to show that the general solution of @eq-generic-ccoef can be expressed as
+$y(t) = c_1\exp(\alpha t) \cos \beta t  + c_2\exp(\alpha t) \sin \beta t$
+if the roots of @eq-characteristic are complex.
+:::
+
+::: {#exr-2ndorder-linear-1}
+Find the general solutions of $y'' - 4 y' + 13 y = 0$.
+:::
+
+::: {.solution hidden=true}
+-	Characteristic Equation: $r^2 - 4r + 13 = 0$
+-	Roots: $r = 2 \pm 3i$ (complex case)
+-	General solution, $y(t) = c_1e^{2t}\cos(3t) + c_1e^{2t}\sin(3t)$
+:::
+
+::: {#exr-2ndorder-linear-2}
+Find the general solutions of $y'' - 6 y' + 5 y = 0$.
+:::
+
+::: {.solution hidden=true}
+-	Characteristic Equation: $r^2 - 6r + 5 = 0$
+-	Roots: $r \in \{5,1\}$ (two distinct real roots)
+-	General solution, $y(t) = c_1e^{5t} + c_1e^{t}$
+:::
+
+::: {#exr-2ndorder-linear-3}
+Find the general solutions of $y'' + 4 y' + 4 y = 0$.
+:::
+
+::: {.solution hidden=true}
+-	Characteristic Equation: $r^2 + 4r + 4 = 0$
+-	Roots: $r = -2$ (double root)
+-	General solution, $y(t) = c_1e^{-2t} + c_1te^{-2t}$
+:::
 
 ## Initial and boundary value problems
 
