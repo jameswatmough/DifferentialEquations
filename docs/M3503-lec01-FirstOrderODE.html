@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sec-direction-field" id="toc-sec-direction-field" class="nav-link active" data-scroll-target="#sec-direction-field"><span class="toc-section-number">2.1</span>  Direction fields</a></li>
   <li><a href="#sec-separable" id="toc-sec-separable" class="nav-link" data-scroll-target="#sec-separable"><span class="toc-section-number">2.2</span>  first order separable equations</a></li>
   <li><a href="#sec-1storder-linear" id="toc-sec-1storder-linear" class="nav-link" data-scroll-target="#sec-1storder-linear"><span class="toc-section-number">2.3</span>  Linear first order differential equations</a></li>
+  <li><a href="#sec-1storder-exr" id="toc-sec-1storder-exr" class="nav-link" data-scroll-target="#sec-1storder-exr"><span class="toc-section-number">2.4</span>  Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -308,7 +309,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Since divide by <span class="math inline">\(y\)</span> on our first step in this example, we must assume <span class="math inline">\(y\ne0\)</span>. However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.<br>
+<p>Since we divide by <span class="math inline">\(y\)</span> on our first step in this example, we must assume <span class="math inline">\(y\ne0\)</span>. However, it is easy to see by inspection that <span class="math inline">\(y=0\)</span> is also a solution to the equation.<br>
 Hence, we can express the general solution as <span class="math inline">\(y(t) = y_0\exp(r\sin t)\)</span> where <span class="math inline">\(y_0\)</span> can be any real number.</p>
 </div>
 </div>
@@ -381,7 +382,7 @@ Hence, we can express the general solution as <span class="math inline">\(y(t) =
     u(t)y(t) =  \int u(s)q(s) \, ds \\
     y(t) =  \frac{1}{u(t)} \int u(s)q(s)\, ds
 \end{gather}\]</span> There is an arbitrary constant resulting from in the integration of <span class="math inline">\(uq\)</span>. We’ll use use our initial conditions to determine that once we determined <span class="math inline">\(u\)</span>.</p>
-<p>Returning to <span class="math inline">\(u'=pu\)</span>, the differential equation for <span class="math inline">\(u\)</span>, we see it is separable and has solutions of the form <span class="math inline">\(u(t) = \exp(\int p)\)</span>. To make the result more readable, define <span class="math inline">\(P(t) = \int_{t_0}^t p(s) \, ds\)</span> and take <span class="math inline">\(u\)</span> as <span class="math inline">\(u(t) = \exp(P(t))\)</span>. This is the solution that also satisfies <span class="math inline">\(u(t_0)=1\)</span>, which is convenient. Putting this together with our expression for <span class="math inline">\(y\)</span>, we find, in terms of <span class="math inline">\(P\)</span>, <span class="math display">\[y(t) = e^{-P(t)} \int e^{P(s)}q(s)\, ds\]</span> This is our general solution, since it still has the constant of integration hiding in the integral. Applying the initial conditions we find <span class="math display">\[y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds\]</span></p>
+<p>Returning to <span class="math inline">\(u'=pu\)</span>, the differential equation for <span class="math inline">\(u\)</span>, we see it is separable and has solutions of the form <span class="math inline">\(u(t) = \exp(\int p)\)</span>. To make the result more readable, define <span class="math inline">\(P(t) = \int_{t_0}^t p(s) \, ds\)</span> and take <span class="math inline">\(u\)</span> as <span class="math inline">\(u(t) = \exp(P(t))\)</span>. This is the solution that also satisfies <span class="math inline">\(u(t_0)=1\)</span>, which is convenient. Putting this together with our expression for <span class="math inline">\(y\)</span>, we find, in terms of <span class="math inline">\(P\)</span>, <span class="math display">\[y(t) = e^{-P(t)} \int e^{P(s)}q(s)\, ds\]</span> This is our general solution, since it still has the constant of integration hiding in the integral. Applying the initial conditions we find <span class="math display">\[y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds \right)\]</span></p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -415,7 +416,60 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you don’t immediately recognize the integrating factor, first rewrite the problem as $ y’ + y = t$ The integrating factor can be computed as <span class="math inline">\(u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2\)</span></p>
+<p>If you don’t immediately recognize the integrating factor, first rewrite the problem as <span class="math inline">\(y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t\)</span> The integrating factor can be computed as <span class="math inline">\(u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2\)</span></p>
+</div>
+</div>
+</section>
+<section id="sec-1storder-exr" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-1storder-exr"><span class="header-section-number">2.4</span> Exercises</h2>
+<div id="exr-1storder-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.1 </strong></span>Solve the initial value problem <span class="math inline">\(x^2y' = (2+x)y\)</span> with <span class="math inline">\(y(1)=1\)</span>.</p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>separate and integrate <span class="math display">\[\begin{align*}
+x^2y' &amp;= (2+x)y \\
+\frac{y'}{y} &amp;= \frac{2}{x^2}+\frac{1}{x} \\
+\int \frac{y'}{y} \, dx &amp;= \int \frac{2}{x^2} \, dx +\int \frac{1}{x}  \, dx \\
+\log y &amp;= -\frac{2}{x} + \log x + C \\
+\end{align*}\]</span></li>
+<li>apply initial conditions by substituting 1 for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> <span class="math display">\[\log 1 = -\frac{2}{1} + \log 1 + C \Rightarrow C = 2\]</span></li>
+<li>solve relation for <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(x\)</span> <span class="math display">\[\begin{align*}
+y(x) &amp;= \exp\left(-\frac{2}{x} + \log x + 2\right) \\
+     &amp;= x\exp\left(2-\frac{2}{x}\right)
+\end{align*}\]</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="exr-1storder-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.2 </strong></span>&nbsp;</p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
 </div>
 </div>
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-22">
+<meta name="dcterms.date" content="2023-01-27">
 
 <title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
 <style>
@@ -150,15 +150,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#differential-equations-and-linear-algebra" id="toc-differential-equations-and-linear-algebra" class="nav-link" data-scroll-target="#differential-equations-and-linear-algebra"><span class="toc-section-number">4.1.1</span>  Differential Equations and Linear Algebra</a></li>
   <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="toc-section-number">4.1.2</span>  The solution set</a></li>
   </ul></li>
-  <li><a href="#sec-2ndordercc" id="toc-sec-2ndordercc" class="nav-link" data-scroll-target="#sec-2ndordercc"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a></li>
-  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.3</span>  Initial and boundary value problems</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.4</span>  Summary</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.5</span>  Discussion</a></li>
-  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.6</span>  Theoretical Considerations</a></li>
-  <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="toc-section-number">4.7</span>  Finding particular solutions of the nonhomogeneous problem</a>
+  <li><a href="#sec-2ndordercc" id="toc-sec-2ndordercc" class="nav-link" data-scroll-target="#sec-2ndordercc"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a>
   <ul class="collapse">
-  <li><a href="#reduction-of-order" id="toc-reduction-of-order" class="nav-link" data-scroll-target="#reduction-of-order"><span class="toc-section-number">4.7.1</span>  Reduction of order</a></li>
+  <li><a href="#theory-and-techniques" id="toc-theory-and-techniques" class="nav-link" data-scroll-target="#theory-and-techniques"><span class="toc-section-number">4.2.1</span>  Theory and Techniques</a></li>
+  <li><a href="#sec-2ndorder-cc-exr" id="toc-sec-2ndorder-cc-exr" class="nav-link" data-scroll-target="#sec-2ndorder-cc-exr"><span class="toc-section-number">4.2.2</span>  Exercises</a></li>
   </ul></li>
+  <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="toc-section-number">4.3</span>  Finding particular solutions of the nonhomogeneous problem</a>
+  <ul class="collapse">
+  <li><a href="#sec-2ndordervp" id="toc-sec-2ndordervp" class="nav-link" data-scroll-target="#sec-2ndordervp"><span class="toc-section-number">4.3.1</span>  Variation of Parameters</a></li>
+  </ul></li>
+  <li><a href="#sec-2ndorderuc" id="toc-sec-2ndorderuc" class="nav-link" data-scroll-target="#sec-2ndorderuc"><span class="toc-section-number">4.4</span>  The method of Undetermined Coefficients</a></li>
+  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.5</span>  Initial and boundary value problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.6</span>  Summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.7</span>  Discussion</a></li>
+  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.8</span>  Theoretical Considerations</a></li>
   </ul>
 </nav>
     </div>
@@ -184,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 22, 2023</p>
+      <p class="date">January 27, 2023</p>
     </div>
   </div>
   
@@ -258,6 +263,8 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 </section>
 <section id="sec-2ndordercc" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-2ndordercc"><span class="header-section-number">4.2</span> Linear Second order differential equations with constant coefficients</h2>
+<section id="theory-and-techniques" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="theory-and-techniques"><span class="header-section-number">4.2.1</span> Theory and Techniques</h3>
 <p>Consider the problem</p>
 <p><span id="eq-generic-ccoef"><span class="math display">\[ay'' + by' +cy = 0 \tag{4.2}\]</span></span></p>
 <p>Based on our experience with first order equations (a=0), we look for a solution of the form <span class="math inline">\(y=e^{rx}\)</span>. If we can find two such solutions, we’ve got them all! First, we substitute the ansatz, <span class="math inline">\(y(x) = e^{rx}\)</span>, into <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> <span class="math display">\[\begin{align*}
@@ -279,69 +286,182 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 <p>In this case, we have two complex roots, which we will express as <span class="math inline">\(r_1 = \alpha - \beta i\)</span> and <span class="math inline">\(r_2 = \alpha + \beta i\)</span>. For those who are comfortable with complex functions, you will be happy to know that the two functions <span class="math inline">\(e^{r_1 x}\)</span> and <span class="math inline">\(e^{r_2 x}\)</span> are indeed linearly independent.<br>
 The only catch is that we started with a problem involving real variables and real functions and it would be nice to have real solutions. Fortunately, it is possible to show that the real and complex parts of the complex solutions are also linearly independent solutions. Hence, the general solution has the form</p>
 <p><span class="math display">\[y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}\]</span></p>
+</section>
+<section id="sec-2ndorder-cc-exr" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="sec-2ndorder-cc-exr"><span class="header-section-number">4.2.2</span> Exercises</h3>
 <div id="exr-complexroots-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.1 </strong></span>Use Euler’s formula, <span class="math inline">\(\exp(i\theta) = \cos \theta + i\sin \theta\)</span>, to show that <span class="math inline">\(\cos \theta = \frac{1}{2}\left(\exp(i\theta)+\exp(-i\theta)\)</span> and <span class="math inline">\(\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.1 </strong></span>Use Euler’s formula, <span class="math inline">\(\exp(i\theta) = \cos \theta + i\sin \theta\)</span>, to show that <span class="math inline">\(\cos \theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)\)</span> and <span class="math inline">\(\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\right)\)</span>.</p>
 </div>
 <div id="exr-complexroots-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.2 </strong></span>Use the results of <a href="#exr-complexroots-1">Exercise&nbsp;<span>4.1</span></a> and <a href="#thm-2ndorder-1">Theorem&nbsp;<span>4.1</span></a> to show that the general solution of <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a> can be expressed as <span class="math inline">\(y(t) = c_1\exp(\alpha t) \cos \beta t + c_2\exp(\alpha t) \sin \beta t\)</span> if the roots of <a href="#eq-characteristic">Equation&nbsp;<span>4.3</span></a> are complex.</p>
+<p><span class="theorem-title"><strong>Exercise 4.2 </strong></span>Use the results of <a href="#exr-complexroots-1">Exercise&nbsp;<span>4.1</span></a> and <a href="#thm-2ndorder-1">Theorem&nbsp;<span>4.1</span></a> to show that the general solution of <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a> can be expressed as <span class="math inline">\(y(t) = c_1e^{\alpha t} \cos \beta t + c_2e^{\alpha t} \sin \beta t\)</span> if the roots of <a href="#eq-characteristic">Equation&nbsp;<span>4.3</span></a> are complex.</p>
 </div>
-<div id="exr-2ndorder-linear-1" class="theorem exercise">
+<div id="exr-2ndorder-linear-cc-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.3 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 4 y' + 13 y = 0\)</span>.</p>
 </div>
-<div class="solution proof" hidden="true">
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li><span class="proof-title"><em>Solution</em>. </span></li>
 <li>Characteristic Equation: <span class="math inline">\(r^2 - 4r + 13 = 0\)</span></li>
 <li>Roots: <span class="math inline">\(r = 2 \pm 3i\)</span> (complex case)</li>
 <li>General solution, <span class="math inline">\(y(t) = c_1e^{2t}\cos(3t) + c_1e^{2t}\sin(3t)\)</span></li>
 </ul>
 </div>
-<div id="exr-2ndorder-linear-2" class="theorem exercise">
+</div>
+</div>
+<div id="exr-2ndorder-linear-cc-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.4 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 6 y' + 5 y = 0\)</span>.</p>
 </div>
-<div class="solution proof" hidden="true">
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li><span class="proof-title"><em>Solution</em>. </span></li>
 <li>Characteristic Equation: <span class="math inline">\(r^2 - 6r + 5 = 0\)</span></li>
 <li>Roots: <span class="math inline">\(r \in \{5,1\}\)</span> (two distinct real roots)</li>
 <li>General solution, <span class="math inline">\(y(t) = c_1e^{5t} + c_1e^{t}\)</span></li>
 </ul>
 </div>
-<div id="exr-2ndorder-linear-3" class="theorem exercise">
+</div>
+</div>
+<div id="exr-2ndorder-linear-cc-3" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.5 </strong></span>Find the general solutions of <span class="math inline">\(y'' + 4 y' + 4 y = 0\)</span>.</p>
 </div>
-<div class="solution proof" hidden="true">
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li><span class="proof-title"><em>Solution</em>. </span></li>
 <li>Characteristic Equation: <span class="math inline">\(r^2 + 4r + 4 = 0\)</span></li>
 <li>Roots: <span class="math inline">\(r = -2\)</span> (double root)</li>
 <li>General solution, <span class="math inline">\(y(t) = c_1e^{-2t} + c_1te^{-2t}\)</span></li>
 </ul>
 </div>
+</div>
+</div>
+<div id="exr-2ndorder-linear-cc-ivp-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.6 </strong></span>Solve the Initial value problem <span class="math inline">\(2y'' + 5y' - 3y = 0\)</span>, with <span class="math inline">\(y(0) = 4\)</span> and <span class="math inline">\(y'(0) = 2\)</span>.</p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Characteristic equation: <span class="math inline">\(2r^2 + 5r - 3 = 0\)</span></li>
+<li>Roots: <span class="math inline">\(r \in \{\frac{1}{2}, -3\}\)</span> (distinct real roots)</li>
+<li>General solution, <span class="math inline">\(y(t) = c_1e^{\frac{1}{2}t} + c_2e^{-3t}\)</span></li>
+<li>Apply initial conditions <span class="math display">\[\begin{alignat*}{3}
+  y(0) &amp;= &amp;\ c_1\  &amp;+ &amp;\ c_2 &amp;=4\\
+  y'(0)&amp;= &amp;\ \frac{1}{2}c_1 \ &amp;- &amp;\ 3c_2 &amp;= 2
+\end{alignat*}\]</span></li>
+<li>Solve for constants: <span class="math inline">\(c_1 = 4\)</span> and <span class="math inline">\(c_2 = 0\)</span></li>
+<li>Solution to IVP: <span class="math inline">\(y(t) = 4e^{\frac{1}{2}t}\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="exr-2ndorder-linear-cc-bvp-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.7 </strong></span>Solve the Boundary Value problem <span class="math display">\[y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0\]</span></p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Characteristic equation: <span class="math inline">\(r^2 - 6r + 9 = 0\)</span></li>
+<li>Roots: <span class="math inline">\(r-3\)</span>, (double root)</li>
+<li>General solution, <span class="math inline">\(y(t) = c_1e^{3t} + c_2te^{3t}\)</span></li>
+<li>Apply initial conditions <span class="math display">\[\begin{alignat*}{3}
+  y(0)&amp;= &amp;\ c_1\  &amp;  &amp;      &amp;=3 \\
+  y(1)&amp;= &amp;\ e^{3}c_1 \ &amp;+ &amp;\ e^{3}c_2 &amp;= 0
+\end{alignat*}\]</span></li>
+<li>Solve for constants: <span class="math inline">\(c_1 = 3\)</span> and <span class="math inline">\(c_2 = -3\)</span></li>
+<li>Solution to BVP: <span class="math inline">\(y(t) = 3e^{3t} - 3te^{3t}\)</span></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="initial-and-boundary-value-problems" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.3</span> Initial and boundary value problems</h2>
+</section>
+<section id="finding-particular-solutions-of-the-nonhomogeneous-problem" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="header-section-number">4.3</span> Finding particular solutions of the nonhomogeneous problem</h2>
+<section id="sec-2ndordervp" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="sec-2ndordervp"><span class="header-section-number">4.3.1</span> Variation of Parameters</h3>
+<p>Consider the general linear second order differential equation, <span class="math inline">\(P(x)y'' + Q(x)y' + R(x)y = G(x)\)</span>, and suppose we know one solution, <span class="math inline">\(y_1\)</span> to the homogeneous problem (<span class="math inline">\(G=0\)</span>). A well-established trick to finding more solutions to the differential equation is to look for solutions of the form <span class="math inline">\(y(x) = u(x)y_1(x)\)</span>. <span class="math display">\[\begin{align*}
+  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &amp;= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &amp;= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G
+\end{align*}\]</span> Since <span class="math inline">\(y_1\)</span> is a known solution, to the nonhomogeneous problem, the last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Setting <span class="math inline">\(v = u'\)</span> reduces the order to a first order differential equation in <span class="math inline">\(v\)</span>: <span class="math inline">\(Py_1 v' + \left(2y_1' + Qy_1\right)v = G.\)</span> This equation is first order and linear, and can be solved using an integrating factor.</p>
+<p>If we have two linearly independent solutions to the homogeneous problem, we can use these to find a particular solution to the nonhomogeneous problem. The trick is to look for a solution of the form <span class="math inline">\(y(x) = u(x)y_1(x) + v(x)y_2(x)\)</span>. Notice that <span class="math inline">\(y' = u'y_1 + uy'_1 + v'y_2 + vy'_2\)</span>. It turns out looking for two functions, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, gives us enough freedom to choose these functions so that <span class="math inline">\(u'y_1 + v'y_2 = 0\)</span>. This simplifies <span class="math inline">\(y'\)</span> to <span class="math inline">\(uy'_1 + vy'_2\)</span>, and then <span class="math inline">\(y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\)</span>. Substituting these into our general ODE yields <span class="math display">\[P \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + Q\left(uy'_1 + vy'_2\right) + R\left(uy_1 + vy_2\right) = G\]</span> This looks nasty, but recognizing that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> satisfy the ODE, it reduces to <span class="math display">\[Pu'y'_1 + Pv'y'_2 = G\]</span></p>
+</section>
+</section>
+<section id="sec-2ndorderuc" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-2ndorderuc"><span class="header-section-number">4.4</span> The method of Undetermined Coefficients</h2>
+</section>
+<section id="initial-and-boundary-value-problems" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.5</span> Initial and boundary value problems</h2>
 <p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
 <div id="exm-SecondOrderLinear-1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 4.3 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
 </div>
 </section>
-<section id="summary" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.4</span> Summary</h2>
+<section id="summary" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.6</span> Summary</h2>
 To find two linearly independent solutions to a homogeneous second order linear differential equation with constant coefficients, <span class="math inline">\(ay'' + by' + cy' = 0,\)</span> first compute the characteristic roots <span class="math inline">\(r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\)</span> second, determine which of the following three cases holds and write down the appropriate solutions:
 Two distinct real roots (<span class="math inline">\(b^2 &gt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{r_1t} \qquad y_2 = e^{r_2t}\)</span> with <span class="math inline">\(r_1 = \frac{-b - \sqrt{b^2-4ac}}{2a}\)</span>, and <span class="math inline">\(r_2 = \frac{-b + \sqrt{b^2-4ac}}{2a}\)</span>.
 A double root (<span class="math inline">\(b^2 = 4ac\)</span>): <span class="math inline">\(y_1 = e^{rt} \qquad y_2 = te^{rt}\)</span> with <span class="math inline">\(r = \frac{-b}{2a}\)</span>.
 <p>Complex roots (<span class="math inline">\(b^2 &lt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{\alpha t} \cos \beta t \qquad y_2 = e^{\alpha t} \sin \beta t,\)</span> with <span class="math inline">\(\alpha = -\frac{b}{2a}\)</span>, and <span class="math inline">\(\beta = \frac{\sqrt{4ac-b^2}}{2a}\)</span>.</p>
 </section>
-<section id="discussion" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.5</span> Discussion</h2>
+<section id="discussion" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.7</span> Discussion</h2>
 <p>Note that we refer to <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> as linear when it is linear in the dependent variable. It may be nonlinear in the independent variable. For example,<br>
 applying Kirchoff’s law to a simple electric circuit yields the model <span class="math display">\[LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)\]</span> where the dependent variable, <span class="math inline">\(Q\)</span>, is the charge, and is assumed to depend on the time, <span class="math inline">\(t\)</span>. The parameters <span class="math inline">\(L\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> are the inductance, resistance and capacitance of the circuit and <span class="math inline">\(E\)</span> is an applied voltage. If the fixed resistance <span class="math inline">\(R\)</span> is replaced by a variable resistance, <span class="math inline">\(R(t)\)</span>, the equation is still linear in the dependent variable.</p>
 <p>More generally, a differential equation is an equation involving a function and some of its derivatives.<br>
 For example, a simple model for the angular deflection <span class="math inline">\(\theta(t)\)</span> of a pendulum of length <span class="math inline">\(l\)</span> is <span class="math display">\[l\theta''(t) + g\sin \theta(t) = 0,\]</span> which arises from balancing kinetic and potential energies. This equation is nonlinear in the dependent variable <span class="math inline">\(\theta\)</span>. For small angles, we can approximate <span class="math inline">\(\sin(\theta)\)</span> by <span class="math inline">\(\theta\)</span> leading to the linear second order constant coefficient model <span class="math display">\[l\theta''(t) + g\theta(t) = 0.\]</span> Most systems are nonlinear. However most analyses begin with the study of linear approximations. Hence the importance of studying linear differential equations.</p>
 </section>
-<section id="theoretical-considerations" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.6</span> Theoretical Considerations</h2>
+<section id="theoretical-considerations" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.8</span> Theoretical Considerations</h2>
 <p>A good treatment of the existence and uniqueness of solutions to differential equations can be found in Hartman. This material is approachable, but requires a deeper exposure to linear algebra than you received in Math 1503.</p>
 <p>Consider the general Second order linear ODE of <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> with <span class="math inline">\(G=0\)</span>. Let <span class="math inline">\(w(x) = y'(x)\)</span> and write the single equation as</p>
 <p><span class="math display">\[P(x)w'(x) + Q(x)w(x) + R(x)y(x) = 0,\]</span></p>
@@ -349,20 +469,8 @@ For example, a simple model for the angular deflection <span class="math inline"
   w'(x) &amp;=  - \frac{Q(x)}{P(x)}w(x) - \frac{R(x)}{P(x)}y(x), \\
   y'(x) &amp;= w(x)
 \end{align}\]</span> Hartman’s text deals with the more general equation <span class="math inline">\(\vec{y}' = f(x,\vec{y})\)</span> where <span class="math inline">\(\vec{y}\)</span> and <span class="math inline">\(f\)</span> are vector functions. The result for our simpler linear system is that the initial value problem has a unique solution provided <span class="math inline">\(Q/P\)</span> and <span class="math inline">\(R/P\)</span> are both continuous.</p>
-</section>
-<section id="finding-particular-solutions-of-the-nonhomogeneous-problem" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="header-section-number">4.7</span> Finding particular solutions of the nonhomogeneous problem</h2>
-<section id="reduction-of-order" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="reduction-of-order"><span class="header-section-number">4.7.1</span> Reduction of order</h3>
-<p>Consider the general linear second order differential equation, <span class="math inline">\(P(x)y'' + Q(x)y' + R(x)y = G(x)\)</span>, and suppose we know one solution, <span class="math inline">\(y_1\)</span> to the homogeneous problem (<span class="math inline">\(G=0\)</span>). A well-established trick to finding more solutions to the differential equation is to look for solutions of the form <span class="math inline">\(y(x) = u(x)y_1(x)\)</span>.<br>
-<span class="math display">\[\begin{align*}
-  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &amp;= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &amp;= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G
-\end{align*}\]</span> Since <span class="math inline">\(y_1\)</span> is a known solution, to the nonhomogeneous problem, the last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Setting <span class="math inline">\(v = u'\)</span> reduces the order to a first order differential equation in <span class="math inline">\(v\)</span>: <span class="math inline">\(Py_1 v' + \left(2y_1' + Qy_1\right)v = G.\)</span> This equation is first order and linear, and can be solved using an integrating factor.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
