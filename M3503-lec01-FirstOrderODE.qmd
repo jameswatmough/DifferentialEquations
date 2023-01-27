@@ -68,7 +68,7 @@ Since $C$ is an arbitrary constant, $y_0 = \pm e^C$ is also arbitrary.
 :::
 
 ::: {.callout-note}
-Since divide by $y$ on our first step in this example, we must assume $y\ne0$.
+Since we divide by $y$ on our first step in this example, we must assume $y\ne0$.
 However, it is easy to see by inspection that $y=0$ is also a solution to the equation.   
 Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $y_0$ can be any real number.
 :::
@@ -181,7 +181,7 @@ Putting this together with our expression for $y$, we find, in terms of $P$,
 $$y(t) = e^{-P(t)} \int e^{P(s)}q(s)\, ds$$
 This is our general solution, since it still has the constant of integration hiding in the integral.
 Applying the initial conditions we find
-$$y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds$$
+$$y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds \right)$$
 
 ::: {.callout-warning}
 I advise against memorizing this formula. Instead memorize the technique.  Applying the technique is often simpler than applying the formula,  and we'll extend the ideas behind the method later in the course.
@@ -203,10 +203,43 @@ You can probably guess the integrating factor by noticing the left hand side loo
 ::: {.callout-tip}
 
 If you don't immediately recognize the integrating factor, first rewrite the problem as
-$ y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t$
+$y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t$
 The integrating factor can be computed as
 $u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
 
 :::
 
 
+## Exercises {#sec-1storder-exr}
+
+::: {#exr-1storder-1}
+
+Solve the initial value problem $x^2y' = (2+x)y$ with $y(1)=1$.
+
+:::
+
+::: {.callout-solution collapse=true}
+
+- separate and integrate
+\begin{align*}
+  x^2y' &= (2+x)y \\
+  \frac{y'}{y} &= \frac{2}{x^2}+\frac{1}{x} \\
+  \int \frac{y'}{y} \, dx &= \int \frac{2}{x^2} \, dx +\int \frac{1}{x}  \, dx \\
+  \log y &= -\frac{2}{x} + \log x + C \\
+\end{align*}
+- apply initial conditions by substituting 1 for $x$ and $y$
+  $$\log 1 = -\frac{2}{1} + \log 1 + C \Rightarrow C = 2$$ 
+- solve relation for $y$ in terms of $x$
+\begin{align*}
+  y(x) &= \exp\left(-\frac{2}{x} + \log x + 2\right) \\
+       &= x\exp\left(2-\frac{2}{x}\right)
+\end{align*}
+:::
+
+::: {#exr-1storder-2}
+
+:::
+
+::: {.callout-solution collapse=true}
+
+:::

@@ -12,12 +12,12 @@ Wed Jan 18 @sec-2ndordercc      17.1      5.1       ---    Distinct real eigenva
 Fri Jan 20 @sec-2ndordercc      17.1      5.1       ---    Repeated eigenvalues
 Mon Jan 23 @sec-2ndordercc      17.1      3.1       ---    Complex eigenvalues
 Tue Jan 24 @sec-2ndordercc      ---       ---       ---    Tutorial: 
-Wed Jan 25 @sec-varparm         17.2      5.3       ---    Variation of Parameters
-Fri Jan 27 @sec-undetcoef       17.2      5.3       ---    Undetermined Coefficients
+Wed Jan 25 @sec-2ndordervp      17.2      5.3       ---    Variation of Parameters
+Fri Jan 27 @sec-2ndorderuc      17.2      5.3       ---    Undetermined Coefficients
 Mon Jan 30 @sec-2ndorder        17.3      5         ---    Initial Value Problems
 Tue Jan 31 @sec-2ndorder        ---       5.3       ---    Tutorial: 
 Wed Feb 01 @sec-2ndorder        ---       5         ---    Boundary Value Problems
-Fri Feb 03 **Test 1**                    
+Fri Feb 03 **Test 1**           ---       ---       ---    Material up to Monday 23 Jan, @sec-2ndorder-cc-exr, @sec-1storder-exr
 Mon Feb 06 @sec-laplace         ---       ---       1.1-2  Laplace Transforms: Definitions and basics
 Tue Feb 07 @sec-laplace         ---       ---       ---    Tutorial: 
 Wed Feb 08 @sec-laplace         ---       ---       1.7    Laplace Transform: derivatives and ODEs

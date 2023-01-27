@@ -162,6 +162,8 @@ Later in the notes we will also encounter the eigenvalue problem $Ly=\lambda y$,
 
 ## Linear Second order differential equations with constant coefficients {#sec-2ndordercc}
 
+### Theory and Techniques
+
 Consider the problem
 
 $$ay'' + by' +cy = 0$$ {#eq-generic-ccoef}
@@ -230,48 +232,125 @@ In this case, we have two complex roots, which we will express as
 
   $$y(x) =  \left( c_1 \cos \beta x  + c_2 \sin  \beta x  \right) e^{\alpha x}$$
 
+### Exercises {#sec-2ndorder-cc-exr}
+
 ::: {#exr-complexroots-1}
-Use Euler's formula, $\exp(i\theta) = \cos \theta + i\sin \theta$, to show that 
-$\cos \theta = \frac{1}{2}\left(\exp(i\theta)+\exp(-i\theta)$
+Use Euler's formula, $\exp(i\theta) = \cos \theta + i\sin \theta$, to show that
+$\cos \theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)$
 and
-$\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)$.
+$\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\right)$.
 :::
 
 ::: {#exr-complexroots-2}
 Use the results of @exr-complexroots-1 and @thm-2ndorder-1 to show that the general solution of @eq-generic-ccoef can be expressed as
-$y(t) = c_1\exp(\alpha t) \cos \beta t  + c_2\exp(\alpha t) \sin \beta t$
+$y(t) = c_1e^{\alpha t} \cos \beta t  + c_2e^{\alpha t} \sin \beta t$
 if the roots of @eq-characteristic are complex.
 :::
 
-::: {#exr-2ndorder-linear-1}
+
+
+::: {#exr-2ndorder-linear-cc-1}
 Find the general solutions of $y'' - 4 y' + 13 y = 0$.
 :::
 
-::: {.solution hidden=true}
+::: {.callout-solution collapse=true}
+
 -	Characteristic Equation: $r^2 - 4r + 13 = 0$
 -	Roots: $r = 2 \pm 3i$ (complex case)
 -	General solution, $y(t) = c_1e^{2t}\cos(3t) + c_1e^{2t}\sin(3t)$
+
 :::
 
-::: {#exr-2ndorder-linear-2}
+::: {#exr-2ndorder-linear-cc-2}
 Find the general solutions of $y'' - 6 y' + 5 y = 0$.
 :::
 
-::: {.solution hidden=true}
+::: {.callout-solution collapse=true}
 -	Characteristic Equation: $r^2 - 6r + 5 = 0$
 -	Roots: $r \in \{5,1\}$ (two distinct real roots)
 -	General solution, $y(t) = c_1e^{5t} + c_1e^{t}$
 :::
 
-::: {#exr-2ndorder-linear-3}
+::: {#exr-2ndorder-linear-cc-3}
 Find the general solutions of $y'' + 4 y' + 4 y = 0$.
 :::
 
-::: {.solution hidden=true}
+::: {.callout-solution collapse=true}
 -	Characteristic Equation: $r^2 + 4r + 4 = 0$
 -	Roots: $r = -2$ (double root)
 -	General solution, $y(t) = c_1e^{-2t} + c_1te^{-2t}$
 :::
+
+::: {#exr-2ndorder-linear-cc-ivp-1}
+Solve the Initial value problem
+$2y'' + 5y' - 3y = 0$, with $y(0) = 4$ and $y'(0) = 2$.
+:::
+
+::: {.callout-solution collapse=true}
+- Characteristic equation: $2r^2 + 5r - 3 = 0$
+-	Roots: $r \in \{\frac{1}{2}, -3\}$ (distinct real roots)
+-	General solution, $y(t) = c_1e^{\frac{1}{2}t} + c_2e^{-3t}$
+- Apply initial conditions
+\begin{alignat*}{3}
+	y(0) &= &\ c_1\  &+ &\ c_2 &=4\\
+	y'(0)&= &\ \frac{1}{2}c_1 \ &- &\ 3c_2 &= 2
+\end{alignat*}
+- Solve for constants: $c_1 = 4$ and $c_2 = 0$
+- Solution to IVP: $y(t) = 4e^{\frac{1}{2}t}$
+:::
+
+::: {#exr-2ndorder-linear-cc-bvp-2}
+Solve the Boundary Value problem
+$$y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0$$
+:::
+
+::: {.callout-solution collapse=true}
+- Characteristic equation: $r^2 - 6r + 9 = 0$
+-	Roots: $r-3$, (double root)
+-	General solution, $y(t) = c_1e^{3t} + c_2te^{3t}$
+- Apply initial conditions
+\begin{alignat*}{3}
+	y(0)&= &\ c_1\  &  &      &=3 \\
+	y(1)&= &\ e^{3}c_1 \ &+ &\ e^{3}c_2 &= 0
+\end{alignat*}
+- Solve for constants: $c_1 = 3$ and $c_2 = -3$
+- Solution to BVP: $y(t) = 3e^{3t} - 3te^{3t}$
+:::
+
+## Finding particular solutions of the nonhomogeneous problem
+
+### Variation of Parameters {#sec-2ndordervp}
+
+Consider the general linear second order differential equation,
+$P(x)y'' + Q(x)y' + R(x)y = G(x)$,
+and suppose we know one solution, $y_1$ to the homogeneous problem ($G=0$).
+A well-established trick to finding more solutions to the differential equation is to look for solutions
+of the form $y(x) = u(x)y_1(x)$.
+\begin{align*}
+  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &= G \\
+  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G 
+\end{align*}
+Since $y_1$ is a known solution, to the nonhomogeneous problem,  the last few terms cancel leaving us with
+an equation that only involves the derivatives of $u$.  Setting $v = u'$ reduces the order to a first order
+differential equation in $v$:
+$Py_1 v' + \left(2y_1' + Qy_1\right)v  = G.$
+This equation is first order and linear, and can be solved using an integrating factor.
+
+If we have two linearly independent solutions to the homogeneous problem, we can use these to find a particular solution to the nonhomogeneous problem.
+The trick is to look for a solution of the form $y(x) = u(x)y_1(x) + v(x)y_2(x)$.
+Notice that
+$y' = u'y_1  + uy'_1 + v'y_2  + vy'_2$.
+It turns out looking for two functions, $u$ and $v$, gives us enough freedom to choose these functions so that
+$u'y_1  + v'y_2 = 0$.
+This simplifies $y'$ to $uy'_1 + vy'_2$, and then
+$y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}$.
+Substituting these into our general ODE yields
+$$P \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + Q\left(uy'_1 + vy'_2\right) + R\left(uy_1 + vy_2\right) = G$$
+This looks nasty, but recognizing that $y_1$ and $y_2$ satisfy the ODE, it reduces to
+$$Pu'y'_1 + Pv'y'_2 = G$$
+
+## The method of Undetermined Coefficients {#sec-2ndorderuc}
 
 ## Initial and boundary value problems
 
@@ -336,24 +415,4 @@ Hartman's text deals with the more general equation
 $\vec{y}' = f(x,\vec{y})$
 where $\vec{y}$ and $f$ are vector functions.  The result for our simpler linear system
 is that the initial value problem has a unique solution provided $Q/P$ and $R/P$ are both continuous.
-
-## Finding particular solutions of  the nonhomogeneous problem
-
-### Reduction of order
-
-Consider the general linear second order differential equation,
-$P(x)y'' + Q(x)y' + R(x)y = G(x)$,
-and suppose we know one solution, $y_1$ to the homogeneous problem ($G=0$).
-A well-established trick to finding more solutions to the differential equation is to look for solutions
-of the form $y(x) = u(x)y_1(x)$.  
-\begin{align*}
-  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G 
-\end{align*}
-Since $y_1$ is a known solution, to the nonhomogeneous problem,  the last few terms cancel leaving us with
-an equation that only involves the derivatives of $u$.  Setting $v = u'$ reduces the order to a first order
-differential equation in $v$:
-$Py_1 v' + \left(2y_1' + Qy_1\right)v  = G.$
-This equation is first order and linear, and can be solved using an integrating factor.
 
