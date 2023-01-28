@@ -1,4 +1,43 @@
-# 2023 Winter Class Schedule
+
+## Test Schedule
+
+::: {.callout-note appearance="simple" icon=false}
+
+## Test 1
+
+Date: Fri Feb 03 
+
+Coverage:
+
++ Material covered up to Monday 23 Jan,
++ 70-80% weight on solution techniques for separable first order, linear first order, and homogeneous constant coefficient linear second order ODEs.  See @sec-1storder-exr and @sec-2ndorder-cc-exr for sample problems and links to relevant OpenStax sections.
++ 20-30% weight on definitions, notation and theory from @sec-intro, @sec-1storder and @sec-2ndordercc.
+
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+
+## Test 2
+
+Date: Fri Feb 24 
+
+Coverage:
+- TBA
+
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+
+## Test 3
+
+Date: Fri Mar 24
+
+Coverage:
+- TBA
+
+:::
+
+## Class Schedule
 
 Date       Section              Stewart   Kalbaugh  Tupper Topic
 ---------- --------             --------  --------- ------ ------------
@@ -17,7 +56,7 @@ Fri Jan 27 @sec-2ndorderuc      17.2      5.3       ---    Undetermined Coeffici
 Mon Jan 30 @sec-2ndorder        17.3      5         ---    Initial Value Problems
 Tue Jan 31 @sec-2ndorder        ---       5.3       ---    Tutorial: 
 Wed Feb 01 @sec-2ndorder        ---       5         ---    Boundary Value Problems
-Fri Feb 03 **Test 1**           ---       ---       ---    Material up to Monday 23 Jan, @sec-2ndorder-cc-exr, @sec-1storder-exr
+Fri Feb 03 **Test 1**
 Mon Feb 06 @sec-laplace         ---       ---       1.1-2  Laplace Transforms: Definitions and basics
 Tue Feb 07 @sec-laplace         ---       ---       ---    Tutorial: 
 Wed Feb 08 @sec-laplace         ---       ---       1.7    Laplace Transform: derivatives and ODEs

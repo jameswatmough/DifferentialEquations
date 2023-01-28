@@ -212,6 +212,9 @@ $u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
 
 ## Exercises {#sec-1storder-exr}
 
+You should be familiar with material on basic differential equations in [Chapter 4 of OpenStax Calculus Volume 2](https://openstax.org/books/calculus-volume-2/pages/4-introduction), especially problems 119-142 in [Section 4.2](https://openstax.org/books/calculus-volume-2/pages/4-3-separable-equations)
+and problems 208-250 and 257-261 in [Section 4.4](https://openstax.org/books/calculus-volume-2/pages/4-5-first-order-linear-equations).
+
 ::: {#exr-1storder-1}
 
 Solve the initial value problem $x^2y' = (2+x)y$ with $y(1)=1$.
