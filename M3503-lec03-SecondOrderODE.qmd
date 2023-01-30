@@ -320,25 +320,28 @@ $$y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0$$
 
 ## Finding particular solutions of the nonhomogeneous problem
 
+There are two textbook approaches to finding solutions to a nonhomogeneous linear problem.  The first, variation of parameters, gives us a general formula for the solution that works in the constant coefficient case, and, with caveats, in the nonconstant coefficient case.  The second approach, undetermined coefficients, is essentially a trick for the constant coefficient problem that works for certain forcing functions but not in general.
+
 ### Variation of Parameters {#sec-2ndordervp}
 
 Consider the general linear second order differential equation,
-$P(x)y'' + Q(x)y' + R(x)y = G(x)$,
-and suppose we know one solution, $y_1$ to the homogeneous problem ($G=0$).
-A well-established trick to finding more solutions to the differential equation is to look for solutions
-of the form $y(x) = u(x)y_1(x)$.
-\begin{align*}
-  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G 
-\end{align*}
-Since $y_1$ is a known solution, to the nonhomogeneous problem,  the last few terms cancel leaving us with
-an equation that only involves the derivatives of $u$.  Setting $v = u'$ reduces the order to a first order
-differential equation in $v$:
-$Py_1 v' + \left(2y_1' + Qy_1\right)v  = G.$
-This equation is first order and linear, and can be solved using an integrating factor.
+$$a(x)y'' + b(x)y' + c(x)y = g(x)$$ {#eq-2ndordervp}
+The formulae we derive in this section allow $a$, $b$, and $c$ to depend on $x$, but we'll drop the explicit dependence in the derivations for the sake of clarity.
 
-If we have two linearly independent solutions to the homogeneous problem, we can use these to find a particular solution to the nonhomogeneous problem.
+Before we derive the general formula, it's worth looking at how we can use a solution to the homogeneous problem to simplify the nonhomogeneous problem.  
+Suppose we know one solution, $y_1$, to the homogeneous problem ($g=0$).
+We express the general solution as a product of $y_1$ and another function, say $u$, and derive the ODE that $u$ satisfies. I.e., substitute $y = uy_1$ into our nonhomogeneous problem.
+\begin{align*}
+  a \left(u''y_1 + 2u'y_1'+uy_1''\right) + b\left(u'y_1+uy_1'\right) + cuy_1 &= g \\
+  a \left(u''y_1 + 2u'y_1'\right) + bu'y_1 + auy_1''+buy_1' +cuy_1 &= g \\
+  a \left(u''y_1 + 2u'y_1'\right) + bu'y_1  = g 
+\end{align*}
+On that last step, we used the fact that $y_1$ is a solution to the homogeneous problem.  The last few terms cancel leaving us with
+an equation that only involves the derivatives of $u$.  Although this is still a second order equation for $u$, we can view it as a first order equation for $u'$.  To make this easier to see, gather up the coefficients of $u''$ and $u'$ and let $U = u'$.
+$$ay_1 U' + \left(2ay_1' + by_1\right)U  = g$$
+We can solve this first order linear equation for $U$, integrate $U$ to find $u$, and multiply by $y_1$ to find a solution to the original nonhomogeneous second order problem for $y$.
+
+Now suppose we know two linearly independent solutions, $y_1$ and $y_2$, to the homogeneous problem @eq-2ndordervp with $g=0$. We can use the same idea to find a particular solution to the nonhomogeneous problem @eq-2ndordervp.
 The trick is to look for a solution of the form $y(x) = u(x)y_1(x) + v(x)y_2(x)$.
 Notice that
 $y' = u'y_1  + uy'_1 + v'y_2  + vy'_2$.
@@ -347,11 +350,74 @@ $u'y_1  + v'y_2 = 0$.
 This simplifies $y'$ to $uy'_1 + vy'_2$, and then
 $y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}$.
 Substituting these into our general ODE yields
-$$P \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + Q\left(uy'_1 + vy'_2\right) + R\left(uy_1 + vy_2\right) = G$$
+$$a \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + b\left(uy'_1 + vy'_2\right) + c\left(uy_1 + vy_2\right) = g$$
 This looks nasty, but recognizing that $y_1$ and $y_2$ satisfy the ODE, it reduces to
-$$Pu'y'_1 + Pv'y'_2 = G$$
+$$au'y'_1 + av'y'_2 = g$$
+Thus, we've converted our second order problem for $y$ into a pair of first order problems for $u'$ and $v'$.  In matrix form, the pair of equations, and their solution have a nice structure.
+\begin{equation}
+	\begin{pmatrix} y_1 & y_2 \\ y_1' & y_2' \end{pmatrix}
+	\begin{pmatrix} u' \\ v' \end{pmatrix}
+		=\begin{pmatrix} 0 \\ \frac{g}{a} \end{pmatrix}
+\end{equation}
+\begin{equation}
+	\begin{pmatrix} u' \\ v' \end{pmatrix}
+		=\frac{1}{a} \begin{pmatrix} y_1 & y_2 \\ y_1' & y_2' \end{pmatrix}^{-1}
+		\begin{pmatrix} 0 \\ \g \end{pmatrix}
+\end{equation}
+\begin{equation}
+	\begin{pmatrix} u' \\ v' \end{pmatrix}
+		=\frac{1}{a(y_1y_2' - y_1'y_2} \begin{pmatrix} y_2' & -y_2 \\ -y_1' & y_1 \end{pmatrix}^{-1}
+		\begin{pmatrix} 0 \\ \g \end{pmatrix}
+\end{equation}
+On the right hand side we have known functions of $x$. The three functions $a$, $y_1$, and $y_2$ represent our system, and the fourth function, $g$, usually represents something like an external forcing or applied voltage.
+We'll see this matrix form again when we study systems of first order equations.
 
-## The method of Undetermined Coefficients {#sec-2ndorderuc}
+The determinant, $y_1y_2' - y_1'y_2$, is known as the Wronskian.  Since $y_1$ and $y_2$ were linearly independent, we expect this to be nonzero.  This isn't always the case, but it is likely true for most practical cases you'll encounter.
+
+We can express $u$ and $v$ as integrals and express the solution $y$ as 
+$$y = -y_1\int \frac{y_2g}{a(y_1y_2' - y_1'y_2)}  + y_2\int \frac{y_1g}{a(y_1y_2' - y_1'y_2)}$$ {#eq-2ndordervp-formula}
+We've use the two solutions to the homogeneous problem to reduce our nonhomogeneous problem to two integrations of known functions.
+
+::: {#exm-2ndordervp-1}
+Use the method of variation of parameters to find the general solution to $y'' + 9y = \sec 3x$.
+
+First, solve the homogeneous problem. The characteristic equation is $r^2+9=0$, which has complex roots, $r=\pm 3i$.
+The two solutions are $y_1(x) = \cos(3x)$ and  $y_2(x) = \sin(3x)$.
+
+Second, compute $y_1'$ and $y_2'$ and set up the system for $u'$ and $v'$
+\begin{align*}
+	u'\cos 3x  + v' \sin(3x) &= 0 \\
+ -3u'\sin 3x  + 3v' \cos(3x) &= \sec 3x
+\end{align*}
+Isolate $u'$ by multiplying the first equation through by $3\cos(3x)$, the second through by $\sin(3x)$ and taking the difference of the results
+$$u' = -\frac{1}{3}\sin(3x) \sec(3x)$$
+Similarly, we find
+$$v' =  -\frac{1}{3}\cos(3x) \sec(3x) = -\frac{1}{3}$$
+Integrate to find $u$ 
+begin{align*}
+ u(x) &= -\frac{1}{3}\int \sin(3x) \sec(3x) \, dx \\
+      &= -\frac{1}{3}\int \tan(3x) \, dx \\
+ 			&= \frac{1}{9}\log | \cos 3x  |
+end{align*}
+and $v = \frac{x}{3}$
+
+Putting everything together, 
+
+$$y(x) = c_1\cos(3x) + c_2\sin(3x) 
+	       + \frac{1}{9}\cos(3x)\log | \cos(3x) |
+				 + \frac{1}{3}x\sin(3x)$$
+
+:::
+
+### The method of Undetermined Coefficients {#sec-2ndorderuc}
+
+### Exercises {#sec-2ndorder-nonhom-exr}
+
+All the problems in [Openstax Calculus Volume 3 Section 7.2](https://openstax.org/books/calculus-volume-3/pages/7-2-nonhomogeneous-linear-equations)
+are good practice.
+
+
+
 
 ## Initial and boundary value problems
 
