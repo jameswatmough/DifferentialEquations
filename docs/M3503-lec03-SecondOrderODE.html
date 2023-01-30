@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-01-28">
+<meta name="dcterms.date" content="2023-01-30">
 
 <title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
 <style>
@@ -158,12 +158,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="toc-section-number">4.3</span>  Finding particular solutions of the nonhomogeneous problem</a>
   <ul class="collapse">
   <li><a href="#sec-2ndordervp" id="toc-sec-2ndordervp" class="nav-link" data-scroll-target="#sec-2ndordervp"><span class="toc-section-number">4.3.1</span>  Variation of Parameters</a></li>
+  <li><a href="#sec-2ndorderuc" id="toc-sec-2ndorderuc" class="nav-link" data-scroll-target="#sec-2ndorderuc"><span class="toc-section-number">4.3.2</span>  The method of Undetermined Coefficients</a></li>
+  <li><a href="#sec-2ndorder-nonhom-exr" id="toc-sec-2ndorder-nonhom-exr" class="nav-link" data-scroll-target="#sec-2ndorder-nonhom-exr"><span class="toc-section-number">4.3.3</span>  Exercises</a></li>
   </ul></li>
-  <li><a href="#sec-2ndorderuc" id="toc-sec-2ndorderuc" class="nav-link" data-scroll-target="#sec-2ndorderuc"><span class="toc-section-number">4.4</span>  The method of Undetermined Coefficients</a></li>
-  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.5</span>  Initial and boundary value problems</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.6</span>  Summary</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.7</span>  Discussion</a></li>
-  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.8</span>  Theoretical Considerations</a></li>
+  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.4</span>  Initial and boundary value problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.5</span>  Summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.6</span>  Discussion</a></li>
+  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.7</span>  Theoretical Considerations</a></li>
   </ul>
 </nav>
     </div>
@@ -189,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 28, 2023</p>
+      <p class="date">January 30, 2023</p>
     </div>
   </div>
   
@@ -427,42 +428,75 @@ Solution
 </section>
 <section id="finding-particular-solutions-of-the-nonhomogeneous-problem" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="header-section-number">4.3</span> Finding particular solutions of the nonhomogeneous problem</h2>
+<p>There are two textbook approaches to finding solutions to a nonhomogeneous linear problem. The first, variation of parameters, gives us a general formula for the solution that works in the constant coefficient case, and, with caveats, in the nonconstant coefficient case. The second approach, undetermined coefficients, is essentially a trick for the constant coefficient problem that works for certain forcing functions but not in general.</p>
 <section id="sec-2ndordervp" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="sec-2ndordervp"><span class="header-section-number">4.3.1</span> Variation of Parameters</h3>
-<p>Consider the general linear second order differential equation, <span class="math inline">\(P(x)y'' + Q(x)y' + R(x)y = G(x)\)</span>, and suppose we know one solution, <span class="math inline">\(y_1\)</span> to the homogeneous problem (<span class="math inline">\(G=0\)</span>). A well-established trick to finding more solutions to the differential equation is to look for solutions of the form <span class="math inline">\(y(x) = u(x)y_1(x)\)</span>. <span class="math display">\[\begin{align*}
-  P \left(u''y_1 + 2u'y_1'+uy_1''\right) + Q\left(u'y_1+uy_1'\right) + Ruy_1 &amp;= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1 + Puy_1''+Quy_1' +Ruy_1 &amp;= G \\
-  P \left(u''y_1 + 2u'y_1'\right) + Qu'y_1  = G
-\end{align*}\]</span> Since <span class="math inline">\(y_1\)</span> is a known solution, to the nonhomogeneous problem, the last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Setting <span class="math inline">\(v = u'\)</span> reduces the order to a first order differential equation in <span class="math inline">\(v\)</span>: <span class="math inline">\(Py_1 v' + \left(2y_1' + Qy_1\right)v = G.\)</span> This equation is first order and linear, and can be solved using an integrating factor.</p>
-<p>If we have two linearly independent solutions to the homogeneous problem, we can use these to find a particular solution to the nonhomogeneous problem. The trick is to look for a solution of the form <span class="math inline">\(y(x) = u(x)y_1(x) + v(x)y_2(x)\)</span>. Notice that <span class="math inline">\(y' = u'y_1 + uy'_1 + v'y_2 + vy'_2\)</span>. It turns out looking for two functions, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, gives us enough freedom to choose these functions so that <span class="math inline">\(u'y_1 + v'y_2 = 0\)</span>. This simplifies <span class="math inline">\(y'\)</span> to <span class="math inline">\(uy'_1 + vy'_2\)</span>, and then <span class="math inline">\(y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\)</span>. Substituting these into our general ODE yields <span class="math display">\[P \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + Q\left(uy'_1 + vy'_2\right) + R\left(uy_1 + vy_2\right) = G\]</span> This looks nasty, but recognizing that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> satisfy the ODE, it reduces to <span class="math display">\[Pu'y'_1 + Pv'y'_2 = G\]</span></p>
-</section>
-</section>
-<section id="sec-2ndorderuc" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-2ndorderuc"><span class="header-section-number">4.4</span> The method of Undetermined Coefficients</h2>
-</section>
-<section id="initial-and-boundary-value-problems" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.5</span> Initial and boundary value problems</h2>
-<p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
-<div id="exm-SecondOrderLinear-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.3 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
+<p>Consider the general linear second order differential equation, <span id="eq-2ndordervp"><span class="math display">\[a(x)y'' + b(x)y' + c(x)y = g(x) \tag{4.4}\]</span></span> The formulae we derive in this section allow <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span> to depend on <span class="math inline">\(x\)</span>, but we’ll drop the explicit dependence in the derivations for the sake of clarity.</p>
+<p>Before we derive the general formula, it’s worth looking at how we can use a solution to the homogeneous problem to simplify the nonhomogeneous problem.<br>
+Suppose we know one solution, <span class="math inline">\(y_1\)</span>, to the homogeneous problem (<span class="math inline">\(g=0\)</span>). We express the general solution as a product of <span class="math inline">\(y_1\)</span> and another function, say <span class="math inline">\(u\)</span>, and derive the ODE that <span class="math inline">\(u\)</span> satisfies. I.e., substitute <span class="math inline">\(y = uy_1\)</span> into our nonhomogeneous problem. <span class="math display">\[\begin{align*}
+  a \left(u''y_1 + 2u'y_1'+uy_1''\right) + b\left(u'y_1+uy_1'\right) + cuy_1 &amp;= g \\
+  a \left(u''y_1 + 2u'y_1'\right) + bu'y_1 + auy_1''+buy_1' +cuy_1 &amp;= g \\
+  a \left(u''y_1 + 2u'y_1'\right) + bu'y_1  = g
+\end{align*}\]</span> On that last step, we used the fact that <span class="math inline">\(y_1\)</span> is a solution to the homogeneous problem. The last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Although this is still a second order equation for <span class="math inline">\(u\)</span>, we can view it as a first order equation for <span class="math inline">\(u'\)</span>. To make this easier to see, gather up the coefficients of <span class="math inline">\(u''\)</span> and <span class="math inline">\(u'\)</span> and let <span class="math inline">\(U = u'\)</span>. <span class="math display">\[ay_1 U' + \left(2ay_1' + by_1\right)U  = g\]</span> We can solve this first order linear equation for <span class="math inline">\(U\)</span>, integrate <span class="math inline">\(U\)</span> to find <span class="math inline">\(u\)</span>, and multiply by <span class="math inline">\(y_1\)</span> to find a solution to the original nonhomogeneous second order problem for <span class="math inline">\(y\)</span>.</p>
+<p>Now suppose we know two linearly independent solutions, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>, to the homogeneous problem <a href="#eq-2ndordervp">Equation&nbsp;<span>4.4</span></a> with <span class="math inline">\(g=0\)</span>. We can use the same idea to find a particular solution to the nonhomogeneous problem <a href="#eq-2ndordervp">Equation&nbsp;<span>4.4</span></a>. The trick is to look for a solution of the form <span class="math inline">\(y(x) = u(x)y_1(x) + v(x)y_2(x)\)</span>. Notice that <span class="math inline">\(y' = u'y_1 + uy'_1 + v'y_2 + vy'_2\)</span>. It turns out looking for two functions, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, gives us enough freedom to choose these functions so that <span class="math inline">\(u'y_1 + v'y_2 = 0\)</span>. This simplifies <span class="math inline">\(y'\)</span> to <span class="math inline">\(uy'_1 + vy'_2\)</span>, and then <span class="math inline">\(y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\)</span>. Substituting these into our general ODE yields <span class="math display">\[a \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + b\left(uy'_1 + vy'_2\right) + c\left(uy_1 + vy_2\right) = g\]</span> This looks nasty, but recognizing that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> satisfy the ODE, it reduces to <span class="math display">\[au'y'_1 + av'y'_2 = g\]</span> Thus, we’ve converted our second order problem for <span class="math inline">\(y\)</span> into a pair of first order problems for <span class="math inline">\(u'\)</span> and <span class="math inline">\(v'\)</span>. In matrix form, the pair of equations, and their solution have a nice structure. <span class="math display">\[\begin{equation}
+    \begin{pmatrix} y_1 &amp; y_2 \\ y_1' &amp; y_2' \end{pmatrix}
+    \begin{pmatrix} u' \\ v' \end{pmatrix}
+        =\begin{pmatrix} 0 \\ \frac{g}{a} \end{pmatrix}
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+    \begin{pmatrix} u' \\ v' \end{pmatrix}
+        =\frac{1}{a} \begin{pmatrix} y_1 &amp; y_2 \\ y_1' &amp; y_2' \end{pmatrix}^{-1}
+        \begin{pmatrix} 0 \\ \g \end{pmatrix}
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+    \begin{pmatrix} u' \\ v' \end{pmatrix}
+        =\frac{1}{a(y_1y_2' - y_1'y_2} \begin{pmatrix} y_2' &amp; -y_2 \\ -y_1' &amp; y_1 \end{pmatrix}^{-1}
+        \begin{pmatrix} 0 \\ \g \end{pmatrix}
+\end{equation}\]</span> On the right hand side we have known functions of <span class="math inline">\(x\)</span>. The three functions <span class="math inline">\(a\)</span>, <span class="math inline">\(y_1\)</span>, and <span class="math inline">\(y_2\)</span> represent our system, and the fourth function, <span class="math inline">\(g\)</span>, usually represents something like an external forcing or applied voltage. We’ll see this matrix form again when we study systems of first order equations.</p>
+<p>The determinant, <span class="math inline">\(y_1y_2' - y_1'y_2\)</span>, is known as the Wronskian. Since <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> were linearly independent, we expect this to be nonzero. This isn’t always the case, but it is likely true for most practical cases you’ll encounter.</p>
+<p>We can express <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> as integrals and express the solution <span class="math inline">\(y\)</span> as <span id="eq-2ndordervp-formula"><span class="math display">\[y = -y_1\int \frac{y_2g}{a(y_1y_2' - y_1'y_2)}  + y_2\int \frac{y_1g}{a(y_1y_2' - y_1'y_2)} \tag{4.5}\]</span></span> We’ve use the two solutions to the homogeneous problem to reduce our nonhomogeneous problem to two integrations of known functions.</p>
+<div id="exm-2ndordervp-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.3 </strong></span>Use the method of variation of parameters to find the general solution to <span class="math inline">\(y'' + 9y = \sec 3x\)</span>.</p>
+<p>First, solve the homogeneous problem. The characteristic equation is <span class="math inline">\(r^2+9=0\)</span>, which has complex roots, <span class="math inline">\(r=\pm 3i\)</span>. The two solutions are <span class="math inline">\(y_1(x) = \cos(3x)\)</span> and <span class="math inline">\(y_2(x) = \sin(3x)\)</span>.</p>
+<p>Second, compute <span class="math inline">\(y_1'\)</span> and <span class="math inline">\(y_2'\)</span> and set up the system for <span class="math inline">\(u'\)</span> and <span class="math inline">\(v'\)</span> <span class="math display">\[\begin{align*}
+    u'\cos 3x  + v' \sin(3x) &amp;= 0 \\
+-3u'\sin 3x  + 3v' \cos(3x) &amp;= \sec 3x
+\end{align*}\]</span> Isolate <span class="math inline">\(u'\)</span> by multiplying the first equation through by <span class="math inline">\(3\cos(3x)\)</span>, the second through by <span class="math inline">\(\sin(3x)\)</span> and taking the difference of the results <span class="math display">\[u' = -\frac{1}{3}\sin(3x) \sec(3x)\]</span> Similarly, we find <span class="math display">\[v' =  -\frac{1}{3}\cos(3x) \sec(3x) = -\frac{1}{3}\]</span> Integrate to find <span class="math inline">\(u\)</span> begin{align<em>} u(x) &amp;= -(3x) (3x) , dx \ &amp;= -(3x) , dx \ &amp;= | 3x | end{align</em>} and <span class="math inline">\(v = \frac{x}{3}\)</span></p>
+<p>Putting everything together,</p>
+<p><span class="math display">\[y(x) = c_1\cos(3x) + c_2\sin(3x)
+           + \frac{1}{9}\cos(3x)\log | \cos(3x) |
+                 + \frac{1}{3}x\sin(3x)\]</span></p>
 </div>
 </section>
-<section id="summary" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.6</span> Summary</h2>
+<section id="sec-2ndorderuc" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="sec-2ndorderuc"><span class="header-section-number">4.3.2</span> The method of Undetermined Coefficients</h3>
+</section>
+<section id="sec-2ndorder-nonhom-exr" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="sec-2ndorder-nonhom-exr"><span class="header-section-number">4.3.3</span> Exercises</h3>
+<p>All the problems in <a href="https://openstax.org/books/calculus-volume-3/pages/7-2-nonhomogeneous-linear-equations">Openstax Calculus Volume 3 Section 7.2</a> are good practice.</p>
+</section>
+</section>
+<section id="initial-and-boundary-value-problems" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.4</span> Initial and boundary value problems</h2>
+<p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
+<div id="exm-SecondOrderLinear-1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.4 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
+</div>
+</section>
+<section id="summary" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.5</span> Summary</h2>
 To find two linearly independent solutions to a homogeneous second order linear differential equation with constant coefficients, <span class="math inline">\(ay'' + by' + cy' = 0,\)</span> first compute the characteristic roots <span class="math inline">\(r = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.\)</span> second, determine which of the following three cases holds and write down the appropriate solutions:
 Two distinct real roots (<span class="math inline">\(b^2 &gt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{r_1t} \qquad y_2 = e^{r_2t}\)</span> with <span class="math inline">\(r_1 = \frac{-b - \sqrt{b^2-4ac}}{2a}\)</span>, and <span class="math inline">\(r_2 = \frac{-b + \sqrt{b^2-4ac}}{2a}\)</span>.
 A double root (<span class="math inline">\(b^2 = 4ac\)</span>): <span class="math inline">\(y_1 = e^{rt} \qquad y_2 = te^{rt}\)</span> with <span class="math inline">\(r = \frac{-b}{2a}\)</span>.
 <p>Complex roots (<span class="math inline">\(b^2 &lt; 4ac\)</span>): <span class="math inline">\(y_1 = e^{\alpha t} \cos \beta t \qquad y_2 = e^{\alpha t} \sin \beta t,\)</span> with <span class="math inline">\(\alpha = -\frac{b}{2a}\)</span>, and <span class="math inline">\(\beta = \frac{\sqrt{4ac-b^2}}{2a}\)</span>.</p>
 </section>
-<section id="discussion" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.7</span> Discussion</h2>
+<section id="discussion" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.6</span> Discussion</h2>
 <p>Note that we refer to <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> as linear when it is linear in the dependent variable. It may be nonlinear in the independent variable. For example,<br>
 applying Kirchoff’s law to a simple electric circuit yields the model <span class="math display">\[LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)\]</span> where the dependent variable, <span class="math inline">\(Q\)</span>, is the charge, and is assumed to depend on the time, <span class="math inline">\(t\)</span>. The parameters <span class="math inline">\(L\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> are the inductance, resistance and capacitance of the circuit and <span class="math inline">\(E\)</span> is an applied voltage. If the fixed resistance <span class="math inline">\(R\)</span> is replaced by a variable resistance, <span class="math inline">\(R(t)\)</span>, the equation is still linear in the dependent variable.</p>
 <p>More generally, a differential equation is an equation involving a function and some of its derivatives.<br>
 For example, a simple model for the angular deflection <span class="math inline">\(\theta(t)\)</span> of a pendulum of length <span class="math inline">\(l\)</span> is <span class="math display">\[l\theta''(t) + g\sin \theta(t) = 0,\]</span> which arises from balancing kinetic and potential energies. This equation is nonlinear in the dependent variable <span class="math inline">\(\theta\)</span>. For small angles, we can approximate <span class="math inline">\(\sin(\theta)\)</span> by <span class="math inline">\(\theta\)</span> leading to the linear second order constant coefficient model <span class="math display">\[l\theta''(t) + g\theta(t) = 0.\]</span> Most systems are nonlinear. However most analyses begin with the study of linear approximations. Hence the importance of studying linear differential equations.</p>
 </section>
-<section id="theoretical-considerations" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.8</span> Theoretical Considerations</h2>
+<section id="theoretical-considerations" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.7</span> Theoretical Considerations</h2>
 <p>A good treatment of the existence and uniqueness of solutions to differential equations can be found in Hartman. This material is approachable, but requires a deeper exposure to linear algebra than you received in Math 1503.</p>
 <p>Consider the general Second order linear ODE of <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> with <span class="math inline">\(G=0\)</span>. Let <span class="math inline">\(w(x) = y'(x)\)</span> and write the single equation as</p>
 <p><span class="math display">\[P(x)w'(x) + Q(x)w(x) + R(x)y(x) = 0,\]</span></p>
