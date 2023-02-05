@@ -57,10 +57,10 @@ Mon Jan 30 @sec-2ndorder        17.3      5         ---    Initial Value Problem
 Tue Jan 31 @sec-2ndorder        ---       5.3       ---    Tutorial: 
 Wed Feb 01 @sec-2ndorder        ---       5         ---    Boundary Value Problems
 Fri Feb 03 **Test 1**
-Mon Feb 06 @sec-laplace         ---       ---       1.1-2  Laplace Transforms: Definitions and basics
-Tue Feb 07 @sec-laplace         ---       ---       ---    Tutorial: 
-Wed Feb 08 @sec-laplace         ---       ---       1.7    Laplace Transform: derivatives and ODEs
-Fri Feb 10 @sec-laplace         ---       ---       1.4-5  Laplace Transform: common transforms
+Mon Feb 06 @sec-laplace-def     ---       ---       1.1-2  Laplace Transforms: Definitions and basics
+Tue Feb 07 @sec-laplace-def     ---       ---       ---    Tutorial: 
+Wed Feb 08 @sec-laplace-ode     ---       ---       1.7    Laplace Transform: derivatives and ODEs
+Fri Feb 10 @sec-laplace-def     ---       ---       1.4-5  Laplace Transform: common transforms
 Mon Feb 13 @sec-laplace-ivp     ---       ---       1.8    Laplace Transform: initial value problems
 Tue Feb 14 @sec-laplace-ivp     ---       ---       1.9    Tutorial: Solving IVPs via Laplace Transforms
 Wed Feb 15 @sec-laplace-step    ---       ---       1.6    Laplace Transform: step functions

@@ -7,15 +7,189 @@ date: "`r Sys.Date()`"
 
 # Laplace Transforms {#sec-laplace}
 
-##  Definition and basic properties
+##  Definition and basic properties {#sec-laplace-def}
 
 We will see two *integral transfoms* in this course: the Fourier Transform and the Laplace Transform.  In general,  an integral transform takes a fuction, $f$, of one variable defined on an interval $[a,b]$, multplies it by a *kernel*, $k$, depending on two variables, and integrates the product over the domain $[a,b]$.  The result is a function of the second variable appearing in the kernel:
-\begin{equation}
-  F(s) = \int_a^b k(t,s) f(t)\, dt
-\end{equation}
+$$F(s) = \int_a^b k(t,s) f(t)\, dt$$
 The Laplace Transform takes a function $f$ defined on $(0,\infty)$ and transforms it using the kernel $k(t,s) = e^{-st}$.
-\begin{equation}
-  F(s) = \int_0^\infty e^{-st} f(t)\, dt
-\end{equation}
+$$F(s) = \int_0^\infty e^{-st} f(t)\, dt$$
 We can and will think of the transform as a function whose inputs are functions of time, and whose outputs are functions of the second variable $s$.  We'll use a fancy L to denote this function.  Hence, the Laplace Transform of a function $f$ is the function $F$ defined by 
-$$F(s) = \Lap{f}(s) = \int_0^\infty e^{-st}f(t)\, dt$$
+$$F(s) = \Lap{f}(s) = \int_0^\infty e^{-st}f(t)\, dt$$ {#eq-laplacetransform-def}
+
+If we just want to refer to the transformed function we'll use $\Lap{f}$.Sometimes we'll use the notation $\Lap{f(t)}$, which is inconsistent with the convention that $f$ refers to the function and $f(t)$ refers to the function evaluate at a given time $t$.  However, the abuse is a convenient one, since it allows us to use $f(t-c)$ to denote the time-shift of $f$.  Hence, depending on the context, $f(t-c)$ might refer to both the shifted function or the value of the function.
+
+::: {#exm-laplace-eat}
+Find the Laplace Transform of $e^{-at}$ for any constant $a$
+\begin{align}
+  \Lap{e^{-at}}(s) 
+    &= \int_0^\infty e^{-st}e^{-at}\, dt \\
+    &= \int_0^\infty e^{-(s+a)t}\, dt \\
+    &= \left. -\frac{1}{s+a}e^{-(s+a)t} \right|_{t=0}^\infty \\
+    &= -\frac{1}{s+a} \quad s+a>0
+\end{align}
+Note we treat $s$ and $a$ as constants for the integration step. Think of this as finding the Transform at a given value of $s$.  For this example,  the integral diverges if $s+a\le0$, hence, the domain of the transformed function is $(a,\infty)$.
+:::
+
+A special case of the previous example is $\Lap{1}(s) = \frac{1}{s}$.
+
+::: {#exm-laplace-t}
+Find the Laplace Transform of $t$
+\begin{align}
+  \Lap{t}(s) &= \int_0^\infty te^{-st}\, dt \\
+             &= \left. t\left(-\frac{1}{s}e^{-st}\right)\right|_{t=0}^\infty  - \int_0^\infty \left(-\frac{1}{s}e^{-st}\right)\, dt \\
+             &= 0  - \left. \frac{1}{s^2}e^{-st}\right|_{t=0}^\infty \\
+             &= \frac{1}{s^2}, \quad s>0
+\end{align}
+Note we've used integration by parts with $u = t$ and $dv = e^{-st}dt$.  And again note that the integral diverges if $s\le0$.
+:::
+
+::: {#exm-laplace-tn}
+Find the Laplace Transform of $t^n$
+\begin{align}
+  \Lap{t^n}(s) &= \int_0^\infty t^ne^{-st}\, dt \\
+             &= \left. t^n\left(-\frac{1}{s}e^{-st}\right)\right|_{t=0}^\infty  - \int_0^\infty \left(nt^{n-1}\right)\left(-\frac{1}{s}e^{-st}\right)\, dt \\
+             &= 0  + \frac{n}{s}\int_0^\infty t^{n-1}e^{-st}\, dt , \quad s > 0\\
+             &= 0  + \frac{n}{s}\Lap{t^{n-1}}
+\end{align}
+Repeating this step another $n-1$ times, we should arrive at
+$$\Lap{t^n} = \frac{n!}{s^n}\Lap{1} = \frac{n!}{s^{n+1}}$$
+Indeed, using this formula with $n=0$ and $n=1$ gives the same results as before. To complete the proof by induction, simply note that replacing $n$ by $n-1$ gives $\Lap{t^{n-1}} = \frac{(n-1)!}{s^n}$ and 
+$$\frac{n}{s}\Lap{t^{n-1}} =\frac{n}{s} \frac{(n-1)!}{s^n} =  \frac{n!}{s^{n+1}}$$ 
+as expected.
+:::
+
+::: {#exm-laplace-tn}
+The transforms of sine and cosine can be viewed as special cases of our first example.  Simply set $a$ to $i$ and note that 
+\begin{gather} 
+  e^{-it} = \cos(t) - i\sin(t) \\
+  \Lap{e^{-it}} = \Lap{\cos(t) - i\sin(t)} \\
+  \Lap{e^{-it}} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
+  \frac{1}{s+i} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
+  \frac{s-i}{(s+i)(s-i)} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
+  \frac{s-i}{s^2-1} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
+  \frac{s}{s^2-1} - i\frac{1}{s^2-1} = \Lap{\cos(t)} - i\Lap{\sin(t)} 
+\end{gather} 
+Matching the real and imaginary parts of each side implies
+\begin{align}
+  \Lap{\cos(t)} &= \frac{s}{s^2+1} \\
+  \Lap{\sin(t)} &= \frac{1}{s^2+1}
+\end{align}
+:::
+
+##  Laplace Transforms and Differential Equations {#sec-laplace-ode}
+
+Our interest in Laplace Transforms for this course is that they are (1) linear and (2) transform linear ordinary differential equations into algebraic equations.
+
+::: {#exr-laplace-linearity}
+Suppose $\Lap{f} = F$ and $\Lap{g} = G$.  Show that 
+$$\Lap{af + bg} = a\Lap{f}+b\Lap{g}$$
+for any constants $a$ and $b$.
+:::
+
+::: {#exr-laplace-linearity}
+Show that $\Lap{y'} = s\Lap{y} - y(0)$.
+:::
+
+::: {#exr-laplace-linearity}
+Show that $\Lap{y''} = s^2\Lap{y} - sy(0) - y'(0)$.
+:::
+
+
+Consider our generic second order constant coefficient ordinary differential equation:
+  \begin{equation}
+     ay'' + by' + cy = g,
+  \end{equation}
+with $y(0)$ and $y'(0)$ specified.
+Taking the Laplace transform of both sides of the equation leads to
+  $$a\Lap{y''} + b\Lap{y'} + c\Lap{y} = \Lap{g}.$$
+Using $Y$ for $\Lap{y}$ and $G$ for $\Lap{g}$ and our previous result for the Laplace transform of derivatives results in the equation
+  $$a\left( s^2Y(s) - sy(0) - y'(0) \right) \ +\ b\left(sY(s) - y(0) \right) \ +\ cY(s) = G(s).$$
+Thus,  the Laplace transform transforms the differential equation for $y$ to an algebraic equation for $Y$.
+Solving for $Y$, we find
+$$\left( as^2 + bs + c \right) Y(s) = G(s) + (as+b)y(0) + ay'(0),$$
+or
+$$Y(s) = H(s)G(s) + H(s) I(s),$$
+where $$H(s) = \frac{1}{as^2 + bs + c} \qquad \text{and} \qquad I(s) = (as+b)y(0) + ay'(0).$$
+Finally,  taking the inverse transforms gives the  solution to the original problem:
+$$y(t) = \Linv{H(s)G(s)} \ +\ \Linv{H(s)I(s)}.$$ {#eq-laplace-secondorder-solution}
+
+
+@eq-laplace-secondorder-solution hides the details of the computations of the
+transforms and nicely shows the structure of the solution.  The first part of
+the  solution is the response to the forcing, and the second is the **echo** of
+the initial conditions.
+
+::: {#exm-laplace-ivp-1}
+Solve the IVP $y''(t) - 4y(t) = 8t^2 - 4$, with $y(0) = 5$ and $y'(0) = 10$.
+
+Taking the Laplace transforms of both sides of the equations we find 
+$$\Lap{y''} - 4\Lap{y} = 8\Lap{t^2} - \Lap{4}.$$
+
+$$\left(s^2Y(s) - 5s - 10\right) \ -\  4Y(s) = \frac{16}{s^3} - \frac{4}{s},$$
+which when solved for $Y$ gives
+\begin{align*}
+   (s^2 -  4 ) Y(s) &= \frac{16}{s^3} - \frac{4}{s} + 5s + 10\\
+   Y(s) &= \frac{16}{s^3(s^2 -  4 )} - \frac{4}{s(s^2 -  4 )} + \frac{5s + 10}{s^2 -  4 }\\
+        &= \frac{16 - 4s^2}{s^3(s^2 -  4 )}  \ +\  \frac{5s + 10}{s^2 -  4 }\\
+        &= -\frac{4}{s^3}  \ +\  \frac{5}{s -  2 },
+\end{align*}
+where the last step results from cancelling common factors in the numerators and denominators.
+Inverting leads to
+$$y(t) = -\Linv{\frac{4}{s^3}}  \ +\  5\Linv{\frac{1}{s -  2 }}  = -2t^2 \ +\  5e^{2t}.$$
+:::
+
+## Step functions {#sec-laplace-step}
+
+
+## Impulsive forcing {#sec-laplace-delta}
+
+We are often interested in forcing the system with an *impulse*, a large force applied over a short time period.
+Define a unit box function, 
+$$\delta_a(t) = \begin{cases}\frac{1}{2a}, & -a < t < a, \\ 0, & \text{otherwise}. \end{cases}$$
+Note that $\int_{0}^\infty \delta_a(t-t_o)  \, dt = 1$ provided $t_o > a$.
+Since  we are interested in impulses over  very short times (small $a$), 
+it is natural to think of a limit as $a\rightarrow0$.  
+The limit of such a sequence of unit boxes  is called the Dirac delta function.  Conceptually, at least for this course, we can view it as being
+defined as 
+$$\delta(t-t_o) = \lim_{a\rightarrow0} \delta_a(t-t_0).$$
+However, this limit is not a function in the sense we are used to and it  is certainly not Riemann integrable.
+The mathematical machinery needed to make sense of this limit is outside the scope of this course.
+Nevertheless,  the concept is interesting and turns out to be useful in practice.
+
+Note that 
+$$\lim_{\rightarrow0^+} \int_{0}^\infty \delta_a(t-t_o)  \, dt = 1$$
+since the integral is one for every positive $a$.
+Moreover, for any continuous function $f$ defined on  $[0,\infty)$
+\begin{align}
+  \lim_{a\rightarrow0^+} \int_{0}^\infty f(t) \delta_a(t-t_o)  \, dt  
+ &= \lim_{a\rightarrow0^+} \frac{1}{2a}\int_{t_o-a}^{t_o+a} f(t)  \, dt  
+ &= f(t_o) 
+\end{align}
+The unit impulses behave nicely in the limit as long as they stay inside integrals!
+In fact,  another way to define the  delta-function is by this property:
+$\int_0^\infty \delta(t-t_o) f(t) \, dt = f(t_o)$ for every continuous function $f$ and time $t_o \ge 0$.
+
+In particular,
+$$\Lap{\delta(t-t_o)} = \int_0^\infty e^{-st} \delta(t-t_o)\, dt = e^{-st_o}.$$
+
+Theoretically,  we've wandered  off the  edge of the map.  $\delta$ is not a function in any sense we
+are familiar with,  it's not Riemann ingegrable,  and all the previous lines are nothing more than 
+wishful symbol manipulation.  Despite this, the symbol manipulation usually turns out nicely and proves useful.
+
+::: {#exm-laplace-ivp-delta}
+Solve  the initial value problem
+$$y'' + 9y = \delta(t-\frac{\pi}{2}), \qquad y(0) = 0, \ y'(0) = 0.$$
+Note this is the classic model for a simple pendulum starting at rest at time zero, and given a **unit of force** concentrated at time $\pi/2$.  Think of tapping the pendulum with a hammer.
+
+Taking the Laplace transform of both sides yields  
+$$(s^2 + 9) Y(s) = e^{-\pi s/2}$$
+$$Y(s) = \frac{e^{-\pi s/2}}{s^2 + 9}$$
+and the inverse transform gives the solution
+\begin{align*}
+   y(t) &= \frac{1}{3}\sin\left(3(t-\pi/2)\right) u_{\pi/2}(t) \\
+        &= \begin{cases} 
+             0 & 0 \le t < \pi/2 \\ 
+             \frac{1}{3}\sin\left(3(t-\pi/2)\right), & t \ge \pi/2. 
+        \end{cases}
+\end{align*}
+:::
