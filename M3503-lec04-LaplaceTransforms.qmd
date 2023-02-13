@@ -7,16 +7,20 @@ date: "`r Sys.Date()`"
 
 # Laplace Transforms {#sec-laplace}
 
+These notes are far from complete.  However, you may find the examples helpful.
+Your main resource for this material should be Chapter 1 of [Tupper's Notes](https://lms.unb.ca/d2l/home/212913).
+
 ##  Definition and basic properties {#sec-laplace-def}
 
-We will see two *integral transfoms* in this course: the Fourier Transform and the Laplace Transform.  In general,  an integral transform takes a fuction, $f$, of one variable defined on an interval $[a,b]$, multplies it by a *kernel*, $k$, depending on two variables, and integrates the product over the domain $[a,b]$.  The result is a function of the second variable appearing in the kernel:
+We will see two *integral transforms* in this course: the Fourier Transform and the Laplace Transform.  In general,  an integral transform takes a function, $f$, of one variable defined on an interval $[a,b]$, multiplies it by a *kernel*, $k$, depending on two variables, and integrates the product over the domain $[a,b]$.  The result is a function of the second variable appearing in the kernel:
 $$F(s) = \int_a^b k(t,s) f(t)\, dt$$
 The Laplace Transform takes a function $f$ defined on $(0,\infty)$ and transforms it using the kernel $k(t,s) = e^{-st}$.
 $$F(s) = \int_0^\infty e^{-st} f(t)\, dt$$
 We can and will think of the transform as a function whose inputs are functions of time, and whose outputs are functions of the second variable $s$.  We'll use a fancy L to denote this function.  Hence, the Laplace Transform of a function $f$ is the function $F$ defined by 
 $$F(s) = \Lap{f}(s) = \int_0^\infty e^{-st}f(t)\, dt$$ {#eq-laplacetransform-def}
 
-If we just want to refer to the transformed function we'll use $\Lap{f}$.Sometimes we'll use the notation $\Lap{f(t)}$, which is inconsistent with the convention that $f$ refers to the function and $f(t)$ refers to the function evaluate at a given time $t$.  However, the abuse is a convenient one, since it allows us to use $f(t-c)$ to denote the time-shift of $f$.  Hence, depending on the context, $f(t-c)$ might refer to both the shifted function or the value of the function.
+If we just want to refer to the transformed function we'll use $\Lap{f}$. Sometimes we'll use the notation $\Lap{f(t)}$, which is inconsistent with the convention that $f$ refers to the function and $f(t)$ refers to the function evaluated at a given time $t$.  However, the abuse is a convenient one, since it allows us to use $f(t-c)$ to denote the time-shift of $f$.  Hence, depending on the context, $f(t-c)$ might refer to both the shifted function or the value of the function.
+<!-- Some authors define a new function, $f_c$, by $f_c(t) = f(t-c)$ to avoid this ambiguity.-->
 
 ::: {#exm-laplace-eat}
 Find the Laplace Transform of $e^{-at}$ for any constant $a$
@@ -61,18 +65,18 @@ as expected.
 ::: {#exm-laplace-tn}
 The transforms of sine and cosine can be viewed as special cases of our first example.  Simply set $a$ to $i$ and note that 
 \begin{gather} 
-  e^{-it} = \cos(t) - i\sin(t) \\
-  \Lap{e^{-it}} = \Lap{\cos(t) - i\sin(t)} \\
-  \Lap{e^{-it}} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
-  \frac{1}{s+i} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
-  \frac{s-i}{(s+i)(s-i)} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
-  \frac{s-i}{s^2-1} = \Lap{\cos(t)} - i\Lap{\sin(t)} \\
-  \frac{s}{s^2-1} - i\frac{1}{s^2-1} = \Lap{\cos(t)} - i\Lap{\sin(t)} 
+  e^{-it} = \cos t) - i\sin t  \\
+  \Lap{e^{-it}} = \Lap{\cos t  - i\sin t } \\
+  \Lap{e^{-it}} = \Lap{\cos t } - i\Lap{\sin t } \\
+  \frac{1}{s+i} = \Lap{\cos t } - i\Lap{\sin t } \\
+  \frac{s-i}{(s+i)(s-i)} = \Lap{\cos t } - i\Lap{\sin t } \\
+  \frac{s-i}{s^2-1} = \Lap{\cos t } - i\Lap{\sin t } \\
+  \frac{s}{s^2-1} - i\frac{1}{s^2-1} = \Lap{\cos t } - i\Lap{\sin t } 
 \end{gather} 
 Matching the real and imaginary parts of each side implies
 \begin{align}
-  \Lap{\cos(t)} &= \frac{s}{s^2+1} \\
-  \Lap{\sin(t)} &= \frac{1}{s^2+1}
+  \Lap{\cos t } &= \frac{s}{s^2+1} \\
+  \Lap{\sin t } &= \frac{1}{s^2+1}
 \end{align}
 :::
 
