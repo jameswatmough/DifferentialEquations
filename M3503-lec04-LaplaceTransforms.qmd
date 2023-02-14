@@ -80,6 +80,58 @@ Matching the real and imaginary parts of each side implies
 \end{align}
 :::
 
+::: {#thm-laplace-shift}
+
+# First Shifting Theorem
+
+If $\Lap{f(t)} = F(s)$ for $s>c$, then $\Lap{e^{at}f(t)} = F(s-a)$ for $s>c+a$.
+
+:::
+
+:::{.proof}
+The result follows immediately from
+$$\Lap{e^{at}f(t)} = \int_0^\infty e^{at}f(t) e^{-st} \, ds = \int_0^\infty f(t) e^{-(s-a)t} \, ds$$
+
+:::
+
+:::{#exr-laplace-shift-1}
+Use partial fractions (if necessary) and the First Shifting
+Theorem (if necessary) to find the inverse Laplace transform of
+ $$\displaystyle F(s) = \frac{s+7}{s^2 + 4s + 13}.$$
+:::
+
+::: {.callout-solution collapse=true}
+
+\begin{align*}
+  F(s) &= \frac{s+7}{s^2 + 4s + 13}, \\
+			 &= \frac{s+7}{(s+2)^2 + 3^2}. \\[5pt]
+  f(t) &= \Linv{\frac{s+7}{(s+2)^2 + 3^2}}, \\
+       &= e^{-2t}\Linv{\frac{s+5}{s^2 + 3^2}},  \qquad \text{ Shifting $(s+2)\mapsto s$}\\
+       &= e^{-2t}\left(\cos{3t} + \frac{5}{3}\sin{3t}\right). \\
+\end{align*}
+
+:::
+
+:::{#exr-laplace-shift-2}
+Use partial fractions (if necessary) and the First Shifting
+Theorem (if necessary) to find the inverse Laplace transform of
+$$\displaystyle F(s) = \frac{s+7}{s^2 + 2s + 5}.$$
+:::
+
+::: {.callout-solution collapse=true}
+
+\begin{align*}
+  F(s) &= \frac{s+7}{s^2 + 2s + 5}, \\
+			 &= \frac{s+7}{(s+1)^2 + 2^2}. \\[5pt]
+  f(t) &= \Linv{\frac{s+7}{(s+1)^2 + 2^2}}, \\
+	     &= \Linv{\frac{(s+1)+6}{(s+1)^2 + 2^2}}, \\
+       &= e^{-t}\Linv{\frac{s+6}{s^2 + 2^2}},  \qquad \text{ Shifting $(s+1)\mapsto s$}\\
+       &= e^{-t}\left(\cos{2t} + 3\sin{2t}\right). \\
+\end{align*}
+
+:::
+
+
 ##  Laplace Transforms and Differential Equations {#sec-laplace-ode}
 
 Our interest in Laplace Transforms for this course is that they are (1) linear and (2) transform linear ordinary differential equations into algebraic equations.
