@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-02-13">
+<meta name="dcterms.date" content="2023-02-14">
 
 <title>Math 3503: Differential Equations for Engineers - 1&nbsp; Introduction</title>
 <style>
@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 13, 2023</p>
+      <p class="date">February 14, 2023</p>
     </div>
   </div>
   
@@ -186,8 +186,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="motivating-examples" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="motivating-examples"><span class="header-section-number">1.1</span> Motivating examples</h2>
 <p>The art of applied mathematics involves distilling a description of the state a system into relationships between variables. For example, consider a simple pendulum consisting of a mass on a rigid rod constrained to swing in a plane. The various quantities of interest are the mass, <span class="math inline">\(m\)</span>, the length of the rod, <span class="math inline">\(l\)</span>, the horizontal displacement, <span class="math inline">\(x\)</span>, the vertical displacement, <span class="math inline">\(y\)</span>, both measured, for example, relative to the fixed end of the rod, and the angle of displacement, <span class="math inline">\(\theta\)</span>. These quantities are not independent. We know <span class="math inline">\(x^2+y^2 = l^2\)</span>, and we can choose to measure angle so that <span class="math inline">\(x = \sin \theta\)</span> and <span class="math inline">\(y = \cos \theta\)</span>. Our description so far is static, and our equations are algebraic.</p>
-<p>To describe the dynamics of the pendulum, we need to extend our mathematical description to include velocities, accelerations, forces and energies. If we neglect the mass of the rod, we can hypothesize that the component of the gravitational force perpendicular to the rod acts to accelerate the mass radially. <span class="math display">\[\text{mass}\times\text{radial acceleration} = \text{radial force of gravity}\]</span> <span id="eq-nonlinear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \sin \theta \tag{1.1}\]</span></span> Here <span class="math inline">\(g\)</span> denotes the gravitational constant and we use the double dot notation to denote the second derivative with respect to time. If we assume the angle is small, we can approximate <span class="math inline">\(\sin \theta\)</span> by <span class="math inline">\(\theta\)</span> and Equation <a href="#eq-nonlinear-pendulum">Equation&nbsp;<span>1.1</span></a> simplifies to <span id="eq-linear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \theta \tag{1.2}\]</span></span></p>
-<p>Our goal in this course is to understand differential equations like <a href="#eq-linear-pendulum">Equation&nbsp;<span>1.2</span></a>. We’ll proceed more or less in the following order.</p>
+<p>To describe the dynamics of the pendulum, we need to extend our mathematical description to include velocities, accelerations, forces and energies. If we neglect the mass of the rod, we can hypothesize that the component of the gravitational force perpendicular to the rod acts to accelerate the mass radially. <span class="math display">\[\text{mass}\times\text{radial acceleration} = \text{radial force of gravity}\]</span> <span id="eq-nonlinear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \sin \theta \tag{1.1}\]</span></span> Here <span class="math inline">\(g\)</span> denotes the gravitational constant and we use the double dot notation to denote the second derivative with respect to time. If we assume the angle is small, we can approximate <span class="math inline">\(\sin \theta\)</span> by <span class="math inline">\(\theta\)</span> and Equation <a href="#eq-nonlinear-pendulum">Equation&nbsp;<span class="quarto-unresolved-ref">eq-nonlinear-pendulum</span></a> simplifies to <span id="eq-linear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \theta \tag{1.2}\]</span></span></p>
+<p>Our goal in this course is to understand differential equations like <a href="#eq-linear-pendulum">Equation&nbsp;<span class="quarto-unresolved-ref">eq-linear-pendulum</span></a>. We’ll proceed more or less in the following order.</p>
 <ol type="1">
 <li>We’ll start with simpler <strong>first order</strong> differential equations, some of which you’ll have seen in your Calculus courses.<br>
 </li>
