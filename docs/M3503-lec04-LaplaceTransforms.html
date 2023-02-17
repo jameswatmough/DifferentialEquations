@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-02-14">
+<meta name="dcterms.date" content="2023-02-16">
 
 <title>Math 3503: Differential Equations for Engineers - 5&nbsp; Laplace Transforms</title>
 <style>
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 14, 2023</p>
+      <p class="date">February 16, 2023</p>
     </div>
   </div>
   
@@ -302,7 +302,7 @@ Solution
 <p>Consider our generic second order constant coefficient ordinary differential equation: <span class="math display">\[\begin{equation}
      ay'' + by' + cy = g,
   \end{equation}\]</span> with <span class="math inline">\(y(0)\)</span> and <span class="math inline">\(y'(0)\)</span> specified. Taking the Laplace transform of both sides of the equation leads to <span class="math display">\[a{\mathcal L}\left\{y''\right\} + b{\mathcal L}\left\{y'\right\} + c{\mathcal L}\left\{y\right\} = {\mathcal L}\left\{g\right\}.\]</span> Using <span class="math inline">\(Y\)</span> for <span class="math inline">\({\mathcal L}\left\{y\right\}\)</span> and <span class="math inline">\(G\)</span> for <span class="math inline">\({\mathcal L}\left\{g\right\}\)</span> and our previous result for the Laplace transform of derivatives results in the equation <span class="math display">\[a\left( s^2Y(s) - sy(0) - y'(0) \right) \ +\ b\left(sY(s) - y(0) \right) \ +\ cY(s) = G(s).\]</span> Thus, the Laplace transform transforms the differential equation for <span class="math inline">\(y\)</span> to an algebraic equation for <span class="math inline">\(Y\)</span>. Solving for <span class="math inline">\(Y\)</span>, we find <span class="math display">\[\left( as^2 + bs + c \right) Y(s) = G(s) + (as+b)y(0) + ay'(0),\]</span> or <span class="math display">\[Y(s) = H(s)G(s) + H(s) I(s),\]</span> where <span class="math display">\[H(s) = \frac{1}{as^2 + bs + c} \qquad \text{and} \qquad I(s) = (as+b)y(0) + ay'(0).\]</span> Finally, taking the inverse transforms gives the solution to the original problem: <span id="eq-laplace-secondorder-solution"><span class="math display">\[y(t) = {\mathcal L}^{-1}\left\{H(s)G(s)\right\} \ +\ {\mathcal L}^{-1}\left\{H(s)I(s)\right\}. \tag{5.2}\]</span></span></p>
-<p><a href="#eq-laplace-secondorder-solution">Equation&nbsp;<span class="quarto-unresolved-ref">eq-laplace-secondorder-solution</span></a> hides the details of the computations of the transforms and nicely shows the structure of the solution. The first part of the solution is the response to the forcing, and the second is the <strong>echo</strong> of the initial conditions.</p>
+<p><a href="#eq-laplace-secondorder-solution">Equation&nbsp;<span>5.2</span></a> hides the details of the computations of the transforms and nicely shows the structure of the solution. The first part of the solution is the response to the forcing, and the second is the <strong>echo</strong> of the initial conditions.</p>
 <div id="exm-laplace-ivp-1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5.5 </strong></span>Solve the IVP <span class="math inline">\(y''(t) - 4y(t) = 8t^2 - 4\)</span>, with <span class="math inline">\(y(0) = 5\)</span> and <span class="math inline">\(y'(0) = 10\)</span>.</p>
 <p>Taking the Laplace transforms of both sides of the equations we find <span class="math display">\[{\mathcal L}\left\{y''\right\} - 4{\mathcal L}\left\{y\right\} = 8{\mathcal L}\left\{t^2\right\} - {\mathcal L}\left\{4\right\}.\]</span></p>
@@ -316,6 +316,134 @@ Solution
 </section>
 <section id="sec-laplace-step" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-laplace-step"><span class="header-section-number">5.3</span> Step functions</h2>
+<p>We often want to include sudden changes in an applied force into our differential equation models of systems. For example, an electric circuit where a voltage is repeatedly switched on and off. A convenient building block for such functions in the unit step function, <span class="math inline">\(u_a\)</span>, defined by <span class="math display">\[u_a(t) = \begin{cases} 0 &amp; t &lt; a \\ 1 &amp; t\ge a \end{cases}\]</span> To model an applied force, <span class="math inline">\(f\)</span>, <strong>turned-on</strong> at a time <span class="math inline">\(a&gt;0\)</span> we can use <span class="math inline">\(f(t-a)u_a(t)\)</span>. Notice we’ve shifted <span class="math inline">\(f\)</span> to the right.</p>
+<p>If <span class="math inline">\(F(s) = {\mathcal L}\left\{f(t)\right\}\)</span>, then <span class="math display">\[\begin{align}
+    {\mathcal L}\left\{f(t-a)u_a(t)\right\}
+    &amp;= \int_0^\infty e^{-st}f(t-a)u_a(t)\, dt \\
+    &amp;= \int_a^\infty e^{-st}f(t-a)\, dt \\
+    &amp;= \int_0^\infty e^{-s(t+a)}f(t)\, dt \\
+    &amp;= e^{-sa}\int_0^\infty e^{-st}f(t)\, dt \\
+    &amp;= e^{-sa}F(s)
+\end{align}\]</span></p>
+<div id="exr-laplace-step-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.6 </strong></span>Using the table of Laplace transforms and the Second Shifting Theorem, find the Laplace transform of <span class="math display">\[g(t) = (t-3)^3 u_3(t)\]</span></p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\begin{align*}
+  {\mathcal L}\left\{(t-3)^3 u_3(t)\right\}
+  &amp;= e^{-3s}{\mathcal L}\left\{t^3 \right\} \qquad \text{ shifting $(t-3)\mapsto t$,}\\
+  &amp;= \frac{3!}{s^4}e^{-3s}\\
+  &amp;= \frac{6e^{-3s}}{s^4}\\
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+<div id="exr-laplace-step-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.7 </strong></span>Express the function <span class="math inline">\(f\)</span> defined below using step functions and find its Laplace transform using the Second Shifting Theorem. <span class="math display">\[f(t) =
+   \begin{cases}
+     t, &amp; 0 \le t &lt; 4, \\
+     0, &amp; 4 \le t &lt; 5, \\
+     1, &amp; t \ge 5.
+   \end{cases}\]</span></p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First, express <span class="math inline">\(f\)</span> using step functions, then use the second shifting theorem. <span class="math display">\[\begin{align*}
+  f(t) &amp;= t(1 - u_4(t)) + u_5(t) \\
+  f(t) &amp;= t - t u_4(t) + u_5(t) \\
+  F(s) &amp;= \frac{1}{s^2} - \frac{1}{s^2}e^{-4s} + \frac{1}{s}e^{-5s}
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+<div id="exr-laplace-step-ivp-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.8 </strong></span>Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 5y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 0, &amp; 0 \le t &lt; 1, \\ 1, &amp; t \ge 1 \end{cases}\]</span></p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\begin{align*}
+   y'' + 5y' + 6y &amp;= f(t)\\
+   y'' + 5y' + 6y &amp;= u_1(t)\\
+   {\mathcal L}\left\{y''\right\} + 5{\mathcal L}\left\{y'\right\} + 6{\mathcal L}\left\{y\right\} &amp;= {\mathcal L}\left\{u_1(t)\right\}\\
+   (s^2Y(s) - sy(0) - y'(0)) + 5(sY(s) - y(0)) + 6Y(s) &amp;= \frac{e^{-s}}{s} \\
+     (s^2+5s+6)Y(s) &amp;= (s + 5)y(0) + \frac{e^{-s}}{s} \\
+   (s^2+5s+6)Y(s) &amp;=  s+5 + \frac{e^{-s}}{s} \\
+   Y(s) &amp;=  \frac{s+5}{(s^2+5s+6)} + \frac{e^{-s}}{s(s^2+5s+6)} \\
+   Y(s) &amp;=  \frac{s+5}{(s+3)(s+2)} + \frac{e^{-s}}{s(s+3)(s+2)} \\
+   Y(s) &amp;=  -\frac{2}{s+3} + \frac{3}{s+2} + \frac{e^{-s}}{6s} + \frac{e^{-s}}{3(s+3)} - \frac{e^{-s}}{2(s+2)} \\
+   y(t) &amp;=  -2e^{-3t} + 3e^{-2} + \tfrac{1}{6} u_1(t) + \frac{1}{3}u_1(t)e^{-(t-1)} - \frac{1}{2}u_1(t)e^{-2(t-1)}
+\end{align*}\]</span></p>
+</div>
+</div>
+</div>
+<div id="exr-laplace-step-ivp-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.9 </strong></span>Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 2y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 2t, &amp; 0 \le t &lt; 1, \\ 0, &amp; t \ge 1 \end{cases}\]</span></p>
+</div>
+<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Step 1: express <span class="math inline">\(f\)</span> using step functions and find <span class="math inline">\(F(s) = {\mathcal L}\left\{f(t)\right\}\)</span>: <span class="math display">\[\begin{align*}
+    f(t) &amp;= 2t(1-u_1(t)) \\
+    F(s) &amp;= {\mathcal L}\left\{2t(1-u_1(t))\right\} \\
+             &amp;= 2{\mathcal L}\left\{t\right\} - 2{\mathcal L}\left\{t u_1(t))\right\}\\
+       &amp;= 2{\mathcal L}\left\{t\right\} - 2{\mathcal L}\left\{((t-1) + 1)u_1(t)\right\}\\
+       &amp;= \frac{2}{s^2} - 2e^{-s}{\mathcal L}\left\{t + 1\right\}\\
+       &amp;= \frac{2}{s^2} - 2e^{-s}\big(\frac{1+s}{s^2} \big)
+\end{align*}\]</span> Step 2: transform the IVP and solve for <span class="math inline">\(Y(s) = {\mathcal L}\left\{y(t)\right\}\)</span> <span class="math display">\[\begin{gather*}
+  y'' + 2y' + 6y = f(t) \\
+    {\mathcal L}\left\{y''\right\} + 2{\mathcal L}\left\{y'\right\} + 6{\mathcal L}\left\{y\right\} = F(s)\\
+(s^2Y(s) - sy'(0) - y(0)) + 2(sY(s) - y(0)) + 6Y(s) = F(s)\\
+(s^2+2s+6)Y(s) = F(s)\\
+    Y(s) = G(s) - e^{-s}H(s)
+\end{gather*}\]</span> with <span class="math inline">\(G(s) = \dfrac{2}{s^2(s^2+2s+6)}\)</span> and <span class="math inline">\(H(s) = \dfrac{2+2s}{s^2(s^2+2s+6)}\)</span></p>
+<p>Step 3: perform a partial fraction expansions on <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span>. <span class="math display">\[\begin{gather*}
+   \frac{2}{s^2(s^2+2s+6)} = \frac{A}{s} + \frac{B}{s^2} + \frac{C + Ds}{s^2+2s+6} \\
+   2 = As(s^2+2s+6) + B(s^2+2s+6) + Cs^2 + Ds^3 \\
+   2 = (A+D)s^3 + (2A+B+C)s^2 + (6A+2B)s + (6B)  
+\end{gather*}\]</span> Matching the coefficients of each power of <span class="math inline">\(s\)</span> leads to <span class="math inline">\(B = 1/3\)</span>, <span class="math inline">\(A = -1/9\)</span>, <span class="math inline">\(C = -1/9\)</span>, <span class="math inline">\(D = 1/9\)</span>. Hence <span class="math display">\[G(s) = \frac{1}{9}\left(-\frac{1}{s} + \frac{3}{s^2} + \frac{-1 + s}{s^2+2s+6} \right) \]</span> Similarly, for <span class="math inline">\(H\)</span> we obtain <span class="math display">\[2+2s = (A+D)s^3 + (2A+B+C)s^2 + (6A+2B)s + (6B)\]</span> Matching the coefficients of each power of <span class="math inline">\(s\)</span> leads to <span class="math inline">\(B = 1/3\)</span>, <span class="math inline">\(A = 2/9\)</span>, <span class="math inline">\(C = -7/9\)</span>, <span class="math inline">\(D = -2/9\)</span>. <span class="math display">\[H(s) = \frac{1}{9}\left(\frac{2}{s} + \frac{3}{s^2} + \frac{-7 -2s}{s^2+2s+6} \right) \]</span> Step 4: invert <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> <br> The tricky term is <span class="math inline">\(\dfrac{-1 + s}{s^2+2s+6}\)</span>. <br> To invert this, first note the denominator is <span class="math inline">\((s+1)^2 + 4\)</span>. <br> So we write <span class="math inline">\(\dfrac{-1 + s}{s^2+2s+6} = \dfrac{-2 + (s+1)}{(s+1)^2+5}\)</span>, <br> which has an inverse Laplace transform of <span class="math inline">\(-\frac{2}{\sqrt{5}}e^{-t}\sin(\sqrt{5}t) + e^{-t}\cos(\sqrt{5}t)\)</span> (lines 10 and 11 in Tupper’s table). <br> Hence, <span class="math display">\[g(t) = {\mathcal L}^{-1}\left\{G(s)\right\} = \frac{1}{9}\left(-1 + 3t -e^{-t}\sin(\sqrt{5}t) + e^{-t}\cos(\sqrt{5}t)\right)\]</span> <span class="math display">\[h(t) = {\mathcal L}^{-1}\left\{H(s)\right\} = \frac{1}{9}\left(2 + 3t -\sqrt{5}e^{-t}\sin(\sqrt{5}t) - 2e^{-t}\cos(\sqrt{5}t)\right)\]</span> Step 5: combine <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> to make <span class="math inline">\(y\)</span> <span class="math display">\[y(t) = {\mathcal L}^{-1}\left\{G(s)\right\} - {\mathcal L}^{-1}\left\{e^{-s}H(s)\right\} = g(t) - u_1(t)h(t-1)\]</span></p>
+</div>
+</div>
+</div>
 </section>
 <section id="sec-laplace-delta" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-laplace-delta"><span class="header-section-number">5.4</span> Impulsive forcing</h2>
