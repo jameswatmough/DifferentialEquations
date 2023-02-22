@@ -411,12 +411,15 @@ $$y(x) = c_1\cos(3x) + c_2\sin(3x)
 
 ### The method of Undetermined Coefficients {#sec-2ndorderuc}
 
+[Table 7.2](https://openstax.org/books/calculus-volume-3/pages/7-2-nonhomogeneous-linear-equations#fs-id1170572294713) of Openstax Calculus volume 3 lists the main forms of forcing functions amenable to the method.   Be sure to also understand the **problem solving strategy** outlined below that table.
+
+Table 5.1 on page 132 of [Kalbaugh's text](https://www.taylorfrancis.com/chapters/mono/10.1201/9781315154961-5/second-order-linear-ordinary-differential-equations-david-kalbaugh?context=ubx&refId=4a6f2465-9f9e-4650-8824-ccbf082fe1ad) gives the same information and further examples.
+
+
 ### Exercises {#sec-2ndorder-nonhom-exr}
 
 All the problems in [Openstax Calculus Volume 3 Section 7.2](https://openstax.org/books/calculus-volume-3/pages/7-2-nonhomogeneous-linear-equations)
 are good practice.
-
-
 
 
 ## Initial and boundary value problems
