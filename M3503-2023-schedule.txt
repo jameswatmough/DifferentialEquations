@@ -36,8 +36,10 @@ No notes, aid sheets, or calculators are permitted in the exam.  A table of Lapl
 
 Date: Fri Mar 24
 
-Coverage:
-- TBA
+Coverage:  Expect two questions.   
+
++ One will ask you to solve an ODE with a step-function forcing term using Laplace Transforms (Tupper Section 1.10). 
++ The second will ask you to solve an ODE with a delta-function forcing term using Laplace Transforms (Tupper Section 1.12).
 
 :::
 
