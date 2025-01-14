@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-03-23">
+<meta name="dcterms.date" content="2025-01-14">
 
-<title>Math 3503: Differential Equations for Engineers - 5&nbsp; Laplace Transforms</title>
+<title>5&nbsp; Laplace Transforms – Differential Equations in Mathematical Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -39,17 +39,23 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8b437fc44df5d31213a6bde2e7d8e062.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -58,12 +64,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -71,11 +107,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./M3503-lec04-LaplaceTransforms.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -83,72 +124,81 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math 3503: Differential Equations for Engineers</a> 
+      <a href="./">Differential Equations in Mathematical Ecology</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">2023 Winter Test and Class Schedules</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preamble</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-FirstOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></a>
+  <a href="./ode-intro-geom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
+  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
+  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
+  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-laplace-def" id="toc-sec-laplace-def" class="nav-link active" data-scroll-target="#sec-laplace-def"><span class="toc-section-number">5.1</span>  Definition and basic properties</a></li>
-  <li><a href="#sec-laplace-ode" id="toc-sec-laplace-ode" class="nav-link" data-scroll-target="#sec-laplace-ode"><span class="toc-section-number">5.2</span>  Laplace Transforms and Differential Equations</a></li>
-  <li><a href="#sec-laplace-step" id="toc-sec-laplace-step" class="nav-link" data-scroll-target="#sec-laplace-step"><span class="toc-section-number">5.3</span>  Step functions</a></li>
-  <li><a href="#sec-laplace-delta" id="toc-sec-laplace-delta" class="nav-link" data-scroll-target="#sec-laplace-delta"><span class="toc-section-number">5.4</span>  Impulsive forcing</a></li>
+  <li><a href="#sec-laplace-def" id="toc-sec-laplace-def" class="nav-link active" data-scroll-target="#sec-laplace-def"><span class="header-section-number">5.1</span> Definition and basic properties</a></li>
+  <li><a href="#sec-laplace-ode" id="toc-sec-laplace-ode" class="nav-link" data-scroll-target="#sec-laplace-ode"><span class="header-section-number">5.2</span> Laplace Transforms and Differential Equations</a></li>
+  <li><a href="#sec-laplace-step" id="toc-sec-laplace-step" class="nav-link" data-scroll-target="#sec-laplace-step"><span class="header-section-number">5.3</span> Step functions</a></li>
+  <li><a href="#sec-laplace-delta" id="toc-sec-laplace-delta" class="nav-link" data-scroll-target="#sec-laplace-delta"><span class="header-section-number">5.4</span> Impulsive forcing</a></li>
   </ul>
 </nav>
     </div>
@@ -157,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-laplace" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span></h1>
+<h1 class="title"><span id="sec-laplace" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span></h1>
 </div>
 
 
@@ -174,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 23, 2023</p>
+      <p class="date">January 14, 2025</p>
     </div>
   </div>
   
@@ -182,7 +232,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>These notes are far from complete. However, you may find the examples helpful. Your main resource for this material should be Chapter 1 of <a href="https://lms.unb.ca/d2l/home/212913">Tupper’s Notes</a>.</p>
 <section id="sec-laplace-def" class="level2" data-number="5.1">
@@ -190,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 <p>We will see two <em>integral transforms</em> in this course: the Fourier Transform and the Laplace Transform. In general, an integral transform takes a function, <span class="math inline">\(f\)</span>, of one variable defined on an interval <span class="math inline">\([a,b]\)</span>, multiplies it by a <em>kernel</em>, <span class="math inline">\(k\)</span>, depending on two variables, and integrates the product over the domain <span class="math inline">\([a,b]\)</span>. The result is a function of the second variable appearing in the kernel: <span class="math display">\[F(s) = \int_a^b k(t,s) f(t)\, dt\]</span> The Laplace Transform takes a function <span class="math inline">\(f\)</span> defined on <span class="math inline">\((0,\infty)\)</span> and transforms it using the kernel <span class="math inline">\(k(t,s) = e^{-st}\)</span>. <span class="math display">\[F(s) = \int_0^\infty e^{-st} f(t)\, dt\]</span> We can and will think of the transform as a function whose inputs are functions of time, and whose outputs are functions of the second variable <span class="math inline">\(s\)</span>. We’ll use a fancy L to denote this function. Hence, the Laplace Transform of a function <span class="math inline">\(f\)</span> is the function <span class="math inline">\(F\)</span> defined by <span id="eq-laplacetransform-def"><span class="math display">\[F(s) = {\mathcal L}\left\{f\right\}(s) = \int_0^\infty e^{-st}f(t)\, dt \tag{5.1}\]</span></span></p>
 <p>If we just want to refer to the transformed function we’ll use <span class="math inline">\({\mathcal L}\left\{f\right\}\)</span>. Sometimes we’ll use the notation <span class="math inline">\({\mathcal L}\left\{f(t)\right\}\)</span>, which is inconsistent with the convention that <span class="math inline">\(f\)</span> refers to the function and <span class="math inline">\(f(t)\)</span> refers to the function evaluated at a given time <span class="math inline">\(t\)</span>. However, the abuse is a convenient one, since it allows us to use <span class="math inline">\(f(t-c)\)</span> to denote the time-shift of <span class="math inline">\(f\)</span>. Hence, depending on the context, <span class="math inline">\(f(t-c)\)</span> might refer to both the shifted function or the value of the function. <!-- Some authors define a new function, $f_c$, by $f_c(t) = f(t-c)$ to avoid this ambiguity.--></p>
 <div id="exm-laplace-eat" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.1 </strong></span>Find the Laplace Transform of <span class="math inline">\(e^{-at}\)</span> for any constant <span class="math inline">\(a\)</span> <span class="math display">\[\begin{align}
+<p><span class="theorem-title"><strong>Example 5.1</strong></span> Find the Laplace Transform of <span class="math inline">\(e^{-at}\)</span> for any constant <span class="math inline">\(a\)</span> <span class="math display">\[\begin{align}
   {\mathcal L}\left\{e^{-at}\right\}(s)
     &amp;= \int_0^\infty e^{-st}e^{-at}\, dt \\
     &amp;= \int_0^\infty e^{-(s+a)t}\, dt \\
@@ -200,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>A special case of the previous example is <span class="math inline">\({\mathcal L}\left\{1\right\}(s) = \frac{1}{s}\)</span>.</p>
 <div id="exm-laplace-t" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.2 </strong></span>Find the Laplace Transform of <span class="math inline">\(t\)</span> <span class="math display">\[\begin{align}
+<p><span class="theorem-title"><strong>Example 5.2</strong></span> Find the Laplace Transform of <span class="math inline">\(t\)</span> <span class="math display">\[\begin{align}
   {\mathcal L}\left\{t\right\}(s) &amp;= \int_0^\infty te^{-st}\, dt \\
              &amp;= \left. t\left(-\frac{1}{s}e^{-st}\right)\right|_{t=0}^\infty  - \int_0^\infty \left(-\frac{1}{s}e^{-st}\right)\, dt \\
              &amp;= 0  - \left. \frac{1}{s^2}e^{-st}\right|_{t=0}^\infty \\
@@ -208,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
 \end{align}\]</span> Note we’ve used integration by parts with <span class="math inline">\(u = t\)</span> and <span class="math inline">\(dv = e^{-st}dt\)</span>. And again note that the integral diverges if <span class="math inline">\(s\le0\)</span>.</p>
 </div>
 <div id="exm-laplace-tn" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.3 </strong></span>Find the Laplace Transform of <span class="math inline">\(t^n\)</span> <span class="math display">\[\begin{align}
+<p><span class="theorem-title"><strong>Example 5.3</strong></span> Find the Laplace Transform of <span class="math inline">\(t^n\)</span> <span class="math display">\[\begin{align}
   {\mathcal L}\left\{t^n\right\}(s) &amp;= \int_0^\infty t^ne^{-st}\, dt \\
              &amp;= \left. t^n\left(-\frac{1}{s}e^{-st}\right)\right|_{t=0}^\infty  - \int_0^\infty \left(nt^{n-1}\right)\left(-\frac{1}{s}e^{-st}\right)\, dt \\
              &amp;= 0  + \frac{n}{s}\int_0^\infty t^{n-1}e^{-st}\, dt , \quad s &gt; 0\\
@@ -216,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
 \end{align}\]</span> Repeating this step another <span class="math inline">\(n-1\)</span> times, we should arrive at <span class="math display">\[{\mathcal L}\left\{t^n\right\} = \frac{n!}{s^n}{\mathcal L}\left\{1\right\} = \frac{n!}{s^{n+1}}\]</span> Indeed, using this formula with <span class="math inline">\(n=0\)</span> and <span class="math inline">\(n=1\)</span> gives the same results as before. To complete the proof by induction, simply note that replacing <span class="math inline">\(n\)</span> by <span class="math inline">\(n-1\)</span> gives <span class="math inline">\({\mathcal L}\left\{t^{n-1}\right\} = \frac{(n-1)!}{s^n}\)</span> and <span class="math display">\[\frac{n}{s}{\mathcal L}\left\{t^{n-1}\right\} =\frac{n}{s} \frac{(n-1)!}{s^n} =  \frac{n!}{s^{n+1}}\]</span> as expected.</p>
 </div>
 <div id="exm-laplace-tn" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.4 </strong></span>The transforms of sine and cosine can be viewed as special cases of our first example. Simply set <span class="math inline">\(a\)</span> to <span class="math inline">\(i\)</span> and note that <span class="math display">\[\begin{gather}
+<p><span class="theorem-title"><strong>Example 5.4</strong></span> The transforms of sine and cosine can be viewed as special cases of our first example. Simply set <span class="math inline">\(a\)</span> to <span class="math inline">\(i\)</span> and note that <span class="math display">\[\begin{gather}
   e^{-it} = \cos t) - i\sin t  \\
   {\mathcal L}\left\{e^{-it}\right\} = {\mathcal L}\left\{\cos t  - i\sin t \right\} \\
   {\mathcal L}\left\{e^{-it}\right\} = {\mathcal L}\left\{\cos t \right\} - i{\mathcal L}\left\{\sin t \right\} \\
@@ -230,26 +282,15 @@ ul.task-list li input[type="checkbox"] {
 \end{align}\]</span></p>
 </div>
 <div id="thm-laplace-shift" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 5.1 (First Shifting Theorem) </strong></span>If <span class="math inline">\({\mathcal L}\left\{f(t)\right\} = F(s)\)</span> for <span class="math inline">\(s&gt;c\)</span>, then <span class="math inline">\({\mathcal L}\left\{e^{at}f(t)\right\} = F(s-a)\)</span> for <span class="math inline">\(s&gt;c+a\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 5.1 (First Shifting Theorem)</strong></span> If <span class="math inline">\({\mathcal L}\left\{f(t)\right\} = F(s)\)</span> for <span class="math inline">\(s&gt;c\)</span>, then <span class="math inline">\({\mathcal L}\left\{e^{at}f(t)\right\} = F(s-a)\)</span> for <span class="math inline">\(s&gt;c+a\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>The result follows immediately from <span class="math display">\[{\mathcal L}\left\{e^{at}f(t)\right\} = \int_0^\infty e^{at}f(t) e^{-st} \, ds = \int_0^\infty f(t) e^{-(s-a)t} \, ds\]</span></p>
 </div>
 <div id="exr-laplace-shift-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.1 </strong></span>Use partial fractions (if necessary) and the First Shifting Theorem (if necessary) to find the inverse Laplace transform of <span class="math display">\[\displaystyle F(s) = \frac{s+7}{s^2 + 4s + 13}.\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 5.1</strong></span> Use partial fractions (if necessary) and the First Shifting Theorem (if necessary) to find the inverse Laplace transform of <span class="math display">\[\displaystyle F(s) = \frac{s+7}{s^2 + 4s + 13}.\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p><span class="math display">\[\begin{align*}
   F(s) &amp;= \frac{s+7}{s^2 + 4s + 13}, \\
              &amp;= \frac{s+7}{(s+2)^2 + 3^2}. \\[5pt]
@@ -258,23 +299,10 @@ Solution
        &amp;= e^{-2t}\left(\cos{3t} + \frac{5}{3}\sin{3t}\right). \\
 \end{align*}\]</span></p>
 </div>
-</div>
-</div>
 <div id="exr-laplace-shift-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.2 </strong></span>Use partial fractions (if necessary) and the First Shifting Theorem (if necessary) to find the inverse Laplace transform of <span class="math display">\[\displaystyle F(s) = \frac{s+7}{s^2 + 2s + 5}.\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 5.2</strong></span> Use partial fractions (if necessary) and the First Shifting Theorem (if necessary) to find the inverse Laplace transform of <span class="math display">\[\displaystyle F(s) = \frac{s+7}{s^2 + 2s + 5}.\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p><span class="math display">\[\begin{align*}
   F(s) &amp;= \frac{s+7}{s^2 + 2s + 5}, \\
              &amp;= \frac{s+7}{(s+1)^2 + 2^2}. \\[5pt]
@@ -284,27 +312,25 @@ Solution
        &amp;= e^{-t}\left(\cos{2t} + 3\sin{2t}\right). \\
 \end{align*}\]</span></p>
 </div>
-</div>
-</div>
 </section>
 <section id="sec-laplace-ode" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-laplace-ode"><span class="header-section-number">5.2</span> Laplace Transforms and Differential Equations</h2>
 <p>Our interest in Laplace Transforms for this course is that they are (1) linear and (2) transform linear ordinary differential equations into algebraic equations.</p>
 <div id="exr-laplace-linearity" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.3 </strong></span>Suppose <span class="math inline">\({\mathcal L}\left\{f\right\} = F\)</span> and <span class="math inline">\({\mathcal L}\left\{g\right\} = G\)</span>. Show that <span class="math display">\[{\mathcal L}\left\{af + bg\right\} = a{\mathcal L}\left\{f\right\}+b{\mathcal L}\left\{g\right\}\]</span> for any constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 5.3</strong></span> Suppose <span class="math inline">\({\mathcal L}\left\{f\right\} = F\)</span> and <span class="math inline">\({\mathcal L}\left\{g\right\} = G\)</span>. Show that <span class="math display">\[{\mathcal L}\left\{af + bg\right\} = a{\mathcal L}\left\{f\right\}+b{\mathcal L}\left\{g\right\}\]</span> for any constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
 </div>
 <div id="exr-laplace-linearity" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.4 </strong></span>Show that <span class="math inline">\({\mathcal L}\left\{y'\right\} = s{\mathcal L}\left\{y\right\} - y(0)\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 5.4</strong></span> Show that <span class="math inline">\({\mathcal L}\left\{y'\right\} = s{\mathcal L}\left\{y\right\} - y(0)\)</span>.</p>
 </div>
 <div id="exr-laplace-linearity" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.5 </strong></span>Show that <span class="math inline">\({\mathcal L}\left\{y''\right\} = s^2{\mathcal L}\left\{y\right\} - sy(0) - y'(0)\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 5.5</strong></span> Show that <span class="math inline">\({\mathcal L}\left\{y''\right\} = s^2{\mathcal L}\left\{y\right\} - sy(0) - y'(0)\)</span>.</p>
 </div>
 <p>Consider our generic second order constant coefficient ordinary differential equation: <span class="math display">\[\begin{equation}
      ay'' + by' + cy = g,
   \end{equation}\]</span> with <span class="math inline">\(y(0)\)</span> and <span class="math inline">\(y'(0)\)</span> specified. Taking the Laplace transform of both sides of the equation leads to <span class="math display">\[a{\mathcal L}\left\{y''\right\} + b{\mathcal L}\left\{y'\right\} + c{\mathcal L}\left\{y\right\} = {\mathcal L}\left\{g\right\}.\]</span> Using <span class="math inline">\(Y\)</span> for <span class="math inline">\({\mathcal L}\left\{y\right\}\)</span> and <span class="math inline">\(G\)</span> for <span class="math inline">\({\mathcal L}\left\{g\right\}\)</span> and our previous result for the Laplace transform of derivatives results in the equation <span class="math display">\[a\left( s^2Y(s) - sy(0) - y'(0) \right) \ +\ b\left(sY(s) - y(0) \right) \ +\ cY(s) = G(s).\]</span> Thus, the Laplace transform transforms the differential equation for <span class="math inline">\(y\)</span> to an algebraic equation for <span class="math inline">\(Y\)</span>. Solving for <span class="math inline">\(Y\)</span>, we find <span class="math display">\[\left( as^2 + bs + c \right) Y(s) = G(s) + (as+b)y(0) + ay'(0),\]</span> or <span class="math display">\[Y(s) = H(s)G(s) + H(s) I(s),\]</span> where <span class="math display">\[H(s) = \frac{1}{as^2 + bs + c} \qquad \text{and} \qquad I(s) = (as+b)y(0) + ay'(0).\]</span> Finally, taking the inverse transforms gives the solution to the original problem: <span id="eq-laplace-secondorder-solution"><span class="math display">\[y(t) = {\mathcal L}^{-1}\left\{H(s)G(s)\right\} \ +\ {\mathcal L}^{-1}\left\{H(s)I(s)\right\}. \tag{5.2}\]</span></span></p>
-<p><a href="#eq-laplace-secondorder-solution">Equation&nbsp;<span>5.2</span></a> hides the details of the computations of the transforms and nicely shows the structure of the solution. The first part of the solution is the response to the forcing, and the second is the <strong>echo</strong> of the initial conditions.</p>
+<p><a href="#eq-laplace-secondorder-solution" class="quarto-xref">Equation&nbsp;<span>5.2</span></a> hides the details of the computations of the transforms and nicely shows the structure of the solution. The first part of the solution is the response to the forcing, and the second is the <strong>echo</strong> of the initial conditions.</p>
 <div id="exm-laplace-ivp-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.5 </strong></span>Solve the IVP <span class="math inline">\(y''(t) - 4y(t) = 8t^2 - 4\)</span>, with <span class="math inline">\(y(0) = 5\)</span> and <span class="math inline">\(y'(0) = 10\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 5.5</strong></span> Solve the IVP <span class="math inline">\(y''(t) - 4y(t) = 8t^2 - 4\)</span>, with <span class="math inline">\(y(0) = 5\)</span> and <span class="math inline">\(y'(0) = 10\)</span>.</p>
 <p>Taking the Laplace transforms of both sides of the equations we find <span class="math display">\[{\mathcal L}\left\{y''\right\} - 4{\mathcal L}\left\{y\right\} = 8{\mathcal L}\left\{t^2\right\} - {\mathcal L}\left\{4\right\}.\]</span></p>
 <p><span class="math display">\[\left(s^2Y(s) - 5s - 10\right) \ -\  4Y(s) = \frac{16}{s^3} - \frac{4}{s},\]</span> which when solved for <span class="math inline">\(Y\)</span> gives <span class="math display">\[\begin{align*}
    (s^2 -  4 ) Y(s) &amp;= \frac{16}{s^3} - \frac{4}{s} + 5s + 10\\
@@ -326,20 +352,9 @@ Solution
     &amp;= e^{-sa}F(s)
 \end{align}\]</span></p>
 <div id="exr-laplace-step-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.6 </strong></span>Using the table of Laplace transforms and the Second Shifting Theorem, find the Laplace transform of <span class="math display">\[g(t) = (t-3)^3 u_3(t)\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 5.6</strong></span> Using the table of Laplace transforms and the Second Shifting Theorem, find the Laplace transform of <span class="math display">\[g(t) = (t-3)^3 u_3(t)\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p><span class="math display">\[\begin{align*}
   {\mathcal L}\left\{(t-3)^3 u_3(t)\right\}
   &amp;= e^{-3s}{\mathcal L}\left\{t^3 \right\} \qquad \text{ shifting $(t-3)\mapsto t$,}\\
@@ -347,51 +362,25 @@ Solution
   &amp;= \frac{6e^{-3s}}{s^4}\\
 \end{align*}\]</span></p>
 </div>
-</div>
-</div>
 <div id="exr-laplace-step-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.7 </strong></span>Express the function <span class="math inline">\(f\)</span> defined below using step functions and find its Laplace transform using the Second Shifting Theorem. <span class="math display">\[f(t) =
+<p><span class="theorem-title"><strong>Exercise 5.7</strong></span> Express the function <span class="math inline">\(f\)</span> defined below using step functions and find its Laplace transform using the Second Shifting Theorem. <span class="math display">\[f(t) =
    \begin{cases}
      t, &amp; 0 \le t &lt; 4, \\
      0, &amp; 4 \le t &lt; 5, \\
      1, &amp; t \ge 5.
    \end{cases}\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p>First, express <span class="math inline">\(f\)</span> using step functions, then use the second shifting theorem. <span class="math display">\[\begin{align*}
   f(t) &amp;= t(1 - u_4(t)) + u_5(t) \\
   f(t) &amp;= t - t u_4(t) + u_5(t) \\
   F(s) &amp;= \frac{1}{s^2} - \frac{1}{s^2}e^{-4s} + \frac{1}{s}e^{-5s}
 \end{align*}\]</span></p>
 </div>
-</div>
-</div>
 <div id="exr-laplace-step-ivp-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.8 </strong></span>Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 5y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 0, &amp; 0 \le t &lt; 1, \\ 1, &amp; t \ge 1 \end{cases}\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 5.8</strong></span> Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 5y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 0, &amp; 0 \le t &lt; 1, \\ 1, &amp; t \ge 1 \end{cases}\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p><span class="math display">\[\begin{align*}
    y'' + 5y' + 6y &amp;= f(t)\\
    y'' + 5y' + 6y &amp;= u_1(t)\\
@@ -405,23 +394,10 @@ Solution
    y(t) &amp;=  -2e^{-3t} + 3e^{-2} + \tfrac{1}{6} u_1(t) + \frac{1}{3}u_1(t)e^{-(t-1)} - \frac{1}{2}u_1(t)e^{-2(t-1)}
 \end{align*}\]</span></p>
 </div>
-</div>
-</div>
 <div id="exr-laplace-step-ivp-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.9 </strong></span>Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 2y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 2t, &amp; 0 \le t &lt; 1, \\ 0, &amp; t \ge 1 \end{cases}\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 5.9</strong></span> Use Laplace transforms to solve the initial value problem <span class="math display">\[y'' + 2y' + 6y = f(t), \quad  y(0)=0, \quad y'(0)=0,\]</span> where <span class="math display">\[f(t) =\begin{cases} 2t, &amp; 0 \le t &lt; 1, \\ 0, &amp; t \ge 1 \end{cases}\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="callout-solution" data-collapse="true">
 <p>Step 1: express <span class="math inline">\(f\)</span> using step functions and find <span class="math inline">\(F(s) = {\mathcal L}\left\{f(t)\right\}\)</span>: <span class="math display">\[\begin{align*}
     f(t) &amp;= 2t(1-u_1(t)) \\
     F(s) &amp;= {\mathcal L}\left\{2t(1-u_1(t))\right\} \\
@@ -442,12 +418,10 @@ Solution
    2 = (A+D)s^3 + (2A+B+C)s^2 + (6A+2B)s + (6B)  
 \end{gather*}\]</span> Matching the coefficients of each power of <span class="math inline">\(s\)</span> leads to <span class="math inline">\(B = 1/3\)</span>, <span class="math inline">\(A = -1/9\)</span>, <span class="math inline">\(C = -1/9\)</span>, <span class="math inline">\(D = 1/9\)</span>. Hence <span class="math display">\[G(s) = \frac{1}{9}\left(-\frac{1}{s} + \frac{3}{s^2} + \frac{-1 + s}{s^2+2s+6} \right) \]</span> Similarly, for <span class="math inline">\(H\)</span> we obtain <span class="math display">\[2+2s = (A+D)s^3 + (2A+B+C)s^2 + (6A+2B)s + (6B)\]</span> Matching the coefficients of each power of <span class="math inline">\(s\)</span> leads to <span class="math inline">\(B = 1/3\)</span>, <span class="math inline">\(A = 2/9\)</span>, <span class="math inline">\(C = -7/9\)</span>, <span class="math inline">\(D = -2/9\)</span>. <span class="math display">\[H(s) = \frac{1}{9}\left(\frac{2}{s} + \frac{3}{s^2} + \frac{-7 -2s}{s^2+2s+6} \right) \]</span> Step 4: invert <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> <br> The tricky term is <span class="math inline">\(\dfrac{-1 + s}{s^2+2s+6}\)</span>. <br> To invert this, first note the denominator is <span class="math inline">\((s+1)^2 + 4\)</span>. <br> So we write <span class="math inline">\(\dfrac{-1 + s}{s^2+2s+6} = \dfrac{-2 + (s+1)}{(s+1)^2+5}\)</span>, <br> which has an inverse Laplace transform of <span class="math inline">\(-\frac{2}{\sqrt{5}}e^{-t}\sin(\sqrt{5}t) + e^{-t}\cos(\sqrt{5}t)\)</span> (lines 10 and 11 in Tupper’s table). <br> Hence, <span class="math display">\[g(t) = {\mathcal L}^{-1}\left\{G(s)\right\} = \frac{1}{9}\left(-1 + 3t -e^{-t}\sin(\sqrt{5}t) + e^{-t}\cos(\sqrt{5}t)\right)\]</span> <span class="math display">\[h(t) = {\mathcal L}^{-1}\left\{H(s)\right\} = \frac{1}{9}\left(2 + 3t -\sqrt{5}e^{-t}\sin(\sqrt{5}t) - 2e^{-t}\cos(\sqrt{5}t)\right)\]</span> Step 5: combine <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> to make <span class="math inline">\(y\)</span> <span class="math display">\[y(t) = {\mathcal L}^{-1}\left\{G(s)\right\} - {\mathcal L}^{-1}\left\{e^{-s}H(s)\right\} = g(t) - u_1(t)h(t-1)\]</span></p>
 </div>
-</div>
-</div>
 </section>
 <section id="sec-laplace-delta" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-laplace-delta"><span class="header-section-number">5.4</span> Impulsive forcing</h2>
-<p>We are often interested in forcing the system with an <em>impulse</em>, a large force applied over a short time period. Define a unit box function, <span class="math display">\[\delta_a(t) = \begin{cases}\frac{1}{2a}, &amp; -a &lt; t &lt; a, \\ 0, &amp; \text{otherwise}. \end{cases}\]</span> Note that <span class="math inline">\(\int_{0}^\infty \delta_a(t-t_o) \, dt = 1\)</span> provided <span class="math inline">\(t_o &gt; a\)</span>. Since we are interested in impulses over very short times (small <span class="math inline">\(a\)</span>), it is natural to think of a limit as <span class="math inline">\(a\rightarrow0\)</span>.<br>
+<p>We are often interested in forcing the system with an <em>impulse</em>, a large force applied over a short time period. Define a unit box function, <span class="math display">\[\delta_a(t) = \begin{cases}\frac{1}{2a}, &amp; -a &lt; t &lt; a, \\ 0, &amp; \text{otherwise}. \end{cases}\]</span> Note that <span class="math inline">\(\int_{0}^\infty \delta_a(t-t_o)  \, dt = 1\)</span> provided <span class="math inline">\(t_o &gt; a\)</span>. Since we are interested in impulses over very short times (small <span class="math inline">\(a\)</span>), it is natural to think of a limit as <span class="math inline">\(a\rightarrow0\)</span>.<br>
 The limit of such a sequence of unit boxes is called the Dirac delta function. Conceptually, at least for this course, we can view it as being defined as <span class="math display">\[\delta(t-t_o) = \lim_{a\rightarrow0} \delta_a(t-t_0).\]</span> However, this limit is not a function in the sense we are used to and it is certainly not Riemann integrable. The mathematical machinery needed to make sense of this limit is outside the scope of this course. Nevertheless, the concept is interesting and turns out to be useful in practice.</p>
 <p>Note that <span class="math display">\[\lim_{\rightarrow0^+} \int_{0}^\infty \delta_a(t-t_o)  \, dt = 1\]</span> since the integral is one for every positive <span class="math inline">\(a\)</span>. Moreover, for any continuous function <span class="math inline">\(f\)</span> defined on <span class="math inline">\([0,\infty)\)</span> <span class="math display">\[\begin{align}
   \lim_{a\rightarrow0^+} \int_{0}^\infty f(t) \delta_a(t-t_o)  \, dt  
@@ -457,7 +431,7 @@ The limit of such a sequence of unit boxes is called the Dirac delta function. C
 <p>In particular, <span class="math display">\[{\mathcal L}\left\{\delta(t-t_o)\right\} = \int_0^\infty e^{-st} \delta(t-t_o)\, dt = e^{-st_o}.\]</span></p>
 <p>Theoretically, we’ve wandered off the edge of the map. <span class="math inline">\(\delta\)</span> is not a function in any sense we are familiar with, it’s not Riemann ingegrable, and all the previous lines are nothing more than wishful symbol manipulation. Despite this, the symbol manipulation usually turns out nicely and proves useful.</p>
 <div id="exm-laplace-ivp-delta" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.6 </strong></span>Solve the initial value problem <span class="math display">\[y'' + 9y = \delta(t-\frac{\pi}{2}), \qquad y(0) = 0, \ y'(0) = 0.\]</span> Note this is the classic model for a simple pendulum starting at rest at time zero, and given a <strong>unit of force</strong> concentrated at time <span class="math inline">\(\pi/2\)</span>. Think of tapping the pendulum with a hammer.</p>
+<p><span class="theorem-title"><strong>Example 5.6</strong></span> Solve the initial value problem <span class="math display">\[y'' + 9y = \delta(t-\frac{\pi}{2}), \qquad y(0) = 0, \ y'(0) = 0.\]</span> Note this is the classic model for a simple pendulum starting at rest at time zero, and given a <strong>unit of force</strong> concentrated at time <span class="math inline">\(\pi/2\)</span>. Think of tapping the pendulum with a hammer.</p>
 <p>Taking the Laplace transform of both sides yields<br>
 <span class="math display">\[(s^2 + 9) Y(s) = e^{-\pi s/2}\]</span> <span class="math display">\[Y(s) = \frac{e^{-\pi s/2}}{s^2 + 9}\]</span> and the inverse transform gives the solution <span class="math display">\[\begin{align*}
    y(t) &amp;= \frac{1}{3}\sin\left(3(t-\pi/2)\right) u_{\pi/2}(t) \\
@@ -499,12 +473,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -536,11 +513,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -550,8 +564,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -563,9 +586,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -607,17 +865,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./M3503-lec03-SecondOrderODE.html" class="pagination-link">
+      <a href="./M3503-lec03-SecondOrderODE.html" class="pagination-link" aria-label="Second order Linear Differential Equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./M3503-lec05-FourierSeries.html" class="pagination-link">
+      <a href="./M3503-lec05-FourierSeries.html" class="pagination-link" aria-label="Fourier Series">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

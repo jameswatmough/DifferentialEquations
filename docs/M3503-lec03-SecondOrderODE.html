@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-03-23">
+<meta name="dcterms.date" content="2025-01-14">
 
-<title>Math 3503: Differential Equations for Engineers - 4&nbsp; Second order Linear Differential Equations</title>
+<title>4&nbsp; Second order Linear Differential Equations – Differential Equations in Mathematical Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -39,17 +39,23 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8b437fc44df5d31213a6bde2e7d8e062.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -58,12 +64,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -71,11 +107,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./M3503-lec03-SecondOrderODE.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -83,88 +124,97 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math 3503: Differential Equations for Engineers</a> 
+      <a href="./">Differential Equations in Mathematical Ecology</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">2023 Winter Test and Class Schedules</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preamble</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-FirstOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></a>
+  <a href="./ode-intro-geom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
+  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
+  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
+  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-2ndordergt" id="toc-sec-2ndordergt" class="nav-link active" data-scroll-target="#sec-2ndordergt"><span class="toc-section-number">4.1</span>  The general theory of second order Linear Differential Equations</a>
+  <li><a href="#sec-2ndordergt" id="toc-sec-2ndordergt" class="nav-link active" data-scroll-target="#sec-2ndordergt"><span class="header-section-number">4.1</span> The general theory of second order Linear Differential Equations</a>
   <ul class="collapse">
-  <li><a href="#differential-equations-and-linear-algebra" id="toc-differential-equations-and-linear-algebra" class="nav-link" data-scroll-target="#differential-equations-and-linear-algebra"><span class="toc-section-number">4.1.1</span>  Differential Equations and Linear Algebra</a></li>
-  <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="toc-section-number">4.1.2</span>  The solution set</a></li>
+  <li><a href="#differential-equations-and-linear-algebra" id="toc-differential-equations-and-linear-algebra" class="nav-link" data-scroll-target="#differential-equations-and-linear-algebra"><span class="header-section-number">4.1.1</span> Differential Equations and Linear Algebra</a></li>
+  <li><a href="#the-solution-set" id="toc-the-solution-set" class="nav-link" data-scroll-target="#the-solution-set"><span class="header-section-number">4.1.2</span> The solution set</a></li>
   </ul></li>
-  <li><a href="#sec-2ndordercc" id="toc-sec-2ndordercc" class="nav-link" data-scroll-target="#sec-2ndordercc"><span class="toc-section-number">4.2</span>  Linear Second order differential equations with constant coefficients</a>
+  <li><a href="#sec-2ndordercc" id="toc-sec-2ndordercc" class="nav-link" data-scroll-target="#sec-2ndordercc"><span class="header-section-number">4.2</span> Linear Second order differential equations with constant coefficients</a>
   <ul class="collapse">
-  <li><a href="#theory-and-techniques" id="toc-theory-and-techniques" class="nav-link" data-scroll-target="#theory-and-techniques"><span class="toc-section-number">4.2.1</span>  Theory and Techniques</a></li>
-  <li><a href="#sec-2ndorder-cc-exr" id="toc-sec-2ndorder-cc-exr" class="nav-link" data-scroll-target="#sec-2ndorder-cc-exr"><span class="toc-section-number">4.2.2</span>  Exercises</a></li>
+  <li><a href="#theory-and-techniques" id="toc-theory-and-techniques" class="nav-link" data-scroll-target="#theory-and-techniques"><span class="header-section-number">4.2.1</span> Theory and Techniques</a></li>
+  <li><a href="#sec-2ndorder-cc-exr" id="toc-sec-2ndorder-cc-exr" class="nav-link" data-scroll-target="#sec-2ndorder-cc-exr"><span class="header-section-number">4.2.2</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="toc-section-number">4.3</span>  Finding particular solutions of the nonhomogeneous problem</a>
+  <li><a href="#finding-particular-solutions-of-the-nonhomogeneous-problem" id="toc-finding-particular-solutions-of-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#finding-particular-solutions-of-the-nonhomogeneous-problem"><span class="header-section-number">4.3</span> Finding particular solutions of the nonhomogeneous problem</a>
   <ul class="collapse">
-  <li><a href="#sec-2ndordervp" id="toc-sec-2ndordervp" class="nav-link" data-scroll-target="#sec-2ndordervp"><span class="toc-section-number">4.3.1</span>  Variation of Parameters</a></li>
-  <li><a href="#sec-2ndorderuc" id="toc-sec-2ndorderuc" class="nav-link" data-scroll-target="#sec-2ndorderuc"><span class="toc-section-number">4.3.2</span>  The method of Undetermined Coefficients</a></li>
-  <li><a href="#sec-2ndorder-nonhom-exr" id="toc-sec-2ndorder-nonhom-exr" class="nav-link" data-scroll-target="#sec-2ndorder-nonhom-exr"><span class="toc-section-number">4.3.3</span>  Exercises</a></li>
+  <li><a href="#sec-2ndordervp" id="toc-sec-2ndordervp" class="nav-link" data-scroll-target="#sec-2ndordervp"><span class="header-section-number">4.3.1</span> Variation of Parameters</a></li>
+  <li><a href="#sec-2ndorderuc" id="toc-sec-2ndorderuc" class="nav-link" data-scroll-target="#sec-2ndorderuc"><span class="header-section-number">4.3.2</span> The method of Undetermined Coefficients</a></li>
+  <li><a href="#sec-2ndorder-nonhom-exr" id="toc-sec-2ndorder-nonhom-exr" class="nav-link" data-scroll-target="#sec-2ndorder-nonhom-exr"><span class="header-section-number">4.3.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="toc-section-number">4.4</span>  Initial and boundary value problems</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.5</span>  Summary</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="toc-section-number">4.6</span>  Discussion</a></li>
-  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="toc-section-number">4.7</span>  Theoretical Considerations</a></li>
+  <li><a href="#initial-and-boundary-value-problems" id="toc-initial-and-boundary-value-problems" class="nav-link" data-scroll-target="#initial-and-boundary-value-problems"><span class="header-section-number">4.4</span> Initial and boundary value problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.5</span> Summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4.6</span> Discussion</a></li>
+  <li><a href="#theoretical-considerations" id="toc-theoretical-considerations" class="nav-link" data-scroll-target="#theoretical-considerations"><span class="header-section-number">4.7</span> Theoretical Considerations</a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-2ndorder" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></h1>
+<h1 class="title"><span id="sec-2ndorder" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></h1>
 </div>
 
 
@@ -190,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 23, 2023</p>
+      <p class="date">January 14, 2025</p>
     </div>
   </div>
   
@@ -198,7 +248,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="sec-2ndordergt" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-2ndordergt"><span class="header-section-number">4.1</span> The general theory of second order Linear Differential Equations</h2>
@@ -211,18 +263,18 @@ Some cases appear as boundary value problems with the conditions prescribed at t
 <p>One key concept from linear algebra is a <strong>linear combination</strong>. Suppose <span class="math inline">\(y_1, y_2, \dots, y_n\)</span> are <span class="math inline">\(n\)</span> functions defined on some interval <span class="math inline">\([a,b]\)</span>. For example, the set <span class="math inline">\(1, x, x^2, x^3, x^4, x^5\)</span> with <span class="math inline">\(0 \le x \le 1\)</span> is a set of 6 functions defined on the interval <span class="math inline">\([0,1]\)</span>. Using the jargon we learned in our first linear algebra course, we can construct any polynomial of degree 5 or lower by taking <strong>linear combinations</strong> of the 6 <strong>basis</strong> functions. Specifically, if <span class="math inline">\(c_0, c_1, \dots, c_5\)</span> be any 6 numbers, then <span class="math inline">\(y(x) = c_0 + c_1x + \dots + c_5x^5\)</span> is a polynomial. If <span class="math inline">\(c_5\ne0\)</span>, <span class="math inline">\(y\)</span> is a polynomial of degree 5, otherwise, it has a lower degree. We can do the same constructions for any set of functions. Given a set of functions <span class="math inline">\(\{y_1, y_2, \dots, y_n\}\)</span> all with the same domain, <span class="math inline">\([a,b]\)</span>, and a set of <strong>scalars</strong> <span class="math inline">\(\{c_1, \dots, c_n\}\)</span>, the <strong>linear combination</strong> <span class="math inline">\(y = c_1y_1 + \dots + c_ny_n\)</span> is a function with the same domain.<br>
 From our calculus course, we know that if <span class="math inline">\(y_1, \dot, y_n\)</span> are all continuous on <span class="math inline">\([a,b]\)</span>, then the linear combination is also continuous. In short, functions are vectors, and all the jargon we learned in linear algebra can be applied to functions.</p>
 <div id="def-linindep" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.1 </strong></span>The set of functions <span class="math inline">\(\{y_1, y_2, \dots, y_n\}\)</span> is said to be <strong>linearly independent</strong> if the only scalars <span class="math inline">\(c_1,\dots,c_n\)</span> for which <span class="math inline">\(c_1y_1 + \dots + c_ny_n = 0\)</span> is <span class="math inline">\(c_1=c_2=\dots=c_n=0\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 4.1</strong></span> The set of functions <span class="math inline">\(\{y_1, y_2, \dots, y_n\}\)</span> is said to be <strong>linearly independent</strong> if the only scalars <span class="math inline">\(c_1,\dots,c_n\)</span> for which <span class="math inline">\(c_1y_1 + \dots + c_ny_n = 0\)</span> is <span class="math inline">\(c_1=c_2=\dots=c_n=0\)</span>.</p>
 </div>
 <div id="exm-linindep-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.1 </strong></span>To show the two functions <span class="math inline">\(\sin x\)</span> and <span class="math inline">\(\cos x\)</span> defined for <span class="math inline">\(0 \le x \le \pi\)</span> are linearly independent, we need to show that <span class="math inline">\(c_1\sin x + c_2\cos x = 0\)</span> for all <span class="math inline">\(x\in[0,\pi]\)</span> only if <span class="math inline">\(c_1=c_2=0\)</span>. Since <span class="math inline">\(\sin 0 = 0\)</span> and <span class="math inline">\(\cos 0 = 1\)</span>, setting <span class="math inline">\(x=0\)</span> implies <span class="math inline">\(c_2=0\)</span>. Similarly, setting <span class="math inline">\(x=\pi/2\)</span> implies <span class="math inline">\(c_1=0\)</span>. Hence, the two functions are linearly independent.</p>
+<p><span class="theorem-title"><strong>Example 4.1</strong></span> To show the two functions <span class="math inline">\(\sin x\)</span> and <span class="math inline">\(\cos x\)</span> defined for <span class="math inline">\(0 \le x \le \pi\)</span> are linearly independent, we need to show that <span class="math inline">\(c_1\sin x + c_2\cos x = 0\)</span> for all <span class="math inline">\(x\in[0,\pi]\)</span> only if <span class="math inline">\(c_1=c_2=0\)</span>. Since <span class="math inline">\(\sin 0 = 0\)</span> and <span class="math inline">\(\cos 0 = 1\)</span>, setting <span class="math inline">\(x=0\)</span> implies <span class="math inline">\(c_2=0\)</span>. Similarly, setting <span class="math inline">\(x=\pi/2\)</span> implies <span class="math inline">\(c_1=0\)</span>. Hence, the two functions are linearly independent.</p>
 </div>
-<p>So why do we call <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> a <strong>linear</strong> differential equation? It is useful to introduce a shorthand notation for the left hand side of <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a>. In more advanced courses this would be introduced as a linear operator and some fancy theorems would be invoked. An operator is simply a mathematical object that maps functions to other functions in the same way the functions of first year calculus map numbers to other numbers. Suppose <span class="math inline">\(y\)</span> is twice differentiable, then we can define a new function, <span class="math inline">\(Ly\)</span>, by <span class="math display">\[\begin{equation}
+<p>So why do we call <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> a <strong>linear</strong> differential equation? It is useful to introduce a shorthand notation for the left hand side of <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>. In more advanced courses this would be introduced as a linear operator and some fancy theorems would be invoked. An operator is simply a mathematical object that maps functions to other functions in the same way the functions of first year calculus map numbers to other numbers. Suppose <span class="math inline">\(y\)</span> is twice differentiable, then we can define a new function, <span class="math inline">\(Ly\)</span>, by <span class="math display">\[\begin{equation}
   Ly = P\frac{d^2y}{dx^2} + Q\frac{dy}{dx} + Ry.
 \end{equation}\]</span> We use this to define the operator <span class="math inline">\(L\)</span>. Simply put, given a known, twice differentiable function <span class="math inline">\(y\)</span>, the operation <span class="math inline">\(L\)</span> returns a new function which we refer to simply as <span class="math inline">\(Ly\)</span>. The linearity of the operator refers to the fact that <span class="math inline">\(L\)</span> is a <strong>linear transformation</strong>. That is, for any two twice-differentiable functions <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> and any two real numbers (scalars) <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, <span class="math inline">\(L(au+bv) = aLu + bLv\)</span>.</p>
 </section>
 <section id="the-solution-set" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="the-solution-set"><span class="header-section-number">4.1.2</span> The solution set</h3>
-<p>A solution to the second order differential equation <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a>, is any twice differentiable function <span class="math inline">\(y(x)\)</span> that satisfies <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a>. Since we are looking for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span>, it makes sense to refer to <span class="math inline">\(x\)</span> as our <strong>independent variable</strong> and <span class="math inline">\(y\)</span> as our <strong>dependent variable</strong>. The linearity of the equation makes some more jargon from linear algebra useful. In particular,</p>
+<p>A solution to the second order differential equation <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>, is any twice differentiable function <span class="math inline">\(y(x)\)</span> that satisfies <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>. Since we are looking for <span class="math inline">\(y\)</span> as a function of <span class="math inline">\(x\)</span>, it makes sense to refer to <span class="math inline">\(x\)</span> as our <strong>independent variable</strong> and <span class="math inline">\(y\)</span> as our <strong>dependent variable</strong>. The linearity of the equation makes some more jargon from linear algebra useful. In particular,</p>
 <ul>
 <li><span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> are the <strong>coefficients</strong> of the equation,</li>
 <li>the equation is <strong>homogeneous</strong> if <span class="math inline">\(G=0\)</span>,</li>
@@ -232,30 +284,32 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 <p>The right hand side, <span class="math inline">\(G\)</span>, is typically an applied force or current or something similar. Hence we refer to <span class="math inline">\(G\)</span> as the <strong>forcing function</strong>.</p>
 <p>There are two theorems that are relevant here.</p>
 <div id="thm-2ndorder-1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.1 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are solutions of the homogeneous problem then for any constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>, the linear combination <span class="math inline">\(y = c_1y_1 + c_2y_2\)</span> is also a solution of the homogeneous problem.</p>
+<p><span class="theorem-title"><strong>Theorem 4.1</strong></span> If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are solutions of the homogeneous problem then for any constants <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>, the linear combination <span class="math inline">\(y = c_1y_1 + c_2y_2\)</span> is also a solution of the homogeneous problem.</p>
 </div>
 <p>In the language of linear algebra, any linear combination of two solutions is also a solution. The proof follows almost immediately from substituting the linear combination of the two solutions into the differential equation.</p>
 <div id="thm-2ndorder-homog" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.2 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linearly independent solutions to the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> is also a solution to the nonhomogeneous problem for any constant <span class="math inline">\(a\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 4.2</strong></span> If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linearly independent solutions to the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> is also a solution to the nonhomogeneous problem for any constant <span class="math inline">\(a\)</span>.</p>
 </div>
 <p>Again, the proof is simply a matter of plugging the proposed solution into the differential equation.</p>
 <div id="thm-nonhomog" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.3 </strong></span>If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linear independent solutions of the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then every solution of the homogeneous problem can be written in the form <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> for some real numbers <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 4.3</strong></span> If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are two linear independent solutions of the homogeneous problem and <span class="math inline">\(y_p\)</span> is any solution to the nonhomogeneous problem, then every solution of the homogeneous problem can be written in the form <span class="math inline">\(y = c_1y_1 + c_2y_2 + y_p\)</span> for some real numbers <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span>.</p>
 </div>
 <p>In short, this theorem states that if we can find two linearly independent solutions, then we know all the solutions to the homogeneous problem, and if we also know any one solution to the nonhomogeneous problem, we know them all. The form of the solution set should look very familiar. It has the same structure as the set of solutions to a system of linear algebraic equations.</p>
 <p>The proof of this theorem is beyond the scope of this course. However, we will be able to give a sketch of the proof later in the term.</p>
 <p>Many of the theorems from linear algebra apply to the operator <span class="math inline">\(L\)</span>. We refer to <span class="math inline">\(Ly=0\)</span> as the homogeneous, or complementary problem, and <span class="math inline">\(Ly = G\)</span> as the nonhomogeneous problem. As with linear systems, if <span class="math inline">\(y_p\)</span> is a solution to the nonhomogeneous problem and <span class="math inline">\(y_h\)</span> is any solution to the homogeneous problem, then <span class="math inline">\(y = cy_h + y_p\)</span> is also a solution to the nonhomogeneous problem, for any constant <span class="math inline">\(c\)</span>. This can be easily verified by direct substitution. Further, if <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are both solutions to the homogeneous problem, then any function of the form <span class="math inline">\(y = c_1y_1 + c_2 y_2\)</span> is also a solution to the homogeneous problem. Note the slight difference in the wording of these results from the theorems stated above. When <span class="math inline">\(L\)</span> is a second order linear differential operator, such as arises from second order linear differential equation, then it can further be shown that the homogeneous problem <span class="math inline">\(Ly=0\)</span> has a two dimensional solution set. That is, we can always find two linearly independent solutions, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> and every solution to <span class="math inline">\(Ly=0\)</span> can be written as a linear combination of these. This follows from a theorem for the existence and uniqueness of solutions to systems of first order differential equations, which will be sketched later in these notes.</p>
 <p>Later in the notes we will also encounter the eigenvalue problem <span class="math inline">\(Ly=\lambda y\)</span>, where we are interested in finding values of the constant <span class="math inline">\(\lambda\)</span> for which solutions to the eigenvalue problem exist. These typically arise in boundary value problems, and the eigenvalues correspond to modes of oscillation in the physical system.</p>
-<div id="fig-mass-spring" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<figure class="figure">
+<div id="fig-mass-spring" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mass-spring-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <embed src="figures/ODE-spring-figure.pdf" title="Diagram of a Mass-Spring System" class="img-fluid">
-</figure>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4.1: Mass spring system</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-spring-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Mass spring system
+</figcaption>
 </figure>
 </div>
 <div id="exm-MassSpring" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.2 </strong></span>Consider the mass-spring system of Figure <a href="#fig-mass-spring">Figure&nbsp;<span>4.1</span></a> with a mass of <span class="math inline">\(m\)</span> attached to a spring with spring constant <span class="math inline">\(k\)</span>. A differential equation model for the system can be obtained either by energy balance or force balance. The energy of the system is <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 4.2</strong></span> Consider the mass-spring system of Figure <a href="#fig-mass-spring" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> with a mass of <span class="math inline">\(m\)</span> attached to a spring with spring constant <span class="math inline">\(k\)</span>. A differential equation model for the system can be obtained either by energy balance or force balance. The energy of the system is <span class="math display">\[\begin{align*}
     \text{Total Energy} &amp;= \text{Kinetic Energy} + \text{Spring Potential} \\
     &amp;= \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2
   \end{align*}\]</span> Differentiating and assuming the total energy is conserved (constant) leads to the second order differential equation <span class="math inline">\(0 = m\dot{x}\ddot{x} + kx\dot{x}\)</span> which simplifies to <span class="math inline">\(m\ddot{x} + kx = 0.\)</span> Since both <span class="math inline">\(k\)</span> and <span class="math inline">\(m\)</span> are positive constants, the solutions to the equation are functions whose second derivatives are negative multiples of themselves: <span class="math inline">\(\ddot{x} = -\frac{k}{m}x\)</span>. These are sines and cosines of the appropriate period: <span class="math display">\[x_1(t) = \cos \tfrac{k}{m} t, \qquad x_2(t) = \sin \tfrac{k}{m} t.\]</span> The general solution to the differential equation is any linear combination of these two solutions: <span class="math inline">\(x(t) = c_1\cos \tfrac{k}{m} t \, + \, c_2 \sin \tfrac{k}{m} t.\)</span></p>
@@ -268,7 +322,7 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="theory-and-techniques"><span class="header-section-number">4.2.1</span> Theory and Techniques</h3>
 <p>Consider the problem</p>
 <p><span id="eq-generic-ccoef"><span class="math display">\[ay'' + by' +cy = 0 \tag{4.2}\]</span></span></p>
-<p>Based on our experience with first order equations (a=0), we look for a solution of the form <span class="math inline">\(y=e^{rx}\)</span>. If we can find two such solutions, we’ve got them all! First, we substitute the ansatz, <span class="math inline">\(y(x) = e^{rx}\)</span>, into <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> <span class="math display">\[\begin{align*}
+<p>Based on our experience with first order equations (a=0), we look for a solution of the form <span class="math inline">\(y=e^{rx}\)</span>. If we can find two such solutions, we’ve got them all! First, we substitute the ansatz, <span class="math inline">\(y(x) = e^{rx}\)</span>, into <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> <span class="math display">\[\begin{align*}
   a\frac{d^2}{dx^2}\left(e^{rx}\right) + b\frac{d}{dx}\left(e^{rx}\right) +ce^{rx} &amp;= 0 \\
   ar^2e^{rx} + bre^{rx} +ce^{rx} &amp;= 0 \\
   \left(ar^2 + br +c\right)e^{rx} &amp;= 0
@@ -279,7 +333,7 @@ From our calculus course, we know that if <span class="math inline">\(y_1, \dot,
 <p><strong>Case II:</strong> one real root (<span class="math inline">\(b^2 - 4ac = 0\)</span>)</p>
 <p>Here we only have one independent solution <span class="math inline">\(y_1 = c_1e^{rx}\)</span> with <span class="math inline">\(r=-b/(2a)\)</span>.</p>
 <p>At some point in history, someone stumbled upon a second independent solution, <span class="math inline">\(y_2 = xe^{rx}\)</span>, with <span class="math inline">\(r=-b/(2a)\)</span>. While this it is not at all obvious why this should be a solution and how someone would come up with it, it is easy to verify that is is a solution and that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are linearly independent.</p>
-<p>We leave it as an exercise to show, by direct substitution, that <span class="math inline">\(y_2\)</span> solves <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a>. That is, show that <span class="math display">\[a\frac{d^2}{dx^2}\left(xe^{rx}\right) + b\frac{d}{dx}\left(xe^{rx}\right) +cxe^{rx} = 0\]</span> provided <span class="math inline">\(b^2 - 4ac =0\)</span> and <span class="math inline">\(r=b/(2a)\)</span>.</p>
+<p>We leave it as an exercise to show, by direct substitution, that <span class="math inline">\(y_2\)</span> solves <a href="#eq-generic-ccoef" class="quarto-xref">Equation&nbsp;<span>4.2</span></a>. That is, show that <span class="math display">\[a\frac{d^2}{dx^2}\left(xe^{rx}\right) + b\frac{d}{dx}\left(xe^{rx}\right) +cxe^{rx} = 0\]</span> provided <span class="math inline">\(b^2 - 4ac =0\)</span> and <span class="math inline">\(r=b/(2a)\)</span>.</p>
 <p>To show the two solutions are linearly independent, consider the combination <span class="math display">\[\alpha e^{rx} + \beta xe^{rx} = 0.\]</span></p>
 <p>The key concept with linear independence of functions, is that the equality must hold for all <span class="math inline">\(x\)</span> in the domain of the functions. In this case, since <span class="math inline">\(e^{rx} &gt; 0\)</span>, it follows that <span class="math inline">\(\alpha + \beta x = 0\)</span>, which holds only for <span class="math inline">\(x=-\alpha/\beta\)</span>. Hence the two functions are linearly independent on any interval of nonzero length, which is all we care about.</p>
 <p>In summary, the general solution in case II has the form <span class="math display">\[y = (c_1+c_2x)e^{rx} \]</span> with <span class="math inline">\(r = -b/(2a)\)</span>.</p>
@@ -292,21 +346,21 @@ The only catch is that we started with a problem involving real variables and re
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="sec-2ndorder-cc-exr"><span class="header-section-number">4.2.2</span> Exercises</h3>
 <p>All of the exercises in <a href="https://openstax.org/books/calculus-volume-3/pages/7-1-second-order-linear-equations">Section 7.1 of OpenStax Calculus Volume 3</a> are good practice.</p>
 <div id="exr-complexroots-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.1 </strong></span>Use Euler’s formula, <span class="math inline">\(\exp(i\theta) = \cos \theta + i\sin \theta\)</span>, to show that <span class="math inline">\(\cos \theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)\)</span> and <span class="math inline">\(\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\right)\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.1</strong></span> Use Euler’s formula, <span class="math inline">\(\exp(i\theta) = \cos \theta + i\sin \theta\)</span>, to show that <span class="math inline">\(\cos \theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)\)</span> and <span class="math inline">\(\sin \theta = \frac{1}{2i}\left(\exp(i\theta)-\exp(-i\theta)\right)\)</span>.</p>
 </div>
 <div id="exr-complexroots-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.2 </strong></span>Use the results of <a href="#exr-complexroots-1">Exercise&nbsp;<span>4.1</span></a> and <a href="#thm-2ndorder-1">Theorem&nbsp;<span>4.1</span></a> to show that the general solution of <a href="#eq-generic-ccoef">Equation&nbsp;<span>4.2</span></a> can be expressed as <span class="math inline">\(y(t) = c_1e^{\alpha t} \cos \beta t + c_2e^{\alpha t} \sin \beta t\)</span> if the roots of <a href="#eq-characteristic">Equation&nbsp;<span>4.3</span></a> are complex.</p>
+<p><span class="theorem-title"><strong>Exercise 4.2</strong></span> Use the results of <a href="#exr-complexroots-1" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a> and <a href="#thm-2ndorder-1" class="quarto-xref">Theorem&nbsp;<span>4.1</span></a> to show that the general solution of <a href="#eq-generic-ccoef" class="quarto-xref">Equation&nbsp;<span>4.2</span></a> can be expressed as <span class="math inline">\(y(t) = c_1e^{\alpha t} \cos \beta t  + c_2e^{\alpha t} \sin \beta t\)</span> if the roots of <a href="#eq-characteristic" class="quarto-xref">Equation&nbsp;<span>4.3</span></a> are complex.</p>
 </div>
 <div id="exr-2ndorder-linear-cc-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.3 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 4 y' + 13 y = 0\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.3</strong></span> Find the general solutions of <span class="math inline">\(y'' - 4 y' + 13 y = 0\)</span>.</p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled" title="solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Solution
+<div class="callout-title-container flex-fill">
+solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -321,15 +375,15 @@ Solution
 </div>
 </div>
 <div id="exr-2ndorder-linear-cc-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.4 </strong></span>Find the general solutions of <span class="math inline">\(y'' - 6 y' + 5 y = 0\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.4</strong></span> Find the general solutions of <span class="math inline">\(y'' - 6 y' + 5 y = 0\)</span>.</p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled" title="solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Solution
+<div class="callout-title-container flex-fill">
+solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -344,15 +398,15 @@ Solution
 </div>
 </div>
 <div id="exr-2ndorder-linear-cc-3" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.5 </strong></span>Find the general solutions of <span class="math inline">\(y'' + 4 y' + 4 y = 0\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.5</strong></span> Find the general solutions of <span class="math inline">\(y'' + 4 y' + 4 y = 0\)</span>.</p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled" title="solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Solution
+<div class="callout-title-container flex-fill">
+solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -367,15 +421,15 @@ Solution
 </div>
 </div>
 <div id="exr-2ndorder-linear-cc-ivp-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.6 </strong></span>Solve the Initial value problem <span class="math inline">\(2y'' + 5y' - 3y = 0\)</span>, with <span class="math inline">\(y(0) = 4\)</span> and <span class="math inline">\(y'(0) = 2\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 4.6</strong></span> Solve the Initial value problem <span class="math inline">\(2y'' + 5y' - 3y = 0\)</span>, with <span class="math inline">\(y(0) = 4\)</span> and <span class="math inline">\(y'(0) = 2\)</span>.</p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled" title="solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Solution
+<div class="callout-title-container flex-fill">
+solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -396,15 +450,15 @@ Solution
 </div>
 </div>
 <div id="exr-2ndorder-linear-cc-bvp-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.7 </strong></span>Solve the Boundary Value problem <span class="math display">\[y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 4.7</strong></span> Solve the Boundary Value problem <span class="math display">\[y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0\]</span></p>
 </div>
-<div class="callout-solution callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled" title="solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Solution
+<div class="callout-title-container flex-fill">
+solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -438,31 +492,35 @@ Suppose we know one solution, <span class="math inline">\(y_1\)</span>, to the h
   a \left(u''y_1 + 2u'y_1'\right) + bu'y_1 + auy_1''+buy_1' +cuy_1 &amp;= g \\
   a \left(u''y_1 + 2u'y_1'\right) + bu'y_1  = g
 \end{align*}\]</span> On that last step, we used the fact that <span class="math inline">\(y_1\)</span> is a solution to the homogeneous problem. The last few terms cancel leaving us with an equation that only involves the derivatives of <span class="math inline">\(u\)</span>. Although this is still a second order equation for <span class="math inline">\(u\)</span>, we can view it as a first order equation for <span class="math inline">\(u'\)</span>. To make this easier to see, gather up the coefficients of <span class="math inline">\(u''\)</span> and <span class="math inline">\(u'\)</span> and let <span class="math inline">\(U = u'\)</span>. <span class="math display">\[ay_1 U' + \left(2ay_1' + by_1\right)U  = g\]</span> We can solve this first order linear equation for <span class="math inline">\(U\)</span>, integrate <span class="math inline">\(U\)</span> to find <span class="math inline">\(u\)</span>, and multiply by <span class="math inline">\(y_1\)</span> to find a solution to the original nonhomogeneous second order problem for <span class="math inline">\(y\)</span>.</p>
-<p>Now suppose we know two linearly independent solutions, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>, to the homogeneous problem <a href="#eq-2ndordervp">Equation&nbsp;<span>4.4</span></a> with <span class="math inline">\(g=0\)</span>. We can use the same idea to find a particular solution to the nonhomogeneous problem <a href="#eq-2ndordervp">Equation&nbsp;<span>4.4</span></a>. The trick is to look for a solution of the form <span class="math inline">\(y(x) = u(x)y_1(x) + v(x)y_2(x)\)</span>. Notice that <span class="math inline">\(y' = u'y_1 + uy'_1 + v'y_2 + vy'_2\)</span>. It turns out looking for two functions, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, gives us enough freedom to choose these functions so that <span class="math inline">\(u'y_1 + v'y_2 = 0\)</span>. This simplifies <span class="math inline">\(y'\)</span> to <span class="math inline">\(uy'_1 + vy'_2\)</span>, and then <span class="math inline">\(y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\)</span>. Substituting these into our general ODE yields <span class="math display">\[a \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + b\left(uy'_1 + vy'_2\right) + c\left(uy_1 + vy_2\right) = g\]</span> This looks nasty, but recognizing that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> satisfy the ODE, it reduces to <span class="math display">\[au'y'_1 + av'y'_2 = g\]</span> Thus, we’ve converted our second order problem for <span class="math inline">\(y\)</span> into a pair of first order problems for <span class="math inline">\(u'\)</span> and <span class="math inline">\(v'\)</span>. In matrix form, the pair of equations, and their solution have a nice structure. <span class="math display">\[\begin{equation}
+<p>Now suppose we know two linearly independent solutions, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>, to the homogeneous problem <a href="#eq-2ndordervp" class="quarto-xref">Equation&nbsp;<span>4.4</span></a> with <span class="math inline">\(g=0\)</span>. We can use the same idea to find a particular solution to the nonhomogeneous problem <a href="#eq-2ndordervp" class="quarto-xref">Equation&nbsp;<span>4.4</span></a>. The trick is to look for a solution of the form <span class="math inline">\(y(x) = u(x)y_1(x) + v(x)y_2(x)\)</span>. Notice that <span class="math inline">\(y' = u'y_1  + uy'_1 + v'y_2  + vy'_2\)</span>. It turns out looking for two functions, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, gives us enough freedom to choose these functions so that <span class="math inline">\(u'y_1  + v'y_2 = 0\)</span>. This simplifies <span class="math inline">\(y'\)</span> to <span class="math inline">\(uy'_1 + vy'_2\)</span>, and then <span class="math inline">\(y'' = u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\)</span>. Substituting these into our general ODE yields <span class="math display">\[a \left(u'y'_1 + uy_1^{''} + v'y'_2 + vy_2^{''}\right) + b\left(uy'_1 + vy'_2\right) + c\left(uy_1 + vy_2\right) = g\]</span> This looks nasty, but recognizing that <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> satisfy the ODE, it reduces to <span class="math display">\[au'y'_1 + av'y'_2 = g\]</span> Thus, we’ve converted our second order problem for <span class="math inline">\(y\)</span> into a pair of first order problems for <span class="math inline">\(u'\)</span> and <span class="math inline">\(v'\)</span>. In matrix form, the pair of equations, and their solution have a nice structure. <span class="math display">\[\begin{equation}
     \begin{pmatrix} y_1 &amp; y_2 \\ y_1' &amp; y_2' \end{pmatrix}
     \begin{pmatrix} u' \\ v' \end{pmatrix}
         =\begin{pmatrix} 0 \\ \frac{g}{a} \end{pmatrix}
 \end{equation}\]</span> <span class="math display">\[\begin{equation}
     \begin{pmatrix} u' \\ v' \end{pmatrix}
         =\frac{1}{a} \begin{pmatrix} y_1 &amp; y_2 \\ y_1' &amp; y_2' \end{pmatrix}^{-1}
-        \begin{pmatrix} 0 \\ \g \end{pmatrix}
+        \begin{pmatrix} 0 \\ g \end{pmatrix}
 \end{equation}\]</span> <span class="math display">\[\begin{equation}
     \begin{pmatrix} u' \\ v' \end{pmatrix}
         =\frac{1}{a(y_1y_2' - y_1'y_2} \begin{pmatrix} y_2' &amp; -y_2 \\ -y_1' &amp; y_1 \end{pmatrix}^{-1}
-        \begin{pmatrix} 0 \\ \g \end{pmatrix}
+        \begin{pmatrix} 0 \\ g \end{pmatrix}
 \end{equation}\]</span> On the right hand side we have known functions of <span class="math inline">\(x\)</span>. The three functions <span class="math inline">\(a\)</span>, <span class="math inline">\(y_1\)</span>, and <span class="math inline">\(y_2\)</span> represent our system, and the fourth function, <span class="math inline">\(g\)</span>, usually represents something like an external forcing or applied voltage. We’ll see this matrix form again when we study systems of first order equations.</p>
 <p>The determinant, <span class="math inline">\(y_1y_2' - y_1'y_2\)</span>, is known as the Wronskian. Since <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> were linearly independent, we expect this to be nonzero. This isn’t always the case, but it is likely true for most practical cases you’ll encounter.</p>
 <p>We can express <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> as integrals and express the solution <span class="math inline">\(y\)</span> as <span id="eq-2ndordervp-formula"><span class="math display">\[y = -y_1\int \frac{y_2g}{a(y_1y_2' - y_1'y_2)}  + y_2\int \frac{y_1g}{a(y_1y_2' - y_1'y_2)} \tag{4.5}\]</span></span> We’ve use the two solutions to the homogeneous problem to reduce our nonhomogeneous problem to two integrations of known functions.</p>
 <div id="exm-2ndordervp-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.3 </strong></span>Use the method of variation of parameters to find the general solution to <span class="math inline">\(y'' + 9y = \sec 3x\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 4.3</strong></span> Use the method of variation of parameters to find the general solution to <span class="math inline">\(y'' + 9y = \sec 3x\)</span>.</p>
 <p>First, solve the homogeneous problem. The characteristic equation is <span class="math inline">\(r^2+9=0\)</span>, which has complex roots, <span class="math inline">\(r=\pm 3i\)</span>. The two solutions are <span class="math inline">\(y_1(x) = \cos(3x)\)</span> and <span class="math inline">\(y_2(x) = \sin(3x)\)</span>.</p>
 <p>Second, compute <span class="math inline">\(y_1'\)</span> and <span class="math inline">\(y_2'\)</span> and set up the system for <span class="math inline">\(u'\)</span> and <span class="math inline">\(v'\)</span> <span class="math display">\[\begin{align*}
     u'\cos 3x  + v' \sin(3x) &amp;= 0 \\
 -3u'\sin 3x  + 3v' \cos(3x) &amp;= \sec 3x
-\end{align*}\]</span> Isolate <span class="math inline">\(u'\)</span> by multiplying the first equation through by <span class="math inline">\(3\cos(3x)\)</span>, the second through by <span class="math inline">\(\sin(3x)\)</span> and taking the difference of the results <span class="math display">\[u' = -\frac{1}{3}\sin(3x) \sec(3x)\]</span> Similarly, we find <span class="math display">\[v' =  -\frac{1}{3}\cos(3x) \sec(3x) = -\frac{1}{3}\]</span> Integrate to find <span class="math inline">\(u\)</span> begin{align<em>} u(x) &amp;= -(3x) (3x) , dx \ &amp;= -(3x) , dx \ &amp;= | 3x | end{align</em>} and <span class="math inline">\(v = \frac{x}{3}\)</span></p>
+\end{align*}\]</span> Isolate <span class="math inline">\(u'\)</span> by multiplying the first equation through by <span class="math inline">\(3\cos(3x)\)</span>, the second through by <span class="math inline">\(\sin(3x)\)</span> and taking the difference of the results <span class="math display">\[u' = -\frac{1}{3}\sin(3x) \sec(3x)\]</span> Similarly, we find <span class="math display">\[v' =  -\frac{1}{3}\cos(3x) \sec(3x) = -\frac{1}{3}\]</span> Integrate to find <span class="math inline">\(u\)</span> <span class="math display">\[\begin{align*}
+u(x) &amp;= -\frac{1}{3}\int \sin(3x) \sec(3x) \, dx \\
+      &amp;= -\frac{1}{3}\int \tan(3x) \, dx \\
+            &amp;= \frac{1}{9}\log \| \cos 3x  \|
+\end{align*}\]</span> and <span class="math inline">\(v = \frac{x}{3}\)</span></p>
 <p>Putting everything together,</p>
 <p><span class="math display">\[y(x) = c_1\cos(3x) + c_2\sin(3x)
-           + \frac{1}{9}\cos(3x)\log | \cos(3x) |
+           + \frac{1}{9}\cos(3x)\log \| \cos(3x) \|
                  + \frac{1}{3}x\sin(3x)\]</span></p>
 </div>
 </section>
@@ -480,7 +538,7 @@ Suppose we know one solution, <span class="math inline">\(y_1\)</span>, to the h
 <h2 data-number="4.4" class="anchored" data-anchor-id="initial-and-boundary-value-problems"><span class="header-section-number">4.4</span> Initial and boundary value problems</h2>
 <p>The general form of the solution has two arbitrary constants. Thus it is a two-parameter family of solutions. In practice, we are often interested in a solution satisfying additional constraints. These are typically posed as either initial conditions or boundary conditions. Initial conditions are given as constraints of the form <span class="math inline">\(y(0) = y_1\)</span> and <span class="math inline">\(y'(0) = y_2\)</span> for some specified constants <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>. Boundary conditions are typically given as <span class="math inline">\(y(0) = y_0\)</span> and <span class="math inline">\(y(1) = y_1\)</span>, but could involve derivatives of <span class="math inline">\(y\)</span> at the boundaries.</p>
 <div id="exm-SecondOrderLinear-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.4 </strong></span>Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 4.4</strong></span> Find a solution to <span class="math inline">\(y'' + 2y' - 3 = 2x\)</span> satisfying the initial conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y'(0) = 1\)</span>.</p>
 </div>
 </section>
 <section id="summary" class="level2" data-number="4.5">
@@ -492,7 +550,7 @@ A double root (<span class="math inline">\(b^2 = 4ac\)</span>): <span class="mat
 </section>
 <section id="discussion" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="discussion"><span class="header-section-number">4.6</span> Discussion</h2>
-<p>Note that we refer to <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> as linear when it is linear in the dependent variable. It may be nonlinear in the independent variable. For example,<br>
+<p>Note that we refer to <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> as linear when it is linear in the dependent variable. It may be nonlinear in the independent variable. For example,<br>
 applying Kirchoff’s law to a simple electric circuit yields the model <span class="math display">\[LQ''(t) + RQ'(t) + \frac{1}{C}Q(t) = E(t)\]</span> where the dependent variable, <span class="math inline">\(Q\)</span>, is the charge, and is assumed to depend on the time, <span class="math inline">\(t\)</span>. The parameters <span class="math inline">\(L\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> are the inductance, resistance and capacitance of the circuit and <span class="math inline">\(E\)</span> is an applied voltage. If the fixed resistance <span class="math inline">\(R\)</span> is replaced by a variable resistance, <span class="math inline">\(R(t)\)</span>, the equation is still linear in the dependent variable.</p>
 <p>More generally, a differential equation is an equation involving a function and some of its derivatives.<br>
 For example, a simple model for the angular deflection <span class="math inline">\(\theta(t)\)</span> of a pendulum of length <span class="math inline">\(l\)</span> is <span class="math display">\[l\theta''(t) + g\sin \theta(t) = 0,\]</span> which arises from balancing kinetic and potential energies. This equation is nonlinear in the dependent variable <span class="math inline">\(\theta\)</span>. For small angles, we can approximate <span class="math inline">\(\sin(\theta)\)</span> by <span class="math inline">\(\theta\)</span> leading to the linear second order constant coefficient model <span class="math display">\[l\theta''(t) + g\theta(t) = 0.\]</span> Most systems are nonlinear. However most analyses begin with the study of linear approximations. Hence the importance of studying linear differential equations.</p>
@@ -500,7 +558,7 @@ For example, a simple model for the angular deflection <span class="math inline"
 <section id="theoretical-considerations" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="theoretical-considerations"><span class="header-section-number">4.7</span> Theoretical Considerations</h2>
 <p>A good treatment of the existence and uniqueness of solutions to differential equations can be found in Hartman. This material is approachable, but requires a deeper exposure to linear algebra than you received in Math 1503.</p>
-<p>Consider the general Second order linear ODE of <a href="#eq-genericode">Equation&nbsp;<span>4.1</span></a> with <span class="math inline">\(G=0\)</span>. Let <span class="math inline">\(w(x) = y'(x)\)</span> and write the single equation as</p>
+<p>Consider the general Second order linear ODE of <a href="#eq-genericode" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> with <span class="math inline">\(G=0\)</span>. Let <span class="math inline">\(w(x) = y'(x)\)</span> and write the single equation as</p>
 <p><span class="math display">\[P(x)w'(x) + Q(x)w(x) + R(x)y(x) = 0,\]</span></p>
 <p>which leads to the linear system <span class="math display">\[\begin{align}
   w'(x) &amp;=  - \frac{Q(x)}{P(x)}w(x) - \frac{R(x)}{P(x)}y(x), \\
@@ -538,12 +596,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -575,11 +636,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -589,8 +687,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -602,9 +709,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -646,17 +988,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./M3503-lec02-Systems.html" class="pagination-link">
+      <a href="./M3503-lec02-Systems.html" class="pagination-link" aria-label="Systems of First order equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./M3503-lec04-LaplaceTransforms.html" class="pagination-link">
+      <a href="./M3503-lec04-LaplaceTransforms.html" class="pagination-link" aria-label="Laplace Transforms">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

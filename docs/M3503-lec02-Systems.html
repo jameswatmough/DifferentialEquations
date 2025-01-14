@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2023-03-23">
+<meta name="dcterms.date" content="2025-01-14">
 
-<title>Math 3503: Differential Equations for Engineers - 3&nbsp; Systems of First order equations</title>
+<title>3&nbsp; Systems of First order equations – Differential Equations in Mathematical Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -33,23 +33,29 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./M3503-lec03-SecondOrderODE.html" rel="next">
-<link href="./M3503-lec01-FirstOrderODE.html" rel="prev">
+<link href="./ode-intro-geom.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8b437fc44df5d31213a6bde2e7d8e062.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -58,12 +64,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -71,11 +107,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./M3503-lec02-Systems.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -83,83 +124,94 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math 3503: Differential Equations for Engineers</a> 
+      <a href="./">Differential Equations in Mathematical Ecology</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">2023 Winter Test and Class Schedules</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preamble</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-FirstOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></a>
+  <a href="./ode-intro-geom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></a>
+  <a href="./M3503-lec02-Systems.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></a>
+  <a href="./M3503-lec03-SecondOrderODE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></a>
+  <a href="./M3503-lec04-LaplaceTransforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Laplace Transforms</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></a>
+  <a href="./M3503-lec05-FourierSeries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-general-nonlinear-system-existence-and-uniqueness-of-solutions" id="toc-the-general-nonlinear-system-existence-and-uniqueness-of-solutions" class="nav-link active" data-scroll-target="#the-general-nonlinear-system-existence-and-uniqueness-of-solutions"><span class="toc-section-number">3.1</span>  The General Nonlinear System: Existence and Uniqueness of Solutions</a></li>
-  <li><a href="#homogeneous-constant-coefficient-linear-systems" id="toc-homogeneous-constant-coefficient-linear-systems" class="nav-link" data-scroll-target="#homogeneous-constant-coefficient-linear-systems"><span class="toc-section-number">4</span>  Homogeneous Constant Coefficient Linear Systems</a>
+  <li><a href="#the-general-nonlinear-system-existence-and-uniqueness-of-solutions" id="toc-the-general-nonlinear-system-existence-and-uniqueness-of-solutions" class="nav-link active" data-scroll-target="#the-general-nonlinear-system-existence-and-uniqueness-of-solutions"><span class="header-section-number">3.1</span> The General Nonlinear System: Existence and Uniqueness of Solutions</a></li>
+  <li><a href="#homogeneous-constant-coefficient-linear-systems" id="toc-homogeneous-constant-coefficient-linear-systems" class="nav-link" data-scroll-target="#homogeneous-constant-coefficient-linear-systems"><span class="header-section-number">4</span> Homogeneous Constant Coefficient Linear Systems</a>
   <ul class="collapse">
-  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture"><span class="toc-section-number">4.1</span>  The big picture</a></li>
-  <li><a href="#sec-diagon" id="toc-sec-diagon" class="nav-link" data-scroll-target="#sec-diagon"><span class="toc-section-number">4.2</span>  Real and Distinct Eigenvalues</a></li>
-  <li><a href="#sec-complex" id="toc-sec-complex" class="nav-link" data-scroll-target="#sec-complex"><span class="toc-section-number">4.3</span>  Complex Eigenvalues</a></li>
-  <li><a href="#sec-geneig" id="toc-sec-geneig" class="nav-link" data-scroll-target="#sec-geneig"><span class="toc-section-number">4.4</span>  Repeated Eigenvalues</a></li>
-  <li><a href="#the-second-simplest-case" id="toc-the-second-simplest-case" class="nav-link" data-scroll-target="#the-second-simplest-case"><span class="toc-section-number">4.5</span>  The second simplest case</a></li>
-  <li><a href="#generalized-eigenvectors" id="toc-generalized-eigenvectors" class="nav-link" data-scroll-target="#generalized-eigenvectors"><span class="toc-section-number">4.6</span>  Generalized Eigenvectors</a></li>
-  <li><a href="#the-jordan-form" id="toc-the-jordan-form" class="nav-link" data-scroll-target="#the-jordan-form"><span class="toc-section-number">4.7</span>  The Jordan form</a></li>
+  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture"><span class="header-section-number">4.1</span> The big picture</a></li>
+  <li><a href="#sec-diagon" id="toc-sec-diagon" class="nav-link" data-scroll-target="#sec-diagon"><span class="header-section-number">4.2</span> Real and Distinct Eigenvalues</a></li>
+  <li><a href="#sec-complex" id="toc-sec-complex" class="nav-link" data-scroll-target="#sec-complex"><span class="header-section-number">4.3</span> Complex Eigenvalues</a></li>
+  <li><a href="#sec-geneig" id="toc-sec-geneig" class="nav-link" data-scroll-target="#sec-geneig"><span class="header-section-number">4.4</span> Repeated Eigenvalues</a>
+  <ul class="collapse">
+  <li><a href="#the-second-simplest-case" id="toc-the-second-simplest-case" class="nav-link" data-scroll-target="#the-second-simplest-case"><span class="header-section-number">4.4.1</span> The second simplest case</a></li>
+  <li><a href="#generalized-eigenvectors" id="toc-generalized-eigenvectors" class="nav-link" data-scroll-target="#generalized-eigenvectors"><span class="header-section-number">4.4.2</span> Generalized Eigenvectors</a></li>
+  <li><a href="#the-jordan-form" id="toc-the-jordan-form" class="nav-link" data-scroll-target="#the-jordan-form"><span class="header-section-number">4.4.3</span> The Jordan form</a></li>
   </ul></li>
-  <li><a href="#the-nonhomogeneous-problem" id="toc-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#the-nonhomogeneous-problem"><span class="toc-section-number">5</span>  The nonhomogeneous problem</a>
+  </ul></li>
+  <li><a href="#the-nonhomogeneous-problem" id="toc-the-nonhomogeneous-problem" class="nav-link" data-scroll-target="#the-nonhomogeneous-problem"><span class="header-section-number">5</span> The nonhomogeneous problem</a>
   <ul class="collapse">
-  <li><a href="#sec-varparm" id="toc-sec-varparm" class="nav-link" data-scroll-target="#sec-varparm"><span class="toc-section-number">5.1</span>  The method of variation of parameters</a></li>
-  <li><a href="#the-solution-via-laplace-transforms" id="toc-the-solution-via-laplace-transforms" class="nav-link" data-scroll-target="#the-solution-via-laplace-transforms"><span class="toc-section-number">5.2</span>  The solution via Laplace Transforms</a></li>
+  <li><a href="#sec-varparm" id="toc-sec-varparm" class="nav-link" data-scroll-target="#sec-varparm"><span class="header-section-number">5.1</span> The method of variation of parameters</a></li>
+  <li><a href="#the-solution-via-laplace-transforms" id="toc-the-solution-via-laplace-transforms" class="nav-link" data-scroll-target="#the-solution-via-laplace-transforms"><span class="header-section-number">5.2</span> The solution via Laplace Transforms</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -169,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-systems" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span></h1>
+<h1 class="title"><span id="sec-systems" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems of First order equations</span></span></h1>
 </div>
 
 
@@ -186,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 23, 2023</p>
+      <p class="date">January 14, 2025</p>
     </div>
   </div>
   
@@ -194,23 +246,25 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="the-general-nonlinear-system-existence-and-uniqueness-of-solutions" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="the-general-nonlinear-system-existence-and-uniqueness-of-solutions"><span class="header-section-number">3.1</span> The General Nonlinear System: Existence and Uniqueness of Solutions</h2>
 <p>Consider a system of differential equations of the form <span class="math inline">\(y'(t) = f(t,y(t))\)</span>, where <span class="math inline">\(f:{\mathbb R}\times{\mathbb R}^n\to{\mathbb R}^n\)</span> and we seek a solution <span class="math inline">\(y:{\mathbb R}\to {\mathbb R}^n\)</span>. That is, <span class="math inline">\(y\)</span> is a vector, or n-tuple of functions, and the function <span class="math inline">\(f\)</span> takes a vector and a real number as inputs and returns a vector as an output. The equations are often accompanied by initial conditions of the form <span class="math inline">\(y(t_0) = y_0\)</span>. The solution is a curve in <span class="math inline">\({\mathbb R}^n\)</span> parameterized by <span class="math inline">\(t\)</span> and passing through the point <span class="math inline">\(y_0\)</span>.</p>
 <p>Sufficient conditions to guarantee the existence of a unique solution through any point are that <span class="math inline">\(f\)</span> be continuous in <span class="math inline">\(t\)</span> and differentiable in <span class="math inline">\(y\)</span>. However, a weaker condition than differentiability is also known to suffice.</p>
 <div id="def-Lipschitz" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.1 (Lipschitz Continuity) </strong></span>A function <span class="math inline">\(f\)</span> is said to be Lipschitz continuous on some subset <span class="math inline">\(U\)</span> of its domain if there exists a constant <span class="math inline">\(M\)</span> for which <span class="math inline">\(\left\|f(x)-f(y)\right\| &lt; M\left\|x-y\right\|\)</span> whenever <span class="math inline">\(x,y\in U\)</span> with <span class="math inline">\(x\ne y\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 3.1 (Lipschitz Continuity)</strong></span> A function <span class="math inline">\(f\)</span> is said to be Lipschitz continuous on some subset <span class="math inline">\(U\)</span> of its domain if there exists a constant <span class="math inline">\(M\)</span> for which <span class="math inline">\(\left\|f(x)-f(y)\right\| &lt; M\left\|x-y\right\|\)</span> whenever <span class="math inline">\(x,y\in U\)</span> with <span class="math inline">\(x\ne y\)</span>.</p>
 </div>
 <p>Equivalently, a function is Lipschitz continuous if the slopes of its secant lines are all bounded. For example, <span class="math inline">\(|x|\)</span> is Lipschitz continuous; <span class="math inline">\(x^{2/3}\)</span> is continuous but not Lipschitz since the secant lines tend towards vertical near the origin. Note, <span class="math inline">\(x^{2/3}\)</span> is (locally) Lipschitz so long as the set of interest is bounded away from the origin. In one dimension, <span class="math inline">\(\left\|x-y\right\|\)</span> can be assumed to be <span class="math inline">\(|x-y|\)</span>. In higher dimensions <span class="math inline">\(\left\|\cdot\right\|\)</span> is most often the standard Euclidian distance.</p>
 <p>The classic result for the existence of solutions to our system of differential equations is as follows.</p>
 <div id="thm-existence-uniqueness" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.1 </strong></span>If <span class="math inline">\(f(t,y)\)</span> is continuous in the independent variable, <span class="math inline">\(t\)</span>, and Lipschitz continuous in <span class="math inline">\(y\)</span>, then the initial value problem <span class="math inline">\(y' = f(t,y)\)</span>, <span class="math inline">\(y(t_0) = y_0\)</span> has a unique solution on some open interval <span class="math inline">\(a &lt; t_0 &lt; b\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 3.1</strong></span> If <span class="math inline">\(f(t,y)\)</span> is continuous in the independent variable, <span class="math inline">\(t\)</span>, and Lipschitz continuous in <span class="math inline">\(y\)</span>, then the initial value problem <span class="math inline">\(y' = f(t,y)\)</span>, <span class="math inline">\(y(t_0) = y_0\)</span> has a unique solution on some open interval <span class="math inline">\(a &lt; t_0 &lt; b\)</span>.</p>
 </div>
 <p>Various proofs of the above theorem can be found in most advanced books on differential equations.</p>
 <div id="exm-intro-nonunique" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.1 </strong></span>An example for which solutions exist, but are not unique is the simple scalar initial value problem <span class="math inline">\(y' = y^{2/3}\)</span>, <span class="math inline">\(y(0) = 0\)</span>. The function <span class="math inline">\(y^{2/3}\)</span> is continuous for all <span class="math inline">\(y\)</span>, but has a cusp at the origin. It is not differentiable, nor is it Lipschitz continuous at the origin. Yet the differential equation is easily solved using the method of separation of variables, leading to the solutions <span class="math inline">\(y(t) = \frac{1}{3}(t+c)^3\)</span>. Taking <span class="math inline">\(c=0\)</span> gives a solution passing through the origin. A second obvious solution is <span class="math inline">\(y(t) = 0\)</span>. Moreover, we can splice these solutions together to get an infinite family of solutions to the initial value problem: <span class="math display">\[\begin{equation}
+<p><span class="theorem-title"><strong>Example 3.1</strong></span> An example for which solutions exist, but are not unique is the simple scalar initial value problem <span class="math inline">\(y' = y^{2/3}\)</span>, <span class="math inline">\(y(0) = 0\)</span>. The function <span class="math inline">\(y^{2/3}\)</span> is continuous for all <span class="math inline">\(y\)</span>, but has a cusp at the origin. It is not differentiable, nor is it Lipschitz continuous at the origin. Yet the differential equation is easily solved using the method of separation of variables, leading to the solutions <span class="math inline">\(y(t) = \frac{1}{3}(t+c)^3\)</span>. Taking <span class="math inline">\(c=0\)</span> gives a solution passing through the origin. A second obvious solution is <span class="math inline">\(y(t) = 0\)</span>. Moreover, we can splice these solutions together to get an infinite family of solutions to the initial value problem: <span class="math display">\[\begin{equation}
     y(t) = \begin{cases}
           \frac{1}{3}(t+c_1)^3 &amp; t &lt; -c_1  \\
           0 &amp; -c_1 \le t \le c_2 \\
@@ -220,8 +274,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Systems of higher order differential equations can be expressed as systems of linear equations by introducing the derivatives as new state variables.</p>
 <div id="exm-" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.2 </strong></span>Express the second order equation <span class="math inline">\((t-3)y''(t) + t^2y'(t) + 7y(t) = f(t)\)</span> as a system of two first order equations.</p>
-<p>Let <span class="math inline">\(z = y'\)</span>. Then the second order equation becomes <span class="math inline">\((t-3)z'(t) + t^2z(t) + 7y(t) = f(t)\)</span>. This together with the definition of <span class="math inline">\(z\)</span> gives a pair of first order equations. Dividing through by <span class="math inline">\((t-3)\)</span> puts the system in the basic form <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 3.2</strong></span> Express the second order equation <span class="math inline">\((t-3)y''(t) + t^2y'(t) + 7y(t) = f(t)\)</span> as a system of two first order equations.</p>
+<p>Let <span class="math inline">\(z  = y'\)</span>. Then the second order equation becomes <span class="math inline">\((t-3)z'(t) + t^2z(t) + 7y(t) = f(t)\)</span>. This together with the definition of <span class="math inline">\(z\)</span> gives a pair of first order equations. Dividing through by <span class="math inline">\((t-3)\)</span> puts the system in the basic form <span class="math display">\[\begin{align*}
     y'(t) &amp;= z(t) \\
     z'(t) &amp;=  -\frac{t^2}{t-3}z(t) - \frac{7}{t-3}y(t) + f(t)
   \end{align*}\]</span> The right hand side is linear, and hence differentiable, in <span class="math inline">\((y,z)\)</span> and continuous in <span class="math inline">\(t\)</span> on any interval bounded away from <span class="math inline">\(t=3\)</span>.</p>
@@ -231,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="4"><span class="header-section-number">4</span> Homogeneous Constant Coefficient Linear Systems</h1>
 <section id="the-big-picture" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="the-big-picture"><span class="header-section-number">4.1</span> The big picture</h2>
-<p>Consider the linear system of ordinary differential equations <span class="math inline">\(x' = Ax\)</span> where <span class="math inline">\(x(t) = \left( x_1(t), x_2(t), \dots, x_n(t) \right)^T\)</span>and <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times n\)</span> matrix of real numbers (constants). The general theory for finding all solutions to the linear system is based on an eigenvalue decomposition of the matrix <span class="math inline">\(A\)</span>. Let <span class="math inline">\(r_1, r_2, \dots r_m\)</span> be the <span class="math inline">\(m\)</span> eigenvalues of <span class="math inline">\(A\)</span>. The theory of matrices and eigenvalues guarantees that <span class="math inline">\(A\)</span> has at least one eigenvalue, and no more than <span class="math inline">\(n\)</span> distinct eigenvalues, hence we can arrange things so that <span class="math inline">\(1 \le m \le n\)</span> and all the <span class="math inline">\(m\)</span> eigenvalues are distinct. That is, <span class="math inline">\(r_i=r_j \leftrightarrow i=j\)</span>. A handy theorem from linear algebra states that there is an invertible matrix <span class="math inline">\(S\)</span>, for which <span class="math inline">\(S^{-1}AS = \begin{pmatrix} J_1 &amp; &amp; 0 \\ &amp; \ddots &amp; \\ 0 &amp; &amp; J_m \end{pmatrix}\)</span>.</p>
+<p>Consider the linear system of ordinary differential equations <span class="math inline">\(x' = Ax\)</span> where <span class="math inline">\(x(t) = \left( x_1(t), x_2(t), \dots, x_n(t) \right)^T\)</span>and <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times n\)</span> matrix of real numbers (constants). The general theory for finding all solutions to the linear system is based on an eigenvalue decomposition of the matrix <span class="math inline">\(A\)</span>. Let <span class="math inline">\(r_1, r_2, \dots r_m\)</span> be the <span class="math inline">\(m\)</span> eigenvalues of <span class="math inline">\(A\)</span>. The theory of matrices and eigenvalues guarantees that <span class="math inline">\(A\)</span> has at least one eigenvalue, and no more than <span class="math inline">\(n\)</span> distinct eigenvalues, hence we can arrange things so that <span class="math inline">\(1 \le m \le n\)</span> and all the <span class="math inline">\(m\)</span> eigenvalues are distinct. That is, <span class="math inline">\(r_i=r_j \leftrightarrow i=j\)</span>. A handy theorem from linear algebra states that there is an invertible matrix <span class="math inline">\(S\)</span>, for which <span class="math inline">\(S^{-1}AS = \begin{pmatrix} J_1 &amp; &amp; 0 \\ &amp; \ddots &amp; \\ 0  &amp; &amp; J_m \end{pmatrix}\)</span>.</p>
 <p>We know from linear algebra that each eigenvalue of <span class="math inline">\(A\)</span> has a multiplicity.</p>
 </section>
 <section id="sec-diagon" class="level2" data-number="4.2">
@@ -250,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 \frac{d}{dt} \left(x_2e^{-at}\right) &amp;= -bx_1e^{-at}.\label{intfactx2}
 \end{align}\]</span> Differentiating the first of these equations and eliminating <span class="math inline">\(x_2\)</span> using the second yields <span class="math display">\[\begin{equation}
 \frac{d^2}{dt^2} \left(x_1e^{-at}\right) = b\frac{d}{dt}\left( x_2e^{-at}\right) = -b^2x_1e^{-at}.
-\end{equation}\]</span> Hence, <span class="math inline">\(x_1e^{-at} = c_1\cos(bt) + c_2\sin(bt)\)</span>, which implies <span class="math inline">\(x_1(t)= e^{at}\left( c_1\cos(bt) + c_2\sin(bt)\right)\)</span>. To compute <span class="math inline">\(x_2\)</span> we use as follows: <span class="math display">\[\begin{align*}
+\end{equation}\]</span> Hence, <span class="math inline">\(x_1e^{-at} =  c_1\cos(bt) + c_2\sin(bt)\)</span>, which implies <span class="math inline">\(x_1(t)=  e^{at}\left( c_1\cos(bt) + c_2\sin(bt)\right)\)</span>. To compute <span class="math inline">\(x_2\)</span> we use as follows: <span class="math display">\[\begin{align*}
 bx_2e^{-at}
 &amp;=  \frac{d}{dt} \left(x_1e^{-at}\right) \\
 &amp;= \frac{d}{dt} \left( c_1\cos(bt) + c_2\sin(bt)\right) \\
@@ -268,15 +322,14 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
 <section id="sec-geneig" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-geneig"><span class="header-section-number">4.4</span> Repeated Eigenvalues</h2>
 <p>We have seen how to find solutions if we know a sufficient number of linearly independent eigenvectors. In this section we tackle the case where the geometric multiplicity of an eigenvalue (the dimension of the Eigenspace) is less than its algebraic multiplicity. We do this by first finding a general solution for a simple case and then derive a method to transform, through a change of basis, any other system to a similar simple system.</p>
-</section>
-<section id="the-second-simplest-case" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="the-second-simplest-case"><span class="header-section-number">4.5</span> The second simplest case</h2>
+<section id="the-second-simplest-case" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="the-second-simplest-case"><span class="header-section-number">4.4.1</span> The second simplest case</h3>
 <p>Consider the system <span class="math display">\[\begin{align}
   \dot{x}_1(t) &amp;= rx_1(t) + x_2(t),  \label{simple1}\\
   \dot{x}_2(t) &amp;= rx_2(t), \label{simple2}
 \end{align}\]</span> which when written in matrix form looks like <span class="math display">\[ \begin{pmatrix} \dot{x}_1 \\ \dot{x}_2 \end{pmatrix}  
   = \begin{pmatrix} r &amp; 1 \\ 0 &amp; r \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}  \]</span></p>
-<p>The matrix <span class="math inline">\(J = \begin{pmatrix} r &amp; 1 \\ 0 &amp; r \end{pmatrix}\)</span> has a single eigenvalue <span class="math inline">\(r\)</span> with multiplicity 2. However, all eigenvectors of <span class="math inline">\(J\)</span> are multiples of <span class="math inline">\(\vec{u} = \begin{pmatrix}1 \\\ 0 \end{pmatrix}\)</span>. Hence, the eigenvalue <span class="math inline">\(r\)</span> has geometric multiplicity one.</p>
+<p>The matrix <span class="math inline">\(J =  \begin{pmatrix} r &amp; 1 \\ 0 &amp; r \end{pmatrix}\)</span> has a single eigenvalue <span class="math inline">\(r\)</span> with multiplicity 2. However, all eigenvectors of <span class="math inline">\(J\)</span> are multiples of <span class="math inline">\(\vec{u} = \begin{pmatrix}1 \\\ 0 \end{pmatrix}\)</span>. Hence, the eigenvalue <span class="math inline">\(r\)</span> has geometric multiplicity one.</p>
 <p>To solve the system, first integrate to obtain <span class="math inline">\(x_2(t) = c_2e^{rt}\)</span>, then substitute this into and integrate a second time using the integrating factor <span class="math inline">\(e^{-rt}\)</span> to obtain <span class="math display">\[\begin{align*}
   \dot{x}_1(t) = rx_1(t) &amp;+ c_2e^{rt} \\
   \dot{x}_1(t) - rx_1(t) &amp;=  c_2e^{rt} \\
@@ -293,10 +346,10 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
       \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}
 \end{equation}\]</span> Both forms will be convenient at times.</p>
 </section>
-<section id="generalized-eigenvectors" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="generalized-eigenvectors"><span class="header-section-number">4.6</span> Generalized Eigenvectors</h2>
+<section id="generalized-eigenvectors" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="generalized-eigenvectors"><span class="header-section-number">4.4.2</span> Generalized Eigenvectors</h3>
 <div id="def-generalized-eigenvector" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.1 (Generalized eigenvector) </strong></span>A generalized eigenvector of <span class="math inline">\(A\)</span> is a vector <span class="math inline">\(v\)</span> for which <span class="math display">\[\left(A-rI\right)^m v = 0\]</span> for some positive integer <span class="math inline">\(m\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 4.1 (Generalized eigenvector)</strong></span> A generalized eigenvector of <span class="math inline">\(A\)</span> is a vector <span class="math inline">\(v\)</span> for which <span class="math display">\[\left(A-rI\right)^m v = 0\]</span> for some positive integer <span class="math inline">\(m\)</span>.</p>
 </div>
 <p>Comments:</p>
 <ul>
@@ -304,17 +357,17 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
 <li>If <span class="math inline">\(v\)</span> is a generalized eigenvector of <span class="math inline">\(A\)</span>, then the scalar <span class="math inline">\(\lambda\)</span> in the definition is an eigenvalue of <span class="math inline">\(A\)</span>. It also follows that <span class="math inline">\(u = \left(A-\lambda I\right)^{m-1}v\)</span> is an associated eigenvector.</li>
 </ul>
 <div id="thm-algebraic-multiplicity" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.1 </strong></span>If <span class="math inline">\(\lambda\)</span> is an eigenvalue of <span class="math inline">\(A\)</span> with algebraic multiplicity <span class="math inline">\(k\)</span>, then the null space of <span class="math inline">\((A-\lambda I)^k\)</span> has dimension <span class="math inline">\(k\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 4.1</strong></span> If <span class="math inline">\(\lambda\)</span> is an eigenvalue of <span class="math inline">\(A\)</span> with algebraic multiplicity <span class="math inline">\(k\)</span>, then the null space of <span class="math inline">\((A-\lambda I)^k\)</span> has dimension <span class="math inline">\(k\)</span>.</p>
 </div>
 <div id="thm-generalized-eigenvector-basis" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.2 </strong></span>Every matrix <span class="math inline">\(A\)</span> has a full set of generalized eigenvectors. That is, there is a (possibly complex) linearly independent set <span class="math inline">\(v_1,\dots,v_n\)</span> of generalized eigenvectors for every <span class="math inline">\(n\times n\)</span> matrix <span class="math inline">\(A\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 4.2</strong></span> Every matrix <span class="math inline">\(A\)</span> has a full set of generalized eigenvectors. That is, there is a (possibly complex) linearly independent set <span class="math inline">\(v_1,\dots,v_n\)</span> of generalized eigenvectors for every <span class="math inline">\(n\times n\)</span> matrix <span class="math inline">\(A\)</span>.</p>
 </div>
 <div id="exm-systems-1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4.1 </strong></span>Consider the linear system <span class="math inline">\(\vec{y}' = A\vec{y}\)</span> with <span class="math inline">\(\vec{y}(0) = \vec{y}_0\)</span> and <span class="math display">\[\begin{equation} A = \begin{pmatrix} 4 &amp; -4 \\  1 &amp; 0 \end{pmatrix} \end{equation}\]</span> The characteristic polynomial for <span class="math inline">\(A\)</span> is <span class="math inline">\((4-r)(-r) -(-4)(1) = r^2 - 4r + 4 = (r-2)^2\)</span>. Hence, <span class="math inline">\(r_1 = 2\)</span> is an eigenvalue of <span class="math inline">\(A\)</span> with algebraic multiplicity 2. To find the eigenvectors of <span class="math inline">\(A\)</span> associated with <span class="math inline">\(r_1\)</span> we construct and simplify</p>
+<p><span class="theorem-title"><strong>Example 4.1</strong></span> Consider the linear system <span class="math inline">\(\vec{y}' = A\vec{y}\)</span> with <span class="math inline">\(\vec{y}(0) = \vec{y}_0\)</span> and <span class="math display">\[\begin{equation} A = \begin{pmatrix} 4 &amp; -4 \\  1 &amp; 0 \end{pmatrix} \end{equation}\]</span> The characteristic polynomial for <span class="math inline">\(A\)</span> is <span class="math inline">\((4-r)(-r) -(-4)(1) = r^2 - 4r + 4 = (r-2)^2\)</span>. Hence, <span class="math inline">\(r_1 = 2\)</span> is an eigenvalue of <span class="math inline">\(A\)</span> with algebraic multiplicity 2. To find the eigenvectors of <span class="math inline">\(A\)</span> associated with <span class="math inline">\(r_1\)</span> we construct and simplify</p>
 <p><span class="math display">\[(A -r_1I) = \begin{pmatrix} 4-2 &amp; -4 \\  1 &amp; 0-2 \end{pmatrix}  
                = \begin{pmatrix} 2 &amp; -4 \\  1 &amp; -2 \end{pmatrix}
                \sim \begin{pmatrix} 1 &amp; -2 \\  0 &amp; 0 \end{pmatrix}\]</span> Thus the solutions to <span class="math inline">\((A-2I)\vec{u} = 0\)</span> are all multiples of <span class="math inline">\(\vec{u} = \begin{pmatrix} 2 &amp; 1 \end{pmatrix}.\)</span> This is a one dimensional subspace. Hence <span class="math inline">\(r_1\)</span> has geometric multiplicity 1. As it turns out, the particular generalized eigenvector we want is a solution to <span class="math display">\[(A -r_1I)\vec{v}  = \vec{u}.\]</span> <span class="math inline">\(\vec{v}\)</span> will be a generalized eigenvector since <span class="math display">\[(A -r_1I)^2\vec{v}  = (A -r_1I)\vec{u} = 0.\]</span> To find <span class="math inline">\(\vec{v}\)</span>, we reduce the augmented matrix <span class="math display">\[\left(\begin{array}{cc|c} 2 &amp; -4 &amp; 2 \\ 1 &amp; -2 &amp; 1 \end{array} \right)
-     \sim \left(\begin{array}{cc|c}  1 &amp; -2 &amp; 1\\ 0 &amp; 0 &amp; 0 \end{array} \right)\]</span> Thus, the entries of <span class="math inline">\(\vec{v}\)</span> satisfy <span class="math inline">\(v_1-2v_2 = 1\)</span>. Setting <span class="math inline">\(v_2 = a \in {\mathbb R}\)</span> give <span class="math inline">\(\vec{v} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} 2 \\ 1 \end{pmatrix}a\)</span>. We will choose <span class="math inline">\(a=0\)</span> to give <span class="math inline">\(\vec{v} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span>. Note that <span class="math inline">\(\vec{u}\)</span> and <span class="math inline">\(\vec{v}\)</span> are linearly independent and hence form a basis for <span class="math inline">\({\mathbb R}^2\)</span>.</p>
+     \sim \left(\begin{array}{cc|c}  1 &amp; -2 &amp; 1\\ 0 &amp; 0 &amp; 0 \end{array} \right)\]</span> Thus, the entries of <span class="math inline">\(\vec{v}\)</span> satisfy <span class="math inline">\(v_1-2v_2 = 1\)</span>. Setting <span class="math inline">\(v_2  = a \in {\mathbb R}\)</span> give <span class="math inline">\(\vec{v} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} 2 \\ 1 \end{pmatrix}a\)</span>. We will choose <span class="math inline">\(a=0\)</span> to give <span class="math inline">\(\vec{v} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span>. Note that <span class="math inline">\(\vec{u}\)</span> and <span class="math inline">\(\vec{v}\)</span> are linearly independent and hence form a basis for <span class="math inline">\({\mathbb R}^2\)</span>.</p>
 <p>We look for solutions relative to this basis: <span class="math display">\[\vec{y}(t) = x_1(t)\vec{u} + x_2(t)\vec{v}\]</span> That is, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are the coordinates of our solution with respect to the basis <span class="math inline">\(\left\{ \vec{u},\vec{v}\right\}\)</span>. Substituting this form for <span class="math inline">\(\vec{y}\)</span> into the differential equation leads to <span class="math display">\[\begin{align*}
       x'_1(t)\vec{u} + x'_2(t)\vec{v} &amp;= x_1(t)A\vec{u} + x_2(t)A\vec{v}  \\
       &amp;= x_1(t)r_1\vec{u} + x_2(t)\left(r_1\vec{v} + \vec{u}\right)  \\
@@ -326,9 +379,10 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
                 = c_1e^{r_1t}\vec{u} + c_2\left(te^{r_1t}\vec{u} + e^{r_1t}\vec{v}\right)\]</span> For our example we have <span class="math inline">\(r_1 = 2\)</span>, <span class="math inline">\(\vec{u} = \begin{pmatrix} 2 \\ 1\end{pmatrix}\)</span> and <span class="math inline">\(\vec{v} = \begin{pmatrix} 1 \\ 0\end{pmatrix}\)</span>. Hence <span class="math display">\[\vec{y}(t) = c_1e^{r_1t}\begin{pmatrix} 2 \\ 1\end{pmatrix} + c_2\left(te^{r_1t}\begin{pmatrix} 2 \\ 1\end{pmatrix} + e^{r_1t}\begin{pmatrix} 1 \\ 0\end{pmatrix}\right)\]</span></p>
 </div>
 </section>
-<section id="the-jordan-form" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="the-jordan-form"><span class="header-section-number">4.7</span> The Jordan form</h2>
+<section id="the-jordan-form" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="the-jordan-form"><span class="header-section-number">4.4.3</span> The Jordan form</h3>
 <p>The question remains if we have found all the solutions. The answer to this lies in a theorem from linear algebra that states, roughly, that given any <span class="math inline">\(n\times n\)</span> matrix <span class="math inline">\(A\)</span>, there is a linearly independent set of generalized eigenvectors of <span class="math inline">\(A\)</span> that spans <span class="math inline">\({\mathbb R}^n\)</span>. Moreover, proceeding as we have above, we will find such a set. It can then be shown that the solutions we’ve found will be linearly independent and yield the complete general solution to <span class="math inline">\(y' = Ay\)</span>.</p>
+</section>
 </section>
 </section>
 <section id="the-nonhomogeneous-problem" class="level1" data-number="5">
@@ -341,7 +395,7 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
   \frac{d}{dt}\Psi(t) = A\Psi(t) + f(t).
 \end{equation}\]</span> Applying the method of variation of parameters, we seek a solution to of the form <span class="math inline">\(y(t) = \Psi(t)u(t)\)</span>. Substituting this form into leads to <span class="math display">\[\Psi'u + \Psi u' = A\Psi u + f.\]</span> Since <span class="math inline">\(\Psi\)</span> is a solution to the homogeneous problem, the above equation reduces to <span class="math display">\[ \Psi u' =  f,\]</span> and hence, <span class="math display">\[\begin{equation}u(t) = \int \Psi^{-1}(t) f(t) \, dt.\end{equation}\]</span> To satisfy, the initial conditions, we choose the particular solution <span class="math inline">\(y_p = \Psi u\)</span> satisfying <span class="math inline">\(y_p(t_0) = y_0\)</span>. Then <span class="math display">\[\begin{equation}y(t) = \Psi(t)\Psi^{-1}(t_)y_0 + \Psi(t)\int_{t_0}^{t} \Psi^{-1}(\tau) f(\tau) \, d\tau.\end{equation}\]</span></p>
 <div id="exm-" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.1 </strong></span>Consider the system <span class="math inline">\(y' = Ay + f\)</span> with <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 3 \\ 1 &amp; 5 \end{pmatrix}\)</span> and <span class="math inline">\(f = \begin{pmatrix} t \\ e^{t} \end{pmatrix}.\)</span> The characteristic polynomial of <span class="math inline">\(A\)</span> is <span class="math inline">\((3-r)(5-r)-3 = (6-r)(6+r)\)</span>. The eigenvectors are <span class="math inline">\(r_1 = 6\)</span> and <span class="math inline">\(r_2 = 2\)</span> with associated eigenvectors <span class="math inline">\(u_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span> and <span class="math inline">\(u_2 = \begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</span>. Thus two linearly independent solutions to the homogeneous problem are <span class="math inline">\(y_1(t) = e^{6t}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span> and <span class="math inline">\(y_2(t) = e^{2t}\begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</span>. One possible fundamental matrix is <span class="math display">\[\begin{equation}
+<p><span class="theorem-title"><strong>Example 5.1</strong></span> Consider the system <span class="math inline">\(y' = Ay + f\)</span> with <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 3 \\ 1 &amp; 5 \end{pmatrix}\)</span> and <span class="math inline">\(f = \begin{pmatrix} t \\ e^{t} \end{pmatrix}.\)</span> The characteristic polynomial of <span class="math inline">\(A\)</span> is <span class="math inline">\((3-r)(5-r)-3 = (6-r)(6+r)\)</span>. The eigenvectors are <span class="math inline">\(r_1 = 6\)</span> and <span class="math inline">\(r_2 = 2\)</span> with associated eigenvectors <span class="math inline">\(u_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span> and <span class="math inline">\(u_2 = \begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</span>. Thus two linearly independent solutions to the homogeneous problem are <span class="math inline">\(y_1(t) = e^{6t}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span> and <span class="math inline">\(y_2(t) = e^{2t}\begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</span>. One possible fundamental matrix is <span class="math display">\[\begin{equation}
     \Psi(t) = \begin{pmatrix} e^{6t} &amp; 3e^{2t} \\ e^{6t} &amp; -e^{2t} \end{pmatrix}
     = \begin{pmatrix} 1 &amp; 3 \\ 1 &amp; -1 \end{pmatrix}\begin{pmatrix} e^{6t} &amp; 0 \\ 0 &amp; e^{2t} \end{pmatrix}
   \end{equation}\]</span> Then <span class="math inline">\(\Psi^{-1}(t) = \frac{1}{4}\begin{pmatrix} e^{-6t} &amp; 3e^{-6t} \\ e^{-2t} &amp; -e^{-2t} \end{pmatrix}\)</span>, and<br>
@@ -369,14 +423,14 @@ x_2(t) &amp;= e^{at} \left( -c_1\sin(bt) + c_2\cos(bt)\right)
      \end{align*}\]</span></p>
 <p>Note the first two terms are in fact homogeneous solutions that arise here to ensure the particular solution is zero when <span class="math inline">\(t=0\)</span>.<br>
 The last three terms are of the form <span class="math inline">\(At + B + Ce^t\)</span> which we would expect from the method of undetermined coefficients, with the caveat that <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are vectors.</p>
-<p>The general solution is simply <span class="math inline">\(y(t) = y_c(t) + y_p(t)\)</span> with the as-yet unspecified initial conditions taken as a pair of arbitrary constants.</p>
+<p>The general solution is simply <span class="math inline">\(y(t) = y_c(t) +  y_p(t)\)</span> with the as-yet unspecified initial conditions taken as a pair of arbitrary constants.</p>
 </div>
 </section>
 <section id="the-solution-via-laplace-transforms" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="the-solution-via-laplace-transforms"><span class="header-section-number">5.2</span> The solution via Laplace Transforms</h2>
 <p>Applying the Laplace Transform to leads to <span class="math display">\[\begin{equation} sY(s) - y_0 = AY(s) + F(s).\end{equation}\]</span> Note that <span class="math inline">\(Y\)</span> is a vector whose entries are the transforms of the corresponding entry of <span class="math inline">\(y\)</span>. Since the transform is a linear operation (an integration), the matrix is essential pulled out of the integral. Solving for <span class="math inline">\(Y\)</span> we find <span class="math display">\[\begin{equation}Y(s) = (sI-A)^{-1}\left(y_0 + F\right).\end{equation}\]</span> Let <span class="math inline">\(G(s) = (sI-A)^{-1}\)</span> and <span class="math inline">\(g = {\mathcal L}^{-1}\left\{G\right\}\)</span>. Note that <span class="math inline">\(G\)</span> and <span class="math inline">\(g\)</span> are both <span class="math inline">\(n\times n\)</span> matrices. The solution to the differential equation can be represented as a convolution: <span class="math display">\[\begin{equation}y(t) = g(t)y_0 + \int_0^t g(t-\tau)f(\tau)\, d\tau.\end{equation}\]</span></p>
 <div id="exm-" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.2 </strong></span>Consider the system <span class="math inline">\(y' = Ay + f\)</span> with <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 3 \\ 1 &amp; 5 \end{pmatrix}\)</span> and <span class="math inline">\(f = \begin{pmatrix} t \\ e^{t} \end{pmatrix}.\)</span> <span class="math display">\[\begin{align*}  
+<p><span class="theorem-title"><strong>Example 5.2</strong></span> Consider the system <span class="math inline">\(y' = Ay + f\)</span> with <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 3 \\ 1 &amp; 5 \end{pmatrix}\)</span> and <span class="math inline">\(f = \begin{pmatrix} t \\ e^{t} \end{pmatrix}.\)</span> <span class="math display">\[\begin{align*}  
     G(s) &amp;= (sI-A)^{-1} \\
          &amp;= \begin{pmatrix} s-3 &amp; -3 \\ -1 &amp; s-5 \end{pmatrix}\\
      &amp;= \begin{pmatrix} \frac{s-5}{(s-6)(s-2)} &amp;\ &amp; \frac{3}{(s-6)(s-2)} \\[6pt] \frac{1}{(s-6)(s-2)} &amp;\ &amp; \frac{s-3}{(s-6)(s-2)} \end{pmatrix} \\[12pt]
@@ -386,7 +440,7 @@ The last three terms are of the form <span class="math inline">\(At + B + Ce^t\)
 Note that the system for this example is the same as that of the previous example, and that <span class="math inline">\(g(t-\tau) = \Psi(t)\Psi^{-1}(\tau)\)</span> where <span class="math inline">\(\Psi\)</span> is the fundamental matrix from the previous example. Of course, <span class="math inline">\(g(t) = \Psi(t)\Psi^{-1}(0)\)</span>, which means the rest of the computations follow the previous example exactly. The two methods are identical!</p>
 </div>
 <div id="exm-" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.3 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>Example 5.3</strong></span> &nbsp;</p>
 Solve the system <span class="math inline">\(x' = Ax + g\)</span> where <span class="math inline">\(A = \begin{pmatrix} 4 &amp; 3 \\ -1 &amp; 0 \end{pmatrix}\)</span> and <span class="math inline">\(g = \begin{pmatrix} 0 \\ t \end{pmatrix}\)</span>.
 <p>The matrix <span class="math inline">\(A\)</span> has two eigenvalues, <span class="math inline">\(r_1 = 1\)</span> and <span class="math inline">\(r_2=3\)</span>. Two associated eigenvectors are <span class="math inline">\(u_1 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}\)</span> and <span class="math inline">\(u_2 = \begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</span>, respectively. Thus, a fundamental matrix for the system is <span class="math display">\[\Phi(t) = \begin{pmatrix} e^t &amp; 3e^{3t} \\ -e^t &amp; -e^{3t} \end{pmatrix}.\]</span> The method of variation of parameters gives the general solution in the form <span class="math display">\[x(t) = \Phi(t)\int \Phi^{-1}(t) g(t) \, dt.\]</span> Direct computations lead to <span class="math display">\[\begin{align*}
   \Phi^{-1}(t) &amp;= \frac{1}{2e^{4t}} \begin{pmatrix} -e^{3t} &amp; -3e^{3t} \\ e^t &amp; e^t \end{pmatrix} = \frac{1}{2}\begin{pmatrix} -e^{-t} &amp; -3e^{-t} \\ e^{-3t} &amp; e^{-3t} \end{pmatrix}. \\
@@ -434,12 +488,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -471,11 +528,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -485,8 +579,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -498,9 +601,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -542,17 +880,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./M3503-lec01-FirstOrderODE.html" class="pagination-link">
+      <a href="./ode-intro-geom.html" class="pagination-link" aria-label="First order differential equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">First order differential equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./M3503-lec03-SecondOrderODE.html" class="pagination-link">
+      <a href="./M3503-lec03-SecondOrderODE.html" class="pagination-link" aria-label="Second order Linear Differential Equations">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Second order Linear Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
