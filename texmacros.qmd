@@ -8,7 +8,9 @@
 \providecommand{\set}{}
 \renewcommand{\set}[2]{\left\{#1 \ \left|\ \strut #2\right.\right\}}
 \providecommand{\prob}{}
-\renewcommand{\prob}[2]{P\left(\ #1 \ \mid\ #2\ \right)}
+\renewcommand{\prob}[1]{\text{Pr}\left(\ #1 \right)}
+\providecommand{\condprob}{}
+\renewcommand{\condprob}[2]{\text{Pr}\left(\ #1 \ \mid\ #2\ \right)}
 \providecommand{\Span}{}
 \renewcommand{\Span}{{\mbox{span}}}
 
@@ -16,16 +18,16 @@
 \renewcommand{\Poly}{{\mathbf P}}
 \providecommand{\Cont}{}
 \renewcommand{\Cont}{{\mathbf C}}
-\providecommand{\R}{}
-\renewcommand{\R}{{\mathbb R}}
-\providecommand{\C}{}
-\renewcommand{\C}{{\mathbb C}}
-\providecommand{\N}{}
-\renewcommand{\N}{{\mathbb N}}
-\providecommand{\Q}{}
-\renewcommand{\Q}{{\mathbb Q}}
-\providecommand{\Z}{}
-\renewcommand{\Z}{{\mathbb Z}}
+\providecommand{\Reals}{}
+\renewcommand{\Reals}{{\mathbb R}}
+\providecommand{\Comp}{}
+\renewcommand{\Comp}{{\mathbb C}}
+\providecommand{\Nats}{}
+\renewcommand{\Nats}{{\mathbb N}}
+\providecommand{\Rats}{}
+\renewcommand{\Rats}{{\mathbb Q}}
+\providecommand{\Ints}{}
+\renewcommand{\Ints}{{\mathbb Z}}
 \providecommand{\Lap}{}
 \renewcommand{\Lap}[1]{{\mathcal L}\left\{#1\right\}}
 \providecommand{\Linv}{}
@@ -33,3 +35,5 @@
 \providecommand{\binary}{}
 \renewcommand{\binary}[2]{#1\textrm{\tiny x}2^{#2}}
 
+\providecommand{\Ro}{}
+\renewcommand{\Ro}{\mathcal{R}_0}

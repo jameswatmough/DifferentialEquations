@@ -87,9 +87,9 @@ new dependent variables for the derivatives:
 \end{align*}
 Here, $x_i$ is the $i^{\text{th}}$ derivative of $x$, and $x_0$ is our new name for the original variable.
 Since higher order equations can be cast as systems of first order equations,  we will spend much of the course dealing with such systems.  Notationally,  we just allow the dependent variable to be a vector:
-$x' = f(t,x)$, where $f:\R\times\R^n\to \R^n$.
+$x' = f(t,x)$, where $f:\Reals\times\Reals^n\to \Reals^n$.
 
-Geometrically, the solution to a system of first order equations,  $x(t)$, describes a curve in $\R^n$ parameterized by $t$.  The
+Geometrically, the solution to a system of first order equations,  $x(t)$, describes a curve in $\Reals^n$ parameterized by $t$.  The
 derivative $x'(t)$ is the vector tangent to this curve at $(t,x(t))$.  Hence,  the solution to the differential equation is
 the curve $x(t)$, which is everywhere tangent to $f(t,x(t))$.
 
