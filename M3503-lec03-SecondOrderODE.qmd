@@ -254,7 +254,7 @@ if the roots of @eq-characteristic are complex.
 Find the general solutions of $y'' - 4 y' + 13 y = 0$.
 :::
 
-::: {.callout-solution collapse=true}
+::: {.callout-tip collapse="true" title="solution"}
 
 -	Characteristic Equation: $r^2 - 4r + 13 = 0$
 -	Roots: $r = 2 \pm 3i$ (complex case)
@@ -266,7 +266,7 @@ Find the general solutions of $y'' - 4 y' + 13 y = 0$.
 Find the general solutions of $y'' - 6 y' + 5 y = 0$.
 :::
 
-::: {.callout-solution collapse=true}
+::: {.callout-tip collapse=true title="solution"}
 -	Characteristic Equation: $r^2 - 6r + 5 = 0$
 -	Roots: $r \in \{5,1\}$ (two distinct real roots)
 -	General solution, $y(t) = c_1e^{5t} + c_1e^{t}$
@@ -276,7 +276,7 @@ Find the general solutions of $y'' - 6 y' + 5 y = 0$.
 Find the general solutions of $y'' + 4 y' + 4 y = 0$.
 :::
 
-::: {.callout-solution collapse=true}
+::: {.callout-tip collapse=true title="solution"}
 -	Characteristic Equation: $r^2 + 4r + 4 = 0$
 -	Roots: $r = -2$ (double root)
 -	General solution, $y(t) = c_1e^{-2t} + c_1te^{-2t}$
@@ -287,7 +287,7 @@ Solve the Initial value problem
 $2y'' + 5y' - 3y = 0$, with $y(0) = 4$ and $y'(0) = 2$.
 :::
 
-::: {.callout-solution collapse=true}
+::: {.callout-tip collapse=true title="solution"}
 - Characteristic equation: $2r^2 + 5r - 3 = 0$
 -	Roots: $r \in \{\frac{1}{2}, -3\}$ (distinct real roots)
 -	General solution, $y(t) = c_1e^{\frac{1}{2}t} + c_2e^{-3t}$
@@ -305,7 +305,7 @@ Solve the Boundary Value problem
 $$y'' - 6y' + 9y = 0, \qquad y(0) = 3, \qquad y(1) = 0$$
 :::
 
-::: {.callout-solution collapse=true}
+::: {.callout-tip collapse=true title="solution"}
 - Characteristic equation: $r^2 - 6r + 9 = 0$
 -	Roots: $r-3$, (double root)
 -	General solution, $y(t) = c_1e^{3t} + c_2te^{3t}$
@@ -362,12 +362,12 @@ Thus, we've converted our second order problem for $y$ into a pair of first orde
 \begin{equation}
 	\begin{pmatrix} u' \\ v' \end{pmatrix}
 		=\frac{1}{a} \begin{pmatrix} y_1 & y_2 \\ y_1' & y_2' \end{pmatrix}^{-1}
-		\begin{pmatrix} 0 \\ \g \end{pmatrix}
+		\begin{pmatrix} 0 \\ g \end{pmatrix}
 \end{equation}
 \begin{equation}
 	\begin{pmatrix} u' \\ v' \end{pmatrix}
 		=\frac{1}{a(y_1y_2' - y_1'y_2} \begin{pmatrix} y_2' & -y_2 \\ -y_1' & y_1 \end{pmatrix}^{-1}
-		\begin{pmatrix} 0 \\ \g \end{pmatrix}
+		\begin{pmatrix} 0 \\ g \end{pmatrix}
 \end{equation}
 On the right hand side we have known functions of $x$. The three functions $a$, $y_1$, and $y_2$ represent our system, and the fourth function, $g$, usually represents something like an external forcing or applied voltage.
 We'll see this matrix form again when we study systems of first order equations.
@@ -394,17 +394,17 @@ $$u' = -\frac{1}{3}\sin(3x) \sec(3x)$$
 Similarly, we find
 $$v' =  -\frac{1}{3}\cos(3x) \sec(3x) = -\frac{1}{3}$$
 Integrate to find $u$ 
-begin{align*}
+\begin{align*}
  u(x) &= -\frac{1}{3}\int \sin(3x) \sec(3x) \, dx \\
       &= -\frac{1}{3}\int \tan(3x) \, dx \\
- 			&= \frac{1}{9}\log | \cos 3x  |
-end{align*}
+ 			&= \frac{1}{9}\log \| \cos 3x  \|
+\end{align*}
 and $v = \frac{x}{3}$
 
 Putting everything together, 
 
 $$y(x) = c_1\cos(3x) + c_2\sin(3x) 
-	       + \frac{1}{9}\cos(3x)\log | \cos(3x) |
+	       + \frac{1}{9}\cos(3x)\log \| \cos(3x) \|
 				 + \frac{1}{3}x\sin(3x)$$
 
 :::

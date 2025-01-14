@@ -12,6 +12,31 @@ date: "`r Sys.Date()`"
 
 ## Inner Products
 
+An inner product is an abstraction of the of a scalar projection of one vector onto another.   In Euclidian spaces it most often takes the form of a dot product. 
+An inner product allows us to break vectors into orthogonal components and base approximations on projections.  This in turn implies that there will be a best approximation.  We'll use this to approximate complex functions by sums of simpler functions, like polynomials, sines, and cosines.  Approximating a function, or signal, by a sum of sines and cosines effectively breaks down the function into its component frequencies.
+
+::: {#def-innerprod}
+
+An ***inner product*** on a vector space $V$ is a function that assigns
+a scalar $\ip{x}{y}$  to each pair, $(x,y)$, of vectors 
+ in $V$ and satisfies the following conditions:
+
+1. $\ip{y}{x} = \overline{\ip{x}{y}}$  (conjugate symmetric);
+2. $\ip{x}{x} \ge 0$, with equality if and only if $x=0$ (positive definite);
+3. $\ip{a w + b x}{y} = a\ip{x}{y} + b\ip{x}{y}$ for all $w$, $x$ and $y$ in $V$ and scalars $a$ and $b$ (bilinear).
+
+:::
+
+::: {.callout-note}
+In a real vector space,  the first axiom reduces to a straightforward symmetry: $\ip{x}{y} = \ip{y}{x}$.
+:::
+
+::: {.callout-warning}
+
+The notation for inner products varies depending on the application. That's ok, so does the notation for multiplication.
+
+:::
+
 ## The usual Fourier Series for $f$
 
 

@@ -7,8 +7,8 @@ date: "`r Sys.Date()`"
 
 # First order differential equations {#sec-1storder}
 
-The [OpenStax Calculus][] text covers most of the material we need for first order scalar[^systems] differential equations.  You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.  
-More specifically,  you should be familiar with viewing a differential equation as a direction field (or vector field) @sec-direction-field.  
+The [OpenStax Calculus][] text covers most of the material we need for first order scalar[^systems] differential equations.  You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.
+More specifically,  you should be familiar with viewing a differential equation as a direction field (or vector field) @sec-direction-field.
 You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations.
 These require nothing more than a basic mastery of integration.
 
