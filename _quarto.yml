@@ -3,20 +3,27 @@ project:
   output-dir: docs
 
 book:
-  title: "Math 3503: Differential Equations for Engineers"
+  title: "Differential Equations in Mathematical Ecology"
   author: "James Watmough"
-  date: "2023-01-14"
+  event-title: "University of New Brunswick"
+  date: last-modified
+  date-format: "YYYY MMMM DD"
   chapters:
     - index.qmd
     - M3503-lec01-ODEintro.qmd
-    - M3503-lec01-FirstOrderODE.qmd
+    - ode-intro-geom.qmd
     - M3503-lec02-Systems.qmd
     - M3503-lec03-SecondOrderODE.qmd
     - M3503-lec04-LaplaceTransforms.qmd
     - M3503-lec05-FourierSeries.qmd
     - references.qmd
 
-bibliography: references.bib
+bibliography: dynamical_systems.bib
+tbl-cap-location: bottom
+
+execute:
+  freeze: auto
+  cache: true
 
 format:
   html:
@@ -25,7 +32,3 @@ format:
     theme: cosmo
   pdf:
     documentclass: lecturenotes-md
-
-
-
-

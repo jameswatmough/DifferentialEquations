@@ -3,41 +3,34 @@
 
 \ProvidesClass{lecturenotes-md}
 
-
 % fields that user can set (in addition to title, author, etc)
-%\makeatletter
-	\newcommand{\course}[1]{\def \@course {#1}}
-	\newcommand{\term}[1]{\def \@term {#1}}
-%	\newcommand{\assignment}[1]{\def \@assignment {#1}}
-%	\newcommand{\duedate}[1]{\def \@duedate {#1}}
-	\newcommand{\topics}[1]{\def \@topics {#1}}
-	\course{}
-	\term{}
-%	\assignment{}
-%	\duedate{}
-	\topics{}
+\newcommand{\course}[1]{\def \@course {#1}}
+\newcommand{\term}[1]{\def \@term {#1}}
+\newcommand{\topics}[1]{\def \@topics {#1}}
+\course{}
+\term{}
+\topics{}
 
 \AtEndDocument{ 
   \label{pages}
 }
 
-	\LoadClass[12pt]{scrreport}
-%  \usepackage{beamerarticle}
+\LoadClass[12pt]{scrreport}
 
-	\usepackage[letterpaper,margin=1in,head=30pt]{geometry}
-	\usepackage{fancyhdr}
+\usepackage[letterpaper,margin=1in,head=30pt]{geometry}
+\usepackage{fancyhdr}
 %	\makeatletter
-	\pagestyle{fancy}
-	\renewcommand{\footrulewidth}{\headrulewidth}
-	\fancyhf{}
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{\headrulewidth}
+\fancyhf{}
 
-      \fancyhead[R]{\begin{tabular}{r}\@title \\ Revised: \@date \end{tabular}}
-      \fancyhead[L]{\begin{tabular}{l}\@course, \@term \\ Topics: \@topics\end{tabular}}
-      \fancyfoot[R]{page \thepage \ of \pageref{pages}}
-%      \makeatother
+\fancyhead[R]{\begin{tabular}{r}\@title \\ Revised: \@date \end{tabular}}
+\fancyhead[L]{\begin{tabular}{l}\@course, \@term \\ Topics: \@topics\end{tabular}}
+\fancyfoot[R]{page \thepage \ of \pageref{pages}}
+% \makeatother
  
-  % title
-  \renewcommand{\maketitle} {%
+% title
+\renewcommand{\maketitle} {%
 
   \Large
   \begin{center}
@@ -53,9 +46,7 @@
   }
 
 
-  \AtBeginDocument{ \thispagestyle{empty} \maketitle }
-
-  \message{processed notes options}
+\AtBeginDocument{ \thispagestyle{empty} \maketitle }
 
 % standard packages
 

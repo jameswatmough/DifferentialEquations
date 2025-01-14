@@ -1,6 +1,5 @@
 
-# 2023 Winter Test and Class Schedules {.unnumbered}
+# Preamble {.unnumbered}
 
-
-{{< include M3503-2023-schedule.txt >}}
+These pages contain lecture notes for a mix of undergraduate courses on differential equations.  They were originally used for a first course on differential equations for engineers.  Hence the second order equations for circuits and a pendulum and the odd snippet of python.  The notes are currently (Winter 2025) being updated with notes from Math 4142/6142 at the University of New Brunswick, which is intended as a second course in differential equations for upper level undergraduates in mathematics and graduate students with an interest in ecological dynamics.
 

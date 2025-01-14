@@ -1,6 +1,6 @@
 ---
 author: James  Watmough
-date: "`r Sys.Date()`"
+date: last-modified
 ---
 
 {{< include texmacros.qmd >}}

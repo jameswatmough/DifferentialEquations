@@ -1,0 +1,388 @@
+---
+engine: julia
+author: James  Watmough
+date: last-modified
+---
+
+{{< include texmacros.qmd >}}
+
+# First order differential equations {#sec-1storder}
+
+The [OpenStax Calculus][] text covers most of the material we need for first order scalar[^systems] differential equations.  You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.
+More specifically,  you should be familiar with viewing a differential equation as a direction field (or vector field) @sec-direction-field.
+You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations.
+These require nothing more than a basic mastery of integration.
+
+[^systems]: By *scalar* I just mean a single equation, with a single dependent variable.
+
+## Direction fields {#sec-direction-field}
+
+A solution to a first order differential equation, $y' = f(x,y)$, is a function, $y(x)$, whose slope at $x$ is $f(x,y)$.  One way to visualize this is to view $f$ as a *direction field*.  That is, $f$ assigns a slope, or direction, to every point in the $x$-$y$ plane.
+
+```{julia}
+#| lst-lab: julia-setup
+
+using Plots
+using LaTeXStrings
+
+plot_font = "Computer Modern"
+default(fontfamily=plot_font,
+        linewidth=2, framestyle=:box, label=nothing, grid=false)
+```
+
+```{julia}
+#| fig-cap: Direction field for $f:(t,x)\to 2t -1 - 3x$.
+#| label: fig-direction-field
+
+f(t,x) = 2*t-1-3*x
+
+t = collect(1:.3:4)
+x = collect(0:.3:2)
+dirfield(t,x) = [1; f(t,x)]/10
+fig = quiver(
+        repeat(t,length(x)),
+        repeat(x,inner=length(t)),
+        quiver=dirfield
+      )
+plot!(fig,ylabel = "x")
+plot!(fig,xlabel = "t")
+
+```
+
+
+## Terminology and Notation
+
+We will focus on equations of the form
+$$\dot{x} = f(x,t,\mu), \quad x\in U\subset\Reals^n, \quad t\in\Reals, \quad \mu\in V\subset\Reals^p.$$ {#eq-main-system}
+Here, the over-dot refers to differentiation with respect to the independent variable, $t$, $x$ is our vector of dependent variables, and $\mu$ is a vector of model parameters.
+
+By a solution to @eq-main-system we mean a differentiable function $\phi$ from some interval of time, $I \subset \Reals$, into $\Reals^n$ such that $\dot{\phi}(t) = f(\phi(t),t,\mu)$.  Geometrically, $\phi$ is a curve in $\Reals^n$ parameterized by $t$ and tangent to the vector $f$ at each point.  We will refer to $U$, or $\Reals^n$, as the state space (or sometimes phase space) of the system, and $f:U\to\Reals^n$ as a vector field on $U$ (or sometimes direction field).
+Note, when convenient, we will use $x$ to denote the solution instead of introducing $\phi$ or another new symbol.  Most often it is clear from context whether $x$ is referring to a point in state space, or a curve through state space parameterized by $t$.
+
+We use $\phi(t,t_0,x_0)$ to denote the solution passing through the point $x_0$ at time $t_0$, 
+If we are also interested in the dependence on the parameters, we will use $\phi(t,t_0,x_0,\mu)$,
+or if we are only interested in the dependence of the solution on the parameters, $\phi(t,\mu)$.
+If the initial time is clear from the problem, usually when $t_0=0$, then we will use $\phi(t,x_0)$ or $\phi(t,x_0,\mu)$.
+
+The solution curve through state space will sometimes be referred to as a trajectory through $x_0$ at time $t_0$, usually with the notation $\phi(t,t_0,x_0)$.  The set of points comprising the trajectory will be referred to as the orbit, $O(x_0)$, through $x_0$ at time $t_0$.
+
+This terminology relies assumes the existence and uniqueness of solutions.
+Suppose $f$ is $r$-times differentiable in $x$, $t$ and $\mu$ with $r\ge 1$ and each derivative continuous,
+then given any $t_0\in\Reals$ and $x_0\in U$ there is a unique solution through $x_0$ at time $t_0$, and this solution is $r$-times differentiable in $t$, $x_0$, $t_0$ and $\mu$.
+
+::: {#exm-simple-pendulum}
+The simple pendulum
+$$\ddot{x}  - x = 0$$
+can be cast as a system of first order equations with the introduction of a new dependent variable $y = \dot{x}$
+
+$$\begin{aligned}
+  \dot{x} &= y \\
+  \dot{y} &= -x
+\end{aligned}$$ {#eq-simple-pendulum}
+
+The state of the pendulum is completely described by its angle and angular velocity, $(x,y) \in \Reals^2$.  The solution passing through the initial state $(x_0,0)$ at time $t_0=0$ is $(x(t),y(t)) = (x_0\cos t, -x_0\sin t)$.  Note that the initial conditions are a pair of real numbers, $(x_0,y_0)$, and for this solution we have $y_0=0$.  The *orbit*, $O((x_0,0))$, is the circle $x^2 + y^2 = x_0^2$.
+:::
+
+::: {#exm-damped-pendulum}
+The damped pendulum
+$$\ddot{x} -\alpha x\dot{x} + \sin(x) = \sin(\omega t)$$
+can be cast as a system of first order equations with the introduction of a new dependent variable $y = \dot{x}$
+$$\begin{aligned}
+  \dot{x} &= y \\
+  \dot{y} &= \alpha xy - \sin(x) + \sin(\omega t)
+\end{aligned}$$ {#eq-damped-pendulum}
+:::
+
+::: {#exm-sir-demographic}
+The simple SIR model
+
+$$\begin{aligned}
+  S' &= \Lambda -\mu S - \beta SI, \\
+  I' &= \beta SI -(\alpha + \mu)I, \\
+  R' &= \alpha I - \mu R,
+\end{aligned}$$ {#eq-sir-demographic}
+
+Here the state variables are populations of susceptible, $S$, infected, $I$, and recovered, $R$ individuals.  Our state spaces is the nonnegative cone (octant) of $\Reals^3$, our parameter space is the positive cone of $\Reals^4$, since all parameters are assumed to be positive.
+
+Since the dynamics of $S$ and $I$ decouple from those of $R$, we can consider the simpler two state system separately.
+:::
+
+::: {#exm-logistic-growth}
+The classic logistic growth model should be introduced as
+$$\frac{dN}{dt} = bN-(d+aN)N$$
+where the population size, or density, $N$ is our dependent variable, time, $t$, is our independent variable, and $b$, $d$, and $a$ are parameters representing birth, death, and increased mortality due to crowding, respectively.  Assume the three parameters are positive real numbers.
+
+This is more commonly written as $\frac{dN}{dt} = rN(1-N/K)$, with $r = b-d$, $K = (b-d)/a$, and the added assumption that $b>d$.
+:::
+
+::: {#exr-logistic-scaling}
+First, suppose $b\ne d$ and show that we can, without loss of generality, rescale $t$ by the net growth rate $r$ giving rise to the equation
+$$\frac{dN}{dt} = N-\frac{N^2}{K}$$
+
+Second, let $x(t) = \bar{N}^{-1} N(t)$, and show that $x$ must satisfy the equation 
+$$\frac{dx}{dt} = x-\dfrac{\bar{N}}{K}x^2$$
+:::
+Hence, setting $\bar{N} = K$ results in an ODE for $x$ with no free parameters.
+Note, if $x(t)$, with the rescaled time is a solution to this last equation, then $N(t^*) = \bar{N}x(rt^*)$ is a solution to the original equation with the original time scale.
+
+::: {#exr-logistic-scaling2}
+Repeat @exr-logistic-scaling under the assumption $b < d$.  Be sure to keep the scales positive so that rescaled time and population have the same signs as the original variables.
+:::
+
+## first order separable equations {#sec-separable}
+
+A first order linear differential equation of the form $\frac{dy}{dt} = f(y)g(t)$
+is said to be separable.  It can be solved by a single integration step.
+\begin{align*}
+  \frac{dy}{dt} &= f(y)g(t) \\
+  \frac{1}{f(y)}\frac{dy}{dt} &= g(t) \\
+  \int \frac{1}{f(y)}\frac{dy}{dt}\,dt &= \int g(t)\,dt + C \\
+  \int \frac{1}{f(y)}\,dy &= \int g(t)\,dt + C 
+\end{align*}
+
+::: {#exm-Separable-1}
+
+Find the general solution to the differential equation $\frac{dy}{dt} = ry\cos(t)$.
+
+Separating variables and integrating leads to 
+\begin{align}
+	\int \frac{1}{y}\,dy &= \int r\cos(t)\,dt +C \\
+	\log |y| &= r\sin t  + C \\
+	y(t) &= \pm\exp(C+r\sin t ) 
+\end{align}
+The solution is usually given in the form $y(t) = y_0e^{r\sin(t)}$.
+Since $C$ is an arbitrary constant, $y_0 = \pm e^C$ is also arbitrary.
+:::
+
+::: {.callout-note}
+Since we divide by $y$ on our first step in this example, we must assume $y\ne0$.
+However, it is easy to see by inspection that $y=0$ is also a solution to the equation.   
+Hence,  we can express the general solution as $y(t) = y_0\exp(r\sin t)$ where $y_0$ can be any real number.
+:::
+
+::: {#exm-Separable-2}
+  Find the general solution to the differential equation $\frac{dy}{dx} = \frac{6x^2}{2y+\cos y}$.
+
+  Separating variables and integrating leads to 
+\begin{align}
+  \int (2y+\cos y)\,dy&= \int 6x^2 \, dx + C \\
+  y^2+\sin y &= 2x^3  + C
+\end{align}
+In this case, we are not able to solve for $y$ as a function of $x$.  We are left with $y$ defined implicitly as a function of $x$.
+:::
+
+Despite not being able to find an analytic expression for $y$ as a function of $x$ in this example, we can still make nice plots of the solutions.  The trick is to notice that we can find the inverse of the solution. Several solutions are shown in @fig-separable-2
+
+```{julia}
+#| label: fig-separable-2
+#| fig-cap: "Sample solutions for @exm-Separable-2"
+
+inversesoln(y,c) = cbrt.(y.*y +sin.(y)/2 .-c/2)
+y = range(-pi,pi,100)
+plot(legends=false)
+for c in -1.2:.2:1.2
+  plot!(inversesoln(y,c),y)
+end
+plot!(xlabel='x')
+plot!(ylabel='y')
+```
+
+::: {#exm-Separable-3}
+  Solve the differential equation $\frac{dy}{dx} = \frac{x^2}{y^2}$.
+
+  Separating variables and integrating leads to $\frac{y^3}{3} = \frac{x^3}{3} + C$.
+  Solving for the dependent  variable leads to $y = \sqrt[3]{x^3+3C}$.
+:::
+
+::: {#exm-Separable-4}
+  Solve the differential equation $\frac{dy}{dx} = -\frac{2x}{y}$.
+
+  Separating variables and integrating leads to $\frac{y^2}{2} = -x^2 + C$,
+  which is a family of ellipses.
+:::
+
+::: {#exm-FirstOrderLinear-1} 
+Solve the differential equation
+ $\frac{du}{dt} = 2 + 2u + t + tu$.
+
+ Here $u$ is our dependent variable.  The equation is both linear and separable so  we may choose either method.
+ \begin{align*}
+   \frac{du}{dt} &= (2+t)(1+u) \\
+   \int \frac{du}{1+u} &= \int (2+t) \, dt  \\
+   \ln|1+u| &= 2t+\frac{t^2}{2} + C \\
+   |1+u| &= A \exp(2t+\frac{t^2}{2}) \\
+   u &= -1 \pm A \exp(2t+\frac{t^2}{2}) 
+ \end{align*}
+ Note the use of $\pm$ is not necessary.  Since $A$ could be positive  or negative.
+ It just serves to remind us that
+ integration of $1/(1+u)$ leads to two solutions.
+::: 
+
+::: {#exm-Separable-5} 
+  Solve the  differential  equation $xy' + y = y^2$.
+  This is nonlinear, due to the $y^2$  term.  It is separable.
+  \begin{align*}
+    \frac{1}{y^2-y} y' &= \frac{1}{x} \\
+    \int \frac{dy}{y^2-y} &= \int \frac{dx}{x} \\
+    \int \frac{1}{y-1} - \frac{1}{y} dy &= \int \frac{dx}{x} \\
+     \ln|y-1| - \ln|y| &= \ln|x| + C \\
+     \ln\frac{|y-1|}{|x||y|} &=  C \\
+     \frac{|y-1|}{|x||y|} &=  A 
+  \end{align*}
+  there are in fact several solutions buried in this notation.  For example, 
+  if $0< y < 1$, then 
+     $\frac{|y-1|}{|x||y|} = \frac{1-y}{xy}$, and we find $1/y - 1 = A/x \rightarrow y = x/(A+x)$,
+     $A>0$.
+::: 
+As a further exercise,  sketch a few sample solutions with $y< 0$, $0 < y < 1$ and $y>1$.
+
+
+## Linear first order differential equations {#sec-1storder-linear}
+
+Consider a differential equation of the form 
+$y'(t) +p(t) y(t) = q(t)$
+with initial data $y(t_0) = y_0$.
+These can be integrated using an **integrating factor**.
+The trick is to find a factor, $u$, which turns the left hand side of the equation into the derivative of something familiar.
+We multiply both sides of the equation by $u$,
+$$u(t)y'(t) +u(t)p(t) y(t) = u(t)q(t).$$
+Notice that if we can choose $u$ so that $up = u'$, then the left hand side is the derivative of $uy$:
+$$\left(uy\right)' = uy' +u' y = uy' +up y =  uq.$$
+We can solve this with a single integration
+\begin{gather}
+	\frac{d}{dt}\left(u(t)y(t)\right) =  u(t)q(t) \\
+	u(t)y(t) =  \int u(s)q(s) \, ds \\
+	y(t) =  \frac{1}{u(t)} \int u(s)q(s)\, ds 
+\end{gather}
+There is an arbitrary constant resulting from in the integration of $uq$. 
+We'll use use our initial conditions to determine that once we determined $u$.
+
+Returning to $u'=pu$, the differential equation for $u$, we see it is separable and has solutions of the form
+$u(t) = \exp(\int p)$.
+To make the result more readable, define $P(t) = \int_{t_0}^t p(s) \, ds$ and take $u$ as $u(t) = \exp(P(t))$.
+This is the solution that also satisfies $u(t_0)=1$, which is convenient.
+Putting this together with our expression for $y$, we find, in terms of $P$,
+$$y(t) = e^{-P(t)} \int e^{P(s)}q(s)\, ds$$
+This is our general solution, since it still has the constant of integration hiding in the integral.
+Applying the initial conditions we find
+$$y(t) = e^{-P(t)} \left( y_0 + \int_{t_0}^t e^{P(s)}q(s)\, ds \right)$$
+
+::: {.callout-warning}
+I advise against memorizing this formula. Instead memorize the technique.  Applying the technique is often simpler than applying the formula,  and we'll extend the ideas behind the method later in the course.
+:::
+
+::: {#exm-linearode-2}
+Solve the initial value problem $t^2y' + 2ty = \log t, \ y(1) = 2$.
+
+You can probably guess the integrating factor by noticing the left hand side looks like the product rule applied to $t^2y$.  Specifically, 
+\begin{align*}
+		t^2y' + 2ty &= \log t \\
+		\dfrac{d}{dt}\left(t^2y\right)  &= \log t \\
+		\left. s^2y(s) \right|_{s=1}^{s=t}  &= \int_1^t \log s \, ds \\
+		t^2y(t) - y(1)  &= t\log(t) - t + 1 \\
+		y(t) &= \frac{1}{t} \log(t) - \frac{1}{t} + \frac{3}{t^2}    
+\end{align*}
+:::
+
+::: {.callout-tip}
+
+If you don't immediately recognize the integrating factor, first rewrite the problem as
+$y' + \dfrac{2}{t} y = \frac{1}{t^2}\log t$
+The integrating factor can be computed as
+$u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
+
+:::
+
+
+
+## Poincaré Maps
+
+::: {#exm-logistic-harvesting-periodic}
+Consider the logistic model with $r>0$ and periodic harvesting.
+$$\frac{dx}{dt} = rx(1-x) - h(1+\sin(2\pi t))$$
+Here, to keep consistent with the example of Hirsh, Smale, and Devaney [@hirsch2013Differential Section 1.4] we've rescaled the population by $K$ and rescaled time so that the period of harvesting is one.
+:::
+This equation is neither linear, nor separable, so we have no tools at our disposal to find a nice form of the solution.
+
+```{julia}
+#| fig-cap: Direction field for @exm-logistic-harvesting-periodic. 
+#| label: fig-logistic-harvesting-periodic
+
+using DifferentialEquations
+
+using Plots
+using LaTeXStrings
+
+plot_font = "Computer Modern"
+default(fontfamily=plot_font,
+        linewidth=2, framestyle=:box, label=nothing, grid=false)
+
+f(x,p,t) = p.r*x*(1-x) - p.h*(1+sin(2*pi*t))
+
+p = (r = 2., h = .2)
+
+t = collect(0:.2:2)
+x = collect(0:.2:1)
+dirfield(t,x) = [1; f(x,p,t)]/10
+fig = quiver(repeat(t,length(x)),repeat(x,inner=length(t)),quiver=dirfield)
+plot!(fig,ylabel = L"\textrm{Population, } \textit{\ x}")
+plot!(fig,xlabel = L"\textrm{time, } \textit{\ t}")
+
+x0 = 0.5
+tspan = (0.,2.)
+prob = ODEProblem(f,x0,tspan,p)
+for x0 in .25:.25:1 
+  prob = remake(prob;u0 = x0)
+  sol = solve(prob)
+  plot!(fig,sol)
+end
+
+fig
+```
+
+
+Let $f(t,x) = rx(1-x) - h(1+\sin(2\pi t))$ and denote the solution to $\dot{x} = f(t,x)$ with $x(0) = x_0$ by $\phi(t,x_0)$.
+Since $f$ is periodic in $t$ with period one, it is useful to view the solution as a curve wrapping around the cylinder $(0,1)\times\Reals$.
+The uniqueness of solutions implies that there is a unique curve passing through each point on the cylinder (solutions don't intersect each other).
+Since there are no constant solutions,
+it is natural to ask if there are any periodic solutions, and since we are forcing the system with period one, we look for solutions with period one.  That is, solutions with $\phi(1,x_0) = x_0$.
+In short,  we view $p(x_0) = \phi(1,x_0)$ as a map from $\Reals$ to $\Reals$ and look for fixed points of this map.   These maps are referred to as Poincaré maps after Hénri Poincaré.
+
+## Exercises {#sec-1storder-exr}
+
+You should be familiar with material on basic differential equations in [Chapter 4 of OpenStax Calculus Volume 2](https://openstax.org/books/calculus-volume-2/pages/4-introduction), especially problems 119-142 in [Section 4.2](https://openstax.org/books/calculus-volume-2/pages/4-3-separable-equations)
+and problems 208-250 and 257-261 in [Section 4.4](https://openstax.org/books/calculus-volume-2/pages/4-5-first-order-linear-equations).
+
+::: {#exr-1storder-1}
+
+Solve the initial value problem $x^2y' = (2+x)y$ with $y(1)=1$.
+
+:::
+
+::: {.callout-solution collapse=true}
+
+- separate and integrate
+\begin{align*}
+  x^2y' &= (2+x)y \\
+  \frac{y'}{y} &= \frac{2}{x^2}+\frac{1}{x} \\
+  \int \frac{y'}{y} \, dx &= \int \frac{2}{x^2} \, dx +\int \frac{1}{x}  \, dx \\
+  \log y &= -\frac{2}{x} + \log x + C \\
+\end{align*}
+- apply initial conditions by substituting 1 for $x$ and $y$
+  $$\log 1 = -\frac{2}{1} + \log 1 + C \Rightarrow C = 2$$ 
+- solve relation for $y$ in terms of $x$
+\begin{align*}
+  y(x) &= \exp\left(-\frac{2}{x} + \log x + 2\right) \\
+       &= x\exp\left(2-\frac{2}{x}\right)
+\end{align*}
+:::
+
+::: {#exr-1storder-2}
+
+:::
+
+::: {.callout-solution collapse=true}
+
+:::
+
+

@@ -1,6 +1,6 @@
 ---
 author: James  Watmough
-date: "`r Sys.Date()`"
+date: last-modified
 ---
 
 # Systems of First order equations {#sec-systems}
@@ -142,7 +142,7 @@ If we have initial conditions at $t=0$, then $y(0) = SC$, since $R(0)$ is the id
 ## Repeated Eigenvalues {#sec-geneig}
 We have seen how to find solutions if we know a sufficient number of linearly independent eigenvectors.  In this section we tackle the case where the geometric multiplicity of an eigenvalue (the dimension of the Eigenspace) is less than its algebraic multiplicity.  We do this by first finding a general solution for a simple case and then derive a method to transform, through a change of basis, any other system to a similar simple system.
 
-## The second simplest case
+### The second simplest case
 
 Consider the system 
 \begin{align}
@@ -182,10 +182,9 @@ Both forms will be convenient at times.
 
 
 
-## Generalized Eigenvectors
+### Generalized Eigenvectors
 
 ::: {#def-generalized-eigenvector} 
-
 ## Generalized eigenvector  
 
 A generalized eigenvector of $A$ is a vector $v$ for which $$\left(A-rI\right)^m v = 0$$
@@ -254,7 +253,7 @@ generalized eigenvectors for every $n\times n$ matrix $A$.
    $$\vec{y}(t) = c_1e^{r_1t}\begin{pmatrix} 2 \\ 1\end{pmatrix} + c_2\left(te^{r_1t}\begin{pmatrix} 2 \\ 1\end{pmatrix} + e^{r_1t}\begin{pmatrix} 1 \\ 0\end{pmatrix}\right)$$
 :::
 
-## The Jordan form
+### The Jordan form
 
 The question remains if we have found all the solutions.  The answer to this lies in a theorem from linear algebra that states, roughly, that given any $n\times n$ matrix $A$, there is a linearly independent set of generalized eigenvectors of $A$ that spans $\R^n$.  Moreover, proceeding as we have above, we will find such a set.  It can then be shown that the solutions we've found will be linearly independent and yield the complete general solution to $y' = Ay$.
 
