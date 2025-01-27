@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2025-01-17">
 
-<title>1&nbsp; Introduction – Differential Equations in Mathematical Ecology</title>
+<title>7&nbsp; Linear Systems of Differential Equations – Differential Equations in Mathematical Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,8 +84,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ode-intro-geom.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./M3503-lec05-FourierSeries.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -112,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./M3503-lec01-ODEintro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ode-linear.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear Systems of Differential Equations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +197,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./M3503-lec01-ODEintro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -181,7 +233,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ode-linear.html" class="sidebar-item-text sidebar-link">
+  <a href="./ode-linear.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear Systems of Differential Equations</span></span></a>
   </div>
 </li>
@@ -201,9 +253,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link active" data-scroll-target="#motivating-examples"><span class="header-section-number">1.1</span> Motivating examples</a></li>
-  <li><a href="#sec-intro-linear" id="toc-sec-intro-linear" class="nav-link" data-scroll-target="#sec-intro-linear"><span class="header-section-number">1.2</span> Linear Differential Equations</a></li>
-  <li><a href="#sec-intro-systems" id="toc-sec-intro-systems" class="nav-link" data-scroll-target="#sec-intro-systems"><span class="header-section-number">1.3</span> Higher order differential equations and systems of differential equations</a></li>
+  <li><a href="#matrix-exponentials" id="toc-matrix-exponentials" class="nav-link active" data-scroll-target="#matrix-exponentials"><span class="header-section-number">7.1</span> Matrix Exponentials</a></li>
+  <li><a href="#eigenvalues-eigenvectors-and-eigenspaces" id="toc-eigenvalues-eigenvectors-and-eigenspaces" class="nav-link" data-scroll-target="#eigenvalues-eigenvectors-and-eigenspaces"><span class="header-section-number">7.2</span> Eigenvalues, Eigenvectors, and Eigenspaces</a></li>
+  <li><a href="#phase-portraits" id="toc-phase-portraits" class="nav-link" data-scroll-target="#phase-portraits"><span class="header-section-number">7.3</span> Phase Portraits</a></li>
   </ul>
 </nav>
     </div>
@@ -212,26 +264,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear Systems of Differential Equations</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>James Watmough </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 17, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -241,53 +281,102 @@ window.Quarto = {
 </header>
 
 
-<section id="motivating-examples" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="motivating-examples"><span class="header-section-number">1.1</span> Motivating examples</h2>
-<p>The art of applied mathematics involves distilling a description of the state a system into relationships between variables. For example, consider a simple pendulum consisting of a mass on a rigid rod constrained to swing in a plane. The various quantities of interest are the mass, <span class="math inline">\(m\)</span>, the length of the rod, <span class="math inline">\(l\)</span>, the horizontal displacement, <span class="math inline">\(x\)</span>, the vertical displacement, <span class="math inline">\(y\)</span>, both measured, for example, relative to the fixed end of the rod, and the angle of displacement, <span class="math inline">\(\theta\)</span>. These quantities are not independent. We know <span class="math inline">\(x^2+y^2 = l^2\)</span>, and we can choose to measure angle so that <span class="math inline">\(x = \sin \theta\)</span> and <span class="math inline">\(y = \cos \theta\)</span>. Our description so far is static, and our equations are algebraic.</p>
-<p>To describe the dynamics of the pendulum, we need to extend our mathematical description to include velocities, accelerations, forces and energies. If we neglect the mass of the rod, we can hypothesize that the component of the gravitational force perpendicular to the rod acts to accelerate the mass radially. <span class="math display">\[\text{mass}\times\text{radial acceleration} = \text{radial force of gravity}\]</span> <span id="eq-nonlinear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \sin \theta \tag{1.1}\]</span></span> Here <span class="math inline">\(g\)</span> denotes the gravitational constant and we use the double dot notation to denote the second derivative with respect to time. If we assume the angle is small, we can approximate <span class="math inline">\(\sin \theta\)</span> by <span class="math inline">\(\theta\)</span> and Equation <a href="#eq-nonlinear-pendulum" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> simplifies to <span id="eq-linear-pendulum"><span class="math display">\[ml\ddot{\theta} = - m g \theta \tag{1.2}\]</span></span></p>
-<p>Our goal in this course is to understand differential equations like <a href="#eq-linear-pendulum" class="quarto-xref">Equation&nbsp;<span>1.2</span></a>. We’ll proceed more or less in the following order.</p>
-<ol type="1">
-<li>We’ll start with simpler <strong>first order</strong> differential equations, some of which you’ll have seen in your Calculus courses.<br>
-</li>
-<li>Next we’ll look at higher order differential equations and systems of first order differential equations.</li>
-<li>Most of our focus will be on <strong>linear</strong> differential equations and <strong>initial value problems</strong>.</li>
-<li>We’ll use <strong>Laplace transforms</strong> to handle impulsive systems, like circuits with switches.</li>
-<li>We’ll briefly look at <strong>Fourier series</strong> and <strong>boundary value problems</strong>.</li>
-</ol>
-<div id="exm-intro-spring" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.1</strong></span> The motion of a mass on a spring is modelled as a balance of potential energy, <span class="math inline">\(\frac{1}{2}kx^2\)</span>, which is assumed proportional to the mass’s squared displacement from an equilibrium position, and kinetic energy, <span class="math inline">\(\frac{1}{2}m\dot{x}^2\)</span> which is assumed proportional to the mass’s squared velocity, or squared rate of change of displacement.<br>
-Conservation of energy implies the sum of these two quantities remains constant. You may have seen this expressed in terms of forces: <span class="math inline">\(m\ddot{x} + kx = 0\)</span>.<br>
-Here the displacement, <span class="math inline">\(x\)</span>, is our <strong>dependent variable</strong>. The <strong>independent variable</strong>, time, is implicit. We will refer to the mass, <span class="math inline">\(m\)</span>, and the spring constant <span class="math inline">\(k\)</span> as our parameters. The differential equation is often accompanied by <strong>initial conditions</strong>. For example releasing the mass from rest with an initial displacement <span class="math inline">\(x_0\)</span> translates to the conditions <span class="math inline">\(x(0) = x_0\)</span>, <span class="math inline">\(\dot{x}(0) = 0\)</span>.</p>
+<section id="matrix-exponentials" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="matrix-exponentials"><span class="header-section-number">7.1</span> Matrix Exponentials</h2>
+<p>Consider differential equations of the form <span class="math inline">\(\dot{x} = Ax\)</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times n\)</span> matrix of real numbers. For convenience, we’ll use <span class="math inline">\({\mathbb R}^{n\times n}\)</span> to denote the set of all such matrices.</p>
+<p>Integrating the equation we have <span class="math inline">\(x(t) = x_0 + \int_0^t Ax(s)\, dx\)</span>, which we can view as a map on the set <span class="math inline">\({\mathbf C}^1(0,t)\)</span> of differentiable functions on <span class="math inline">\((0,t)\)</span>. If we iterate this map starting with the constant function <span class="math inline">\(x_0\)</span>, we find <span class="math display">\[\begin{aligned}
+x_1 &amp;= x_0 + Ax_0t \\
+x_2 &amp;= x_0 + Ax_0t + \frac{1}{2}A^2x_0t^2 \\
+x_3 &amp;= x_0 + Ax_0t + \frac{1}{2}A^2x_0t^2 + \frac{1}{6}A^2x_0t^3
+\end{aligned}\]</span></p>
+<p>If <span class="math inline">\(A\)</span> is a scalar, or a <span class="math inline">\(1\times 1\)</span> matrix, this iteration generates the familiar series for the exponential. In particular, <span class="math inline">\(x_n\)</span> converges to <span class="math inline">\(e^{At}x_0\)</span>.</p>
+<p>We’ll anticipate that the series also converges in a meaningful way if <span class="math inline">\(A\)</span> is a matrix, and denote the limit by the <em>matrix exponential</em>, <span class="math inline">\(e^{At}\)</span>.</p>
+<div id="exr-matrix-exponential" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> Show that <span class="math inline">\(x_n\)</span> converges if <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times n\)</span> matrix. See the section on the matrix exponential in <span class="citation" data-cites="hirsch2013Differential">Hirsch, Smale, and Devaney (<a href="references.html#ref-hirsch2013Differential" role="doc-biblioref">2013</a>)</span> for a hint.</p>
 </div>
-<div id="exm-intro-logistic" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.2</strong></span> Exponential growth is modelled as a solution to the simple ode <span class="math inline">\(y' = ry\)</span>. More complex logistic growth is the solution to the equation <span class="math inline">\(y' = ry(1-y/K)\)</span>.</p>
-</div>
-<div id="exm-intro-circuit" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1.3</strong></span> Conservation of charge in an electrical circuit can be modelled as constraints between voltage drops, currents and their rates of change.</p>
-</div>
-<p>An ordinary differential equation is simply an equation involving an independent variable, say <span class="math inline">\(t\)</span>, a dependant variable, <span class="math inline">\(y\)</span>, and its derivatives, <span class="math inline">\(\frac{dy}{dt}, \frac{d^2y}{dt^2}, \frac{d^3y}{dt^3}, \dots\)</span> The order of a differential equation refers to the highest derivative present. For example, <span class="math display">\[\frac{dy}{dt} = a\sin(bt)y(1-y)\]</span> is a first order nonlinear ordinary differential equation; <span class="math display">\[m\frac{d^2y}{dt^2} + r\frac{dy}{dt} + ky = a\cos(t)\]</span> is a second order linear differential equation. The term <strong>linear</strong> refers to the linear dependence of the equation on the dependant variable and its derivatives.</p>
-<p>A differential equation, or a system of differential equations is said to be linear if it is linear in the dependent variable(s) and their derivatives. Thus, the equation governing the motion of a damped oscillator subject to an external force <span class="math inline">\(F\)</span>, <span class="math inline">\(my'' - cy' + ky = F(t)\)</span>, is a linear second order differential equation, even if the forcing term <span class="math inline">\(F\)</span> is nonlinear in the independent variable <span class="math inline">\(t\)</span>.</p>
 </section>
-<section id="sec-intro-linear" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="sec-intro-linear"><span class="header-section-number">1.2</span> Linear Differential Equations</h2>
-<p>The main focus of the first part of these notes is on linear ordinary differential equations. This is for two simple reasons: (1) the mathematical theory for nonlinear equations is built on the simpler, more complete theory for linear equations, and (2) important concepts, such as system stability and responses to perturbations, are based on linear approximations to nonlinear equations. For example, a balance of forces acting on a mass swinging on a string (a pendulum) leads to the nonlinear differential equation <span class="math display">\[l\theta''(t) + g\sin \theta(t) = 0,\]</span> where <span class="math inline">\(\theta(t)\)</span> is the angular displacement of the mass at time <span class="math inline">\(t\)</span>, <span class="math inline">\(l\)</span> is the string length and <span class="math inline">\(g\)</span> is our gravitational acceleration. You should quickly verify that the constant function <span class="math inline">\(\theta(t) = 0\)</span> for all <span class="math inline">\(t\)</span> is a solution to the equation. If the initial displacement is small, we expect the angle to stay close to zero. Thus we approximate the nonlinear term, <span class="math inline">\(g\sin(\theta)\)</span>, by its tangent line, <span class="math inline">\(g\theta\)</span>, resulting in the more familiar linear differential equation <span class="math display">\[l\theta''(t) + g\theta(t) = 0.\]</span> This one we can solve almost by inspection, since we know that sine and cosine functions behave this way. Indeed, if we guess that <span class="math inline">\(\theta(t) = \sin(\omega t)\)</span> we can find the frequency, <span class="math inline">\(\omega\)</span>, with some simple algebra: <span class="math display">\[\begin{align*}
-    l\theta''(t) + g\theta(t) &amp;= 0 \\
-    l\frac{d^2}{d\theta^2}\sin(\omega t) + g\sin(\omega t) &amp;= 0 \\
-    -l\omega^2\sin(\omega t) + g\sin(\omega t) &amp;= 0 \\
-    \left(-l\omega^2 + g\right)\sin(\omega t)  &amp;= 0
-\end{align*}\]</span> Thus either <span class="math inline">\(\sin(\omega t) =0\)</span> for all <span class="math inline">\(t\)</span>, implying <span class="math inline">\(\omega = 0\)</span>, or <span class="math inline">\(\omega = \sqrt{g/l}\)</span>. The first case is the trivial zero solution we already guessed, the second case is the natural frequency of the pendulum. We will cover this in more depth later.</p>
+<section id="eigenvalues-eigenvectors-and-eigenspaces" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="eigenvalues-eigenvectors-and-eigenspaces"><span class="header-section-number">7.2</span> Eigenvalues, Eigenvectors, and Eigenspaces</h2>
 </section>
-<section id="sec-intro-systems" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="sec-intro-systems"><span class="header-section-number">1.3</span> Higher order differential equations and systems of differential equations</h2>
-<p>An <span class="math inline">\(n^{\text{th}}\)</span> order differential equation can be written <span class="math display">\[{\cal{F}}\left(t,x,\frac{dx}{dt},\dots,\frac{d^nx}{dt^n}\right) = 0,\]</span> or if we solve for the highest derivative, <span class="math display">\[\frac{d^nx}{dt^n} = F(t,x,\frac{dx}{dt},\dots,\frac{d^i_{n-1}x}{dt^{n-1}}).\]</span> Such an equation can also be written as a system of first order equations by introducing new dependent variables for the derivatives: <span class="math display">\[\begin{align*}
-  x'_0 &amp;= x_1,  \\
-  x'_1 &amp;= x_2,  \\
-  x'_2 &amp;= x_3,  \\
-    x'_{n-1} &amp;=  F(t,x_0,x_1,\dots,x_{n-1}).
-\end{align*}\]</span> Here, <span class="math inline">\(x_i\)</span> is the <span class="math inline">\(i^{\text{th}}\)</span> derivative of <span class="math inline">\(x\)</span>, and <span class="math inline">\(x_0\)</span> is our new name for the original variable. Since higher order equations can be cast as systems of first order equations, we will spend much of the course dealing with such systems. Notationally, we just allow the dependent variable to be a vector: <span class="math inline">\(x' = f(t,x)\)</span>, where <span class="math inline">\(f:{\mathbb R}\times{\mathbb R}^n\to {\mathbb R}^n\)</span>.</p>
-<p>Geometrically, the solution to a system of first order equations, <span class="math inline">\(x(t)\)</span>, describes a curve in <span class="math inline">\({\mathbb R}^n\)</span> parameterized by <span class="math inline">\(t\)</span>. The derivative <span class="math inline">\(x'(t)\)</span> is the vector tangent to this curve at <span class="math inline">\((t,x(t))\)</span>. Hence, the solution to the differential equation is the curve <span class="math inline">\(x(t)\)</span>, which is everywhere tangent to <span class="math inline">\(f(t,x(t))\)</span>.</p>
+<section id="phase-portraits" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="phase-portraits"><span class="header-section-number">7.3</span> Phase Portraits</h2>
+<div id="exm-phase-portrait-diagonal" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.1</strong></span> Construct a phase portrait for the system <span class="math display">\[\begin{aligned}
+\dot{x} &amp;= 3x + 4y \\
+\dot{y} &amp;= 3x -  y
+\end{aligned}\]</span></p>
+</div>
+<p>The eigenvalues are 5 and -3, and the corresponding eigenspaces are the spans of <span class="math inline">\(\begin{pmatrix} 2 \\ 1 \end{pmatrix}\)</span> and <span class="math inline">\(\begin{pmatrix} 2 \\ -3 \end{pmatrix}\)</span> respectively.</p>
+<p>The solutions corresponding to these eigenvalue/eigenvector pairs trace out the eigenspaces in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>),<span class="at">xlab =</span> <span class="st">"x(t)"</span>, <span class="at">ylab =</span> <span class="st">"y(t)"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">'green'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ode-linear_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">recordPlot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The general solutions to the system are linear combinations of the two solutions corresponding to the eigenvalues. Since the eigenvalues have opposite signs, these trace out hyperbolae. To see this, let <span class="math inline">\(a(t)\begin{pmatrix} 2 \\ 1 \end{pmatrix} + b(t) \begin{pmatrix} 2 \\ -3 \end{pmatrix}\)</span> with <span class="math inline">\(a(t) = a_0e^{5t}\)</span> and <span class="math inline">\(b(t) = b_0e^{-3t}\)</span> denote the general solution. This is a curve, parameterized by <span class="math inline">\(t\)</span> for <span class="math inline">\(-\infty &lt; t &lt; \infty\)</span>. The coefficients, <span class="math inline">\(a(t)\)</span> and <span class="math inline">\(b(t)\)</span> satisfy <span class="math inline">\(a^3b^5 = a_0^3b_0^5\)</span>. These are hyperbolae in the <span class="math inline">\(a\)</span>-<span class="math inline">\(b\)</span>-plane which are hyperbolae in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane asymptotic to the two eigenspaces.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a_0 <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b_0 <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> a_0<span class="sc">*</span><span class="dv">2</span><span class="sc">**</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">21</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> b_0<span class="sc">/</span>(a<span class="sc">/</span>a_0)<span class="sc">**</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>a<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>b</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> a <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>b</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">replayPlot</span>(p)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">col=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="sc">-</span>x,<span class="sc">-</span>y,<span class="at">col=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>a<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>b</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="sc">-</span>a <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>b</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">col=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="sc">-</span>x,<span class="sc">-</span>y,<span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ode-linear_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># abline(0,-3/4)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># abline(0,3)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x = seq(-2,2,length=20)   # be sure to skip over zero (why?)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># segments(x,-3*x/4-.05,x,-3*x/4+.05)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># segments(x-.05,3*x,x+.05,3*x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>```</p>
+<p>There are two sets of subspaces (i.e., two pairs of lines) that we can use to construct the diagram.</p>
+<p>The <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> <strong>nullclines</strong> of the systems are the sets where <span class="math inline">\(\dot{x}=0\)</span> and <span class="math inline">\(\dot{y}=0\)</span>, respectively. For this example, those are the lines <span class="math inline">\(3x+4y=0\)</span> and <span class="math inline">\(3x-y=0\)</span>. Solutions cross these lines vertically (<span class="math inline">\(\dot{x} = 0\)</span>) and horizontally (<span class="math inline">\(\dot{y}=0\)</span>), respectively.</p>
+<div id="exm-phase-portrait-complex" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.2</strong></span> &nbsp;</p>
+</div>
+<div id="exm-phase-portrait-generalized" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.3</strong></span> &nbsp;</p>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hirsch2013Differential" class="csl-entry" role="listitem">
+Hirsch, Morris W., Stephen Smale, and Robert L. Devaney. 2013. <em>Differential Equations, Dynamical Systems, and an Introduction to Chaos</em>. Academic press.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -710,13 +799,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preamble">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preamble</span>
+      <a href="./M3503-lec05-FourierSeries.html" class="pagination-link" aria-label="Fourier Series">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fourier Series</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ode-intro-geom.html" class="pagination-link" aria-label="Scalar first order differential equations">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Scalar first order differential equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
