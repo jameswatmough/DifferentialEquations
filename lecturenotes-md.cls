@@ -104,6 +104,6 @@
 
 
 % bibliography
-\usepackage{natbib}
+%\usepackage{natbib}
 
 \message{end of class file}

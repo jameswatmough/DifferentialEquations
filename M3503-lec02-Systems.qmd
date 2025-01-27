@@ -21,7 +21,6 @@ $f$ be continuous in $t$ and differentiable in $y$.  However, a weaker condition
 is also known to suffice.
 
 ::: {#def-Lipschitz}
-
 ## Lipschitz Continuity
 
 A function $f$ is said to be Lipschitz continuous on some subset $U$ of its domain if there exists a constant $M$ for which

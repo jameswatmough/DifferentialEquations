@@ -58,7 +58,7 @@ A differential equation, or a system of differential equations is said to be lin
 
 ## Linear Differential Equations {#sec-intro-linear}
 
-The main focus of this course is on linear ordinary differential equations.  This is for two simple reasons: (1) the mathematical theory for nonlinear equations is built on the simpler, more complete theory for linear equations, and (2) important concepts, such as system stability and responses to perturbations, are based on linear approximations to nonlinear equations.  For example,  a balance of forces acting on a mass swinging on a string (a pendulum) leads to the nonlinear differential equation
+The main focus of the first part of these notes is on linear ordinary differential equations.  This is for two simple reasons: (1) the mathematical theory for nonlinear equations is built on the simpler, more complete theory for linear equations, and (2) important concepts, such as system stability and responses to perturbations, are based on linear approximations to nonlinear equations.  For example,  a balance of forces acting on a mass swinging on a string (a pendulum) leads to the nonlinear differential equation
 $$l\theta''(t) + g\sin \theta(t) = 0,$$
 where $\theta(t)$ is the angular displacement of the mass at time $t$, $l$ is the string length and $g$ is our gravitational acceleration.  You should quickly verify that the constant function $\theta(t) = 0$ for all $t$ is a solution to the equation.  If the initial displacement is small, we expect the angle to stay close to zero.  Thus we approximate the nonlinear term, $g\sin(\theta)$, by its tangent line, $g\theta$, resulting in the more familiar linear differential equation
 $$l\theta''(t) + g\theta(t) = 0.$$

@@ -6,7 +6,7 @@ date: last-modified
 
 {{< include texmacros.qmd >}}
 
-# First order differential equations {#sec-1storder}
+# Scalar first order differential equations {#sec-1storder}
 
 The [OpenStax Calculus][] text covers most of the material we need for first order scalar[^systems] differential equations.  You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013.
 More specifically,  you should be familiar with viewing a differential equation as a direction field (or vector field) @sec-direction-field.
@@ -129,7 +129,7 @@ Note, if $x(t)$, with the rescaled time is a solution to this last equation, the
 Repeat @exr-logistic-scaling under the assumption $b < d$.  Be sure to keep the scales positive so that rescaled time and population have the same signs as the original variables.
 :::
 
-## first order separable equations {#sec-separable}
+## First order separable equations {#sec-separable}
 
 A first order linear differential equation of the form $\frac{dy}{dt} = f(y)g(t)$
 is said to be separable.  It can be solved by a single integration step.
@@ -300,7 +300,7 @@ $u(t) = \exp\left(\displaystyle\int \frac{2}{t} \, dt\right) = t^2$
 ::: {#exm-logistic-harvesting-periodic}
 Consider the logistic model with $r>0$ and periodic harvesting.
 $$\frac{dx}{dt} = rx(1-x) - h(1+\sin(2\pi t))$$
-Here, to keep consistent with the example of Hirsh, Smale, and Devaney [@hirsch2013Differential Section 1.4] we've rescaled the population by $K$ and rescaled time so that the period of harvesting is one.
+Here, to keep consistent with the example of Hirsch, Smale, and Devaney [@hirsch2013Differential Section 1.4] we've rescaled the population by $K$ and rescaled time so that the period of harvesting is one.
 :::
 This equation is neither linear, nor separable, so we have no tools at our disposal to find a nice form of the solution.
 

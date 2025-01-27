@@ -16,6 +16,7 @@ book:
     - M3503-lec03-SecondOrderODE.qmd
     - M3503-lec04-LaplaceTransforms.qmd
     - M3503-lec05-FourierSeries.qmd
+    - ode-linear.qmd
     - references.qmd
 
 bibliography: dynamical_systems.bib
