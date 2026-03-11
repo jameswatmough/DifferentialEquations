@@ -43,6 +43,7 @@ The eigenvalues are 5 and -3, and the corresponding eigenspaces are the spans of
 The solutions corresponding to these eigenvalue/eigenvector pairs trace out the eigenspaces in the $x$-$y$ plane.
 
 ```{r}
+
 plot(NULL,xlim=c(-2,2),ylim=c(-2,2),xlab = "x(t)", ylab = "y(t)")
 abline(0,1/2,col='red')
 abline(0,-3/2,col='green')

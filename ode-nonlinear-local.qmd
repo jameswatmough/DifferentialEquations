@@ -1,0 +1,113 @@
+{{< include texmacros.qmd >}}
+
+# Existence and Uniqueness of Solutions
+
+::: {#def-r-differentiable}
+Let the set $\mathcal{C}^r(U)$ denote the set of functions with domain $U$ that are differentiable at least $r$ times with each derivative continuous on $U$.  The $r=0$ case, $\mathcal{C}^0(U)$, or simply $\mathcal{C}(U)$ is the set of continuous functions with domain $U$.  If $U$ is obvious from the context, we denote the sets by $\mathcal{C}^r$ and refer to the functions as $\mathcal{C}^r$ functions.
+:::
+
+::: {#def-locally-lipschitz}
+:::
+
+::: {#thm-existence}
+Suppose $f(t,x)$ is continuous on some open subset of $\Reals\times\Reals^n$ containing $x_0$. Then there is some $a>0$ for which the initial value problem $\dot{x} = f(t,x)$, $x(0) = x_0$  has a unique solution on the interval $(-a, a)$.
+:::
+
+::: {#thm-existence-uniqueness}
+Suppose $f(x)$ is locally Lipschitz continuous on some open subset of $\Reals^n$ containing $x_0$. Then there is some $a>0$ for which the initial value problem $\dot{x} = f(x)$, $x(0) = x_0$  has a unique solution on the interval $(-a, a)$.
+:::
+
+::: {#thm-differentiable-flow}
+Suppose $f(x)$ is $r$-times differentiable on some open subset of $\Reals^n$ containing $x_0$. Then there is some $a>0$ for which the initial value problem $\dot{x} = f(x)$, $x(0) = x_0$  has a unique solution \phi(t,x_0)on the interval $(-a, a)$.  Further, $\phi$ is $r$-times differentiable with respect to $x_0$.
+:::
+
+::: {#thm-maximal-interval-of-existence}
+Suppose $f$ is differentiable on some open subset, $E$, of $\Reals^n$.
+Then
+
+- for each $x_0\in E$, there is a maximal interval $J$ on which the initial value problem has a unique solution;
+- $J$ is an open interval, $(\alpha, \beta)$
+- if $\beta$ is finite, then the solution approaches the boundary of $E$ as $t$ approaches $\beta$
+:::
+
+# Equilibria and Stability
+
+::: {#def-flow}
+:::
+
+::: {#def-invariant-manifold}
+:::
+
+::: {#def-equilbrium}
+:::
+
+# Hartman-Grobman Theorem
+
+::: {#def-homeomorphism}
+A map $H$ is a **homeomorphism** if $H$ is continuous, one-to-one and onto and its inverse $H^{-1}$ is continuous.
+:::
+
+::: {#def-topologically-conjugate}
+Let $\phi^A$ and $\phi^B$ be flows of $f^A$ and $f^B$.  The two systems $x' = f^A(x)$  and $x' = f^B(x)$ are said to be **topologically conjugate** if there is a homeomorphism $H$ for which $\psi^B(t,H(x_0)) = H(\phi^A(t,x_0))$.
+:::
+
+
+The homeomorphism $H$ in this definition maps solutions of system $A$ into solutions of $B$ preserving orientation and parameterization by time.
+
+
+# Stable, Unstable, and Centre Subspaces
+
+Let $\{u_1,\dots,u_k,u_{k+1},v_{k+1},\dots, u_m,v_m\}$ be a basis $R^n$  where $u_j+iv_j$ is a generalized eigenvector of $Df(x_0)$ associated with an eigenvalue $\lambda_j = a_j + ib+j$.
+
+Define the **stable**, **unstable**, and **centre** subspaces of the linearization of $f$ as follows (Perko Section 1.9):
+
+$$\begin{aligned}
+E^s &=  \Span\set{u_j,v_j}{a_j<0, j\in\{1,m\}} \\
+E^u &=  \Span\set{u_j,v_j}{a_j>0, j\in\{1,m\}} \\
+E^c &=  \Span\set{u_j,v_j}{a_j=0, j\in\{1,m\}}
+\end{aligned}$$
+
+# Stable and Unstable Manifolds
+
+::: {#thm-stable-manifold}
+Suppose the origin is a hyperbolic equilibrium of $f$ and $Df(0)$ has a $k$-dimensional stable subspace $E^s$.  Then there is a $k$-dimensional manifold $S$ tangent to $E^s$ satisfying
+
+- $\phi_t(S) \subset S$, for all $t\ge 0$
+- $\displaystyle\lim_{t\to\infty} \phi_t(x_0) = 0$ for all $x_0\in S$.
+:::
+
+Notes:
+
+- $S$ is local
+- the theorem also guarantees a local unstable manifold $U$ tangent to $E^u$ (by reversing time)
+- $S$ can be extended *backwards* to define the **global** stable manifold $W^s(0)$
+  <!-- $$W^s(0) = \displaystyle\cup_{t\le0}\phi_t(S)$$-->
+
+::: {#exm-stable-manifold-local}
+
+$$\begin{aligned}
+\dot{x} &= y \\
+\dot{y} &= x-x^3 -\mu y
+\end{aligned}$$
+
+See Wiggins [open text](https://math.libretexts.org/Bookshelves/Differential_Equations/Ordinary_Differential_Equations_(Wiggins)/06%3A_Stable_and_Unstable_Manifolds_of_Equilibria)
+
+The system has three equilibrium points:  $(0,0)$, $(-1,0)$, and $(1,0)$.  The linearized system about the origin is $\dot{x} = Ax$ with
+$A = \begin{pmatrix}
+0 & 1 \\ 1 & -\mu
+\end{pmatrix}$
+which has characteristic polynomial $\lambda^2 + \mu \lambda - 1$, eigenvalues $-\frac{1}{2}\mu \pm \sqrt{\frac{1}{4}\mu^2 + 1}$.  These are real with opposite signs, therefore origin is a saddle.   The associated stable and unstable subspaces are the spans of $(1,\lambda)$.  These are the two lines $y = \lambda x$.
+
+To approximate the local stable and unstable manifolds of the nonlinear system, we look for invariant curves $y = h(x)$ passing through the origin.  Along these curves we have $\dot{y} = Dh(x)\dot{x}$, or
+$$x - x^3 - \mu h(x) = h'(x) h(x).$$
+Approximating $h$ as a power series, $h(x) = a_1x + a_2x^2 + \dots$,
+$$x - x^3 - \mu \left(a_1x + a_2x^2 + \dots\right) = \left(a_1 + 2a_2x + 3a_3x^2 + \dots\right)\left(a_1x + a_2x^2 + \dots\right)$$
+$$(1-\mu a_1 -a_1^2)x + (-\mu a_2 - 3a_1a_2)x^2 + (-1 - \mu a_3 - 4a_1a_3 - 2a_2^2)x^2 + \dots = 0$$
+Setting coefficients to zero implies $a_1$ satisfies the characteristic equation and is therefore an eigenvalue of $A$.  $a_2 = 0$, and $a_3 = -1/(4a_1+\mu)$.
+
+Thus, our approximations to the stable and unstable manifolds are
+$$y = \lambda x - \frac{1}{\mu + 4\lambda}x^3 + \dots$$.
+:::
+
+
+

@@ -21,6 +21,7 @@ A solution to a first order differential equation, $y' = f(x,y)$, is a function,
 
 ```{julia}
 #| lst-lab: julia-setup
+#| output: false
 
 using Plots
 using LaTeXStrings

@@ -12,13 +12,13 @@ date: last-modified
 The first part of this course deals with second order linear differential
 equations with constant coefficients.  However before we zero in on solution
 techniques for these equations it is worthwhile to take a brief look at the
-more general theory.  
+more general theory.
 
 Many physical problems can be cast as second order differential equations of the form
 $\ddot{x} = f(t,x,\dot{x})$
 with $\ddot{x}$ interpreted as acceleration, $x$ as position, and $\dot{x}$ as velocity.
 These often arise as initial value problems, when combined with initial conditions of
-the form $x(0) = x_0$, $\dot{x}(0) = y_0$.     
+the form $x(0) = x_0$, $\dot{x}(0) = y_0$.
 Some cases appear as boundary value problems with the conditions prescribed at two different
 values of the independent variable.
 $x(0) = a$, $x(1) = b$.
@@ -31,7 +31,7 @@ where the functions $P$, $Q$, $R$ and $G$ are specified.
 To motivate these as **linear** we need to review a few concepts from linear algebra.  In particular,  we need to learn to view functions as vectors.
 
 One key concept from linear algebra is a **linear combination**.
-Suppose $y_1, y_2, \dots, y_n$ are $n$ functions defined on some interval $[a,b]$.  For example, the set $1, x, x^2, x^3, x^4, x^5$ with $0 \le x \le 1$ is a set of 6 functions defined on the interval $[0,1]$.
+Suppose $y_1, y_2, \dots, y_n$ are $n$ functions defined on some interval $[a,b]$.  For example, the set $\{1, x, x^2, x^3, x^4, x^5\}$ with $0 \le x \le 1$ is a set of 6 functions defined on the interval $[0,1]$.
 Using the jargon we learned in our first linear algebra course, we can construct any polynomial of degree 5 or lower by taking **linear combinations** of the 6 **basis** functions.
 Specifically, if $c_0, c_1, \dots, c_5$ be any 6 numbers, then
 $y(x) = c_0 + c_1x + \dots + c_5x^5$ is a polynomial.  If $c_5\ne0$, $y$ is a polynomial of degree 5, otherwise, it has a lower degree.
