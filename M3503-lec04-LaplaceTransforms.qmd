@@ -363,7 +363,7 @@ Solve  the initial value problem
 $$y'' + 9y = \delta(t-\frac{\pi}{2}), \qquad y(0) = 0, \ y'(0) = 0.$$
 Note this is the classic model for a simple pendulum starting at rest at time zero, and given a **unit of force** concentrated at time $\pi/2$.  Think of tapping the pendulum with a hammer.
 
-Taking the Laplace transform of both sides yields  
+Taking the Laplace transform of both sides yields
 $$(s^2 + 9) Y(s) = e^{-\pi s/2}$$
 $$Y(s) = \frac{e^{-\pi s/2}}{s^2 + 9}$$
 and the inverse transform gives the solution

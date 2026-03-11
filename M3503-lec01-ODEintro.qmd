@@ -34,9 +34,9 @@ We'll proceed more or less in the following order.
 5. We'll briefly look at **Fourier series** and **boundary value problems**.
 
 ::: {#exm-intro-spring}
-The motion of a mass on a spring is modelled as a balance of potential energy, $\frac{1}{2}kx^2$,  which is assumed proportional to the mass's squared displacement from an equilibrium position, and kinetic energy, $\frac{1}{2}m\dot{x}^2$ which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.  
+The motion of a mass on a spring is modelled as a balance of potential energy, $\frac{1}{2}kx^2$,  which is assumed proportional to the mass's squared displacement from an equilibrium position, and kinetic energy, $\frac{1}{2}m\dot{x}^2$ which is assumed proportional to the mass's squared velocity, or squared rate of change of displacement.
 Conservation of energy implies the sum of these two quantities remains constant.
-You may have seen this expressed in terms of forces:  $m\ddot{x} + kx = 0$.   
+You may have seen this expressed in terms of forces:  $m\ddot{x} + kx = 0$.
 Here the displacement, $x$, is our **dependent variable**.  The **independent variable**, time, is implicit.  We will refer to the mass, $m$, and the spring constant $k$ as our parameters.    The differential equation is often accompanied by **initial conditions**.  For example releasing the mass from rest with an initial displacement $x_0$ translates to the conditions $x(0) = x_0$, $\dot{x}(0) = 0$.
 :::
 
