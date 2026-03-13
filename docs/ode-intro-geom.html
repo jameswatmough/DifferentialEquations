@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Watmough">
-<meta name="dcterms.date" content="2026-03-11">
+<meta name="dcterms.date" content="2026-03-13">
 
 <title>6&nbsp; Scalar first order differential equations – Differential Equations in Mathematical Ecology</title>
 <style>
@@ -292,7 +292,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 11, 2026</p>
+      <p class="date">March 13, 2026</p>
     </div>
   </div>
   
@@ -304,7 +304,7 @@ window.Quarto = {
 </header>
 
 
-<p>The [OpenStax Calculus][https://openstax.org/books/calculus-volume-3/pages/7-introduction] text covers most of the material we need for first order scalar<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> differential equations. You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013. More specifically, you should be familiar with viewing a differential equation as a direction field (or vector field) <a href="#sec-direction-field" class="quarto-xref"><span>Section 6.1</span></a>. You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations. These require nothing more than a basic mastery of integration.</p>
+<p>The <a href="https://openstax.org/books/calculus-volume-2/pages/4-introduction">OpenStax Calculus</a> text covers most of the material we need for first order scalar<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> differential equations. You should have covered all (or at least most) of OpenStax Calculus Volume 1 Chapter 4 in Math 1013. More specifically, you should be familiar with viewing a differential equation as a direction field (or vector field) <a href="#sec-direction-field" class="quarto-xref"><span>Section 6.1</span></a>. You should also master the two simplest solution tricks for first order equations: separable first order equations, and linear first order equations. These require nothing more than a basic mastery of integration.</p>
 <section id="sec-direction-field" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-direction-field"><span class="header-section-number">6.1</span> Direction fields</h2>
 <p>A solution to a first order differential equation, <span class="math inline">\(y' = f(x,y)\)</span>, is a function, <span class="math inline">\(y(x)\)</span>, whose slope at <span class="math inline">\(x\)</span> is <span class="math inline">\(f(x,y)\)</span>. One way to visualize this is to view <span class="math inline">\(f\)</span> as a <em>direction field</em>. That is, <span class="math inline">\(f\)</span> assigns a slope, or direction, to every point in the <span class="math inline">\(x\)</span>-<span class="math inline">\(y\)</span> plane.</p>
@@ -536,36 +536,35 @@ Tip
 <div id="cell-fig-logistic-harvesting-periodic" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LaTeXStrings</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plot_font <span class="op">=</span> <span class="st">"Computer Modern"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span>(fontfamily<span class="op">=</span>plot_font,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">2</span>, framestyle<span class="op">=:</span>box, label<span class="op">=</span><span class="cn">nothing</span>, grid<span class="op">=</span><span class="cn">false</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,p,t) <span class="op">=</span> p.<span class="fu">r*x*</span>(<span class="fl">1</span><span class="op">-</span>x) <span class="op">-</span> p.<span class="fu">h*</span>(<span class="fl">1</span><span class="fu">+sin</span>(<span class="fl">2</span><span class="op">*</span><span class="cn">pi</span><span class="op">*</span>t))</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (r <span class="op">=</span> <span class="fl">2</span>., h <span class="op">=</span> <span class="fl">.2</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">.2</span><span class="op">:</span><span class="fl">2</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">.2</span><span class="op">:</span><span class="fl">1</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dirfield</span>(t,x) <span class="op">=</span> [<span class="fl">1</span>; <span class="fu">f</span>(x,p,t)]<span class="op">/</span><span class="fl">10</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">quiver</span>(<span class="fu">repeat</span>(t,<span class="fu">length</span>(x)),<span class="fu">repeat</span>(x,inner<span class="op">=</span><span class="fu">length</span>(t)),quiver<span class="op">=</span>dirfield)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(fig,ylabel <span class="op">=</span> L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{Population, } </span><span class="sc">\t</span><span class="st">extit{\ x}"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(fig,xlabel <span class="op">=</span> L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{time, } </span><span class="sc">\t</span><span class="st">extit{\ t}"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>tspan <span class="op">=</span> (<span class="fl">0</span>.,<span class="fl">2</span>.)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(f,x0,tspan,p)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x0 <span class="kw">in</span> <span class="fl">.25</span><span class="op">:</span><span class="fl">.25</span><span class="op">:</span><span class="fl">1</span> </span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  prob <span class="op">=</span> <span class="fu">remake</span>(prob;u0 <span class="op">=</span> x0)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  sol <span class="op">=</span> <span class="fu">solve</span>(prob)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot!</span>(fig,sol)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">OrdinaryDiffEq</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LaTeXStrings</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plot_font <span class="op">=</span> <span class="st">"Computer Modern"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span>(fontfamily<span class="op">=</span>plot_font,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">2</span>, framestyle<span class="op">=:</span>box, label<span class="op">=</span><span class="cn">nothing</span>, grid<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,p,t) <span class="op">=</span> p.<span class="fu">r*x*</span>(<span class="fl">1</span><span class="op">-</span>x) <span class="op">-</span> p.<span class="fu">h*</span>(<span class="fl">1</span><span class="fu">+sin</span>(<span class="fl">2</span><span class="op">*</span><span class="cn">pi</span><span class="op">*</span>t))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (r <span class="op">=</span> <span class="fl">2</span>., h <span class="op">=</span> <span class="fl">.2</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">.2</span><span class="op">:</span><span class="fl">2</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">.2</span><span class="op">:</span><span class="fl">1</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dirfield</span>(t,x) <span class="op">=</span> [<span class="fl">1</span>; <span class="fu">f</span>(x,p,t)]<span class="op">/</span><span class="fl">10</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">quiver</span>(<span class="fu">repeat</span>(t,<span class="fu">length</span>(x)),<span class="fu">repeat</span>(x,inner<span class="op">=</span><span class="fu">length</span>(t)),quiver<span class="op">=</span>dirfield)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(fig,ylabel <span class="op">=</span> L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{Population, } </span><span class="sc">\t</span><span class="st">extit{\ x}"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(fig,xlabel <span class="op">=</span> L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{time, } </span><span class="sc">\t</span><span class="st">extit{\ t}"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>tspan <span class="op">=</span> (<span class="fl">0</span>.,<span class="fl">2</span>.)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(f,x0,tspan,p)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x0 <span class="kw">in</span> <span class="fl">.25</span><span class="op">:</span><span class="fl">.25</span><span class="op">:</span><span class="fl">1</span> </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  prob <span class="op">=</span> <span class="fu">remake</span>(prob;u0 <span class="op">=</span> x0)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  sol <span class="op">=</span> <span class="fu">solve</span>(prob)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot!</span>(fig,sol)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="fig-logistic-harvesting-periodic" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">

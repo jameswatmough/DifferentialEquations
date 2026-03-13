@@ -15,7 +15,7 @@
   \label{pages}
 }
 
-\LoadClass[12pt]{scrreport}
+\LoadClass[12pt]{report}
 
 \usepackage[letterpaper,margin=1in,head=30pt]{geometry}
 \usepackage{fancyhdr}
